@@ -7,18 +7,42 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D50A2F7228954AC800C9D9C2 /* Examples.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50A2F7128954AC800C9D9C2 /* Examples.swift */; };
+		D550CA262895304A00FD8AB2 /* BrowseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550CA252895304A00FD8AB2 /* BrowseView.swift */; };
+		D550CA282895309F00FD8AB2 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550CA272895309F00FD8AB2 /* NetworkError.swift */; };
+		D550CA2A289530FC00FD8AB2 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550CA29289530FC00FD8AB2 /* SearchView.swift */; };
+		D550CA2C2895317E00FD8AB2 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550CA2B2895317E00FD8AB2 /* ViewModel.swift */; };
+		D550CA3128953B4000FD8AB2 /* TalkPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550CA3028953B4000FD8AB2 /* TalkPlayerView.swift */; };
 		D5A156D8289462B3006989FF /* CCCTubeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A156D7289462B3006989FF /* CCCTubeApp.swift */; };
 		D5A156DA289462B3006989FF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A156D9289462B3006989FF /* ContentView.swift */; };
 		D5A156DC289462B3006989FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5A156DB289462B3006989FF /* Assets.xcassets */; };
 		D5A156DF289462B3006989FF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5A156DE289462B3006989FF /* Preview Assets.xcassets */; };
+		D5A156E828946A43006989FF /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A156E728946A43006989FF /* ApiService.swift */; };
+		D5A156EB28946AEC006989FF /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A156EA28946AEC006989FF /* Conference.swift */; };
+		D5A156ED28946AF8006989FF /* Talk.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A156EC28946AF8006989FF /* Talk.swift */; };
+		D5A156EF28946AFF006989FF /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A156EE28946AFF006989FF /* Recording.swift */; };
+		D5A156F128946FEB006989FF /* ConferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A156F028946FEB006989FF /* ConferenceView.swift */; };
+		D5A156F328947625006989FF /* TalkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A156F228947625006989FF /* TalkView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D50A2F7128954AC800C9D9C2 /* Examples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Examples.swift; sourceTree = "<group>"; };
+		D550CA252895304A00FD8AB2 /* BrowseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseView.swift; sourceTree = "<group>"; };
+		D550CA272895309F00FD8AB2 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		D550CA29289530FC00FD8AB2 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		D550CA2B2895317E00FD8AB2 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		D550CA3028953B4000FD8AB2 /* TalkPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkPlayerView.swift; sourceTree = "<group>"; };
 		D5A156D4289462B3006989FF /* CCCTube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCCTube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5A156D7289462B3006989FF /* CCCTubeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCCTubeApp.swift; sourceTree = "<group>"; };
 		D5A156D9289462B3006989FF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D5A156DB289462B3006989FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D5A156DE289462B3006989FF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D5A156E728946A43006989FF /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		D5A156EA28946AEC006989FF /* Conference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conference.swift; sourceTree = "<group>"; };
+		D5A156EC28946AF8006989FF /* Talk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Talk.swift; sourceTree = "<group>"; };
+		D5A156EE28946AFF006989FF /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
+		D5A156F028946FEB006989FF /* ConferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceView.swift; sourceTree = "<group>"; };
+		D5A156F228947625006989FF /* TalkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +56,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D550CA2D2895329E00FD8AB2 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				D550CA2E289532A300FD8AB2 /* Browse */,
+				D550CA2F289532A700FD8AB2 /* Search */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		D550CA2E289532A300FD8AB2 /* Browse */ = {
+			isa = PBXGroup;
+			children = (
+				D550CA252895304A00FD8AB2 /* BrowseView.swift */,
+				D5A156F228947625006989FF /* TalkView.swift */,
+				D5A156F028946FEB006989FF /* ConferenceView.swift */,
+			);
+			path = Browse;
+			sourceTree = "<group>";
+		};
+		D550CA2F289532A700FD8AB2 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				D550CA29289530FC00FD8AB2 /* SearchView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		D5A156CB289462B3006989FF = {
 			isa = PBXGroup;
 			children = (
@@ -51,10 +102,15 @@
 		D5A156D6289462B3006989FF /* CCCTube */ = {
 			isa = PBXGroup;
 			children = (
+				D550CA2D2895329E00FD8AB2 /* Features */,
 				D5A156D7289462B3006989FF /* CCCTubeApp.swift */,
 				D5A156D9289462B3006989FF /* ContentView.swift */,
+				D550CA2B2895317E00FD8AB2 /* ViewModel.swift */,
+				D5A156E928946AE8006989FF /* Models */,
 				D5A156DB289462B3006989FF /* Assets.xcassets */,
 				D5A156DD289462B3006989FF /* Preview Content */,
+				D5A156E728946A43006989FF /* ApiService.swift */,
+				D550CA3028953B4000FD8AB2 /* TalkPlayerView.swift */,
 			);
 			path = CCCTube;
 			sourceTree = "<group>";
@@ -65,6 +121,18 @@
 				D5A156DE289462B3006989FF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D5A156E928946AE8006989FF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D50A2F7128954AC800C9D9C2 /* Examples.swift */,
+				D5A156EA28946AEC006989FF /* Conference.swift */,
+				D5A156EC28946AF8006989FF /* Talk.swift */,
+				D5A156EE28946AFF006989FF /* Recording.swift */,
+				D550CA272895309F00FD8AB2 /* NetworkError.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +207,18 @@
 			files = (
 				D5A156DA289462B3006989FF /* ContentView.swift in Sources */,
 				D5A156D8289462B3006989FF /* CCCTubeApp.swift in Sources */,
+				D5A156F128946FEB006989FF /* ConferenceView.swift in Sources */,
+				D550CA262895304A00FD8AB2 /* BrowseView.swift in Sources */,
+				D550CA2A289530FC00FD8AB2 /* SearchView.swift in Sources */,
+				D550CA3128953B4000FD8AB2 /* TalkPlayerView.swift in Sources */,
+				D5A156F328947625006989FF /* TalkView.swift in Sources */,
+				D550CA2C2895317E00FD8AB2 /* ViewModel.swift in Sources */,
+				D5A156EB28946AEC006989FF /* Conference.swift in Sources */,
+				D5A156E828946A43006989FF /* ApiService.swift in Sources */,
+				D5A156ED28946AF8006989FF /* Talk.swift in Sources */,
+				D5A156EF28946AFF006989FF /* Recording.swift in Sources */,
+				D550CA282895309F00FD8AB2 /* NetworkError.swift in Sources */,
+				D50A2F7228954AC800C9D9C2 /* Examples.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
