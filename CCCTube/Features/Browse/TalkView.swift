@@ -9,8 +9,13 @@ import SwiftUI
 
 struct TalkView: View {
   let talk: Talk
+
   @State var recordings: [Recording] = []
   @State var selectedRecording: Recording?
+
+  @State var error: NetworkError? = nil
+  @State var isErrorPresented = false
+
   @EnvironmentObject var api: ApiService
 
   var body: some View {
@@ -44,11 +49,16 @@ struct TalkView: View {
         recordings = try await api.recordings(for: talk)
 //          .filter { $0.mime_type == "video/mp4" }
       } catch {
-        print(error)
+        self.error = NetworkError(errorDescription: NSLocalizedString("Failed to load data from the media.cc.de API", comment: ""), error: error)
+        isErrorPresented = true
+        debugPrint(error)
       }
     }
     .sheet(item: $selectedRecording) { recording in
       TalkPlayerView(talk: talk, recording: recording)
+    }
+    .alert(isPresented: $isErrorPresented, error: error) {
+      Button("OK") {}
     }
   }
 }

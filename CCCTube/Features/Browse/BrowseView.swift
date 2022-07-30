@@ -26,7 +26,7 @@ struct BrowseView: View {
           // conferences = try await api.conferences()
           talks = try await api.recentTalks()
         } catch {
-          self.error = NetworkError(error: error)
+          self.error = NetworkError(errorDescription: NSLocalizedString("Failed to load data from the media.cc.de API", comment: ""), error: error)
           isErrorPresented = true
           debugPrint(error)
         }

@@ -45,7 +45,7 @@ struct TalkMetadataFactory {
         mapping[.commonIdentifierArtwork] = UIImage(data: try Data(contentsOf: posterURL))?.pngData() as Any
       }
     } catch {
-      //
+      // Ignore error
     }
 
     if let subtitle = talk.subtitle {

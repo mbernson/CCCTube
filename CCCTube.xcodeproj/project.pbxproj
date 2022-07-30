@@ -23,6 +23,7 @@
 		D5A156EF28946AFF006989FF /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A156EE28946AFF006989FF /* Recording.swift */; };
 		D5A156F128946FEB006989FF /* ConferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A156F028946FEB006989FF /* ConferenceView.swift */; };
 		D5A156F328947625006989FF /* TalkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A156F228947625006989FF /* TalkView.swift */; };
+		D5A4618B289561D700F7A038 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5A4618D289561D700F7A038 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,8 @@
 		D5A156EE28946AFF006989FF /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
 		D5A156F028946FEB006989FF /* ConferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceView.swift; sourceTree = "<group>"; };
 		D5A156F228947625006989FF /* TalkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkView.swift; sourceTree = "<group>"; };
+		D5A4618E289561D800F7A038 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D5A4618F289561D900F7A038 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,7 @@
 				D5A156DD289462B3006989FF /* Preview Content */,
 				D5A156E728946A43006989FF /* ApiService.swift */,
 				D550CA3028953B4000FD8AB2 /* TalkPlayerView.swift */,
+				D5A4618D289561D700F7A038 /* Localizable.strings */,
 			);
 			path = CCCTube;
 			sourceTree = "<group>";
@@ -177,6 +181,8 @@
 			knownRegions = (
 				en,
 				Base,
+				nl,
+				de,
 			);
 			mainGroup = D5A156CB289462B3006989FF;
 			productRefGroup = D5A156D5289462B3006989FF /* Products */;
@@ -194,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5A156DF289462B3006989FF /* Preview Assets.xcassets in Resources */,
+				D5A4618B289561D700F7A038 /* Localizable.strings in Resources */,
 				D5A156DC289462B3006989FF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,6 +230,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D5A4618D289561D700F7A038 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5A4618E289561D800F7A038 /* nl */,
+				D5A4618F289561D900F7A038 /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D5A156E0289462B3006989FF /* Debug */ = {

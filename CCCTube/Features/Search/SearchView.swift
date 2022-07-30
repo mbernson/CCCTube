@@ -18,11 +18,16 @@ struct SearchSuggestion: Identifiable {
 
 struct SearchView: View {
   @State var query: String = ""
+
   @EnvironmentObject var api: ApiService
+
   @State var results: [Talk] = []
   @State var suggestions: [SearchSuggestion] = [
     "Hacking", "Freedom", "Linux", "ethics", "IoT", "security", "lightning talks",
   ].map(SearchSuggestion.init)
+
+  @State var error: NetworkError? = nil
+  @State var isErrorPresented = false
 
   var body: some View {
     NavigationView {
@@ -46,10 +51,15 @@ struct SearchView: View {
           do {
             results = try await api.searchTalks(query: query)
           } catch {
-            print(error)
+            self.error = NetworkError(errorDescription: NSLocalizedString("Failed to load data from the media.cc.de API", comment: ""), error: error)
+            isErrorPresented = true
+            debugPrint(error)
           }
         }
       })
+      .alert(isPresented: $isErrorPresented, error: error) {
+        Button("OK") {}
+      }
     }
   }
 }

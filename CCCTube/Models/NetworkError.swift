@@ -9,8 +9,10 @@ import Foundation
 
 struct NetworkError: LocalizedError {
   let errorDescription: String?
+  let failureReason: String?
 
-  init(error: Error) {
-    errorDescription = error.localizedDescription
+  init(errorDescription: String, error: Error) {
+    self.errorDescription = errorDescription
+    failureReason = error.localizedDescription
   }
 }
