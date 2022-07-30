@@ -44,7 +44,7 @@ public extension Talk {
       "MCH2022 Curated content"
     ],
     viewCount: 255,
-    promoted: false,
+    isPromoted: false,
     date: try! Date("2022-07-26T16:00:00.000+02:00", strategy: .iso8601),
     releaseDate: try! Date("2022-07-26T00:00:00.000+02:00", strategy: .iso8601),
     updatedAt: try! Date("2022-07-29T17:15:05.563+02:00", strategy: .iso8601),

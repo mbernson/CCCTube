@@ -28,7 +28,7 @@ public struct Talk: Decodable, Identifiable {
   public let persons: [String]
   public let tags: [String]
   public let viewCount: Int
-  public let promoted: Bool
+  public let isPromoted: Bool
   public let date: Date?
   public let releaseDate: Date
   public let updatedAt: Date
@@ -44,7 +44,7 @@ public struct Talk: Decodable, Identifiable {
   public let url: URL
   public let related: [RelatedTalk]
 
-  init(guid: String, title: String, subtitle: String?, slug: String, link: URL?, description: String?, originalLanguage: String?, persons: [String], tags: [String], viewCount: Int, promoted: Bool, date: Date?, releaseDate: Date, updatedAt: Date, length: Int, duration: Int, conferenceTitle: String, conferenceURL: URL, thumbURL: URL?, posterURL: URL, timelineURL: URL, thumbnailsURL: URL, frontendLink: URL, url: URL, related: [RelatedTalk]) {
+  init(guid: String, title: String, subtitle: String?, slug: String, link: URL?, description: String?, originalLanguage: String?, persons: [String], tags: [String], viewCount: Int, isPromoted: Bool, date: Date?, releaseDate: Date, updatedAt: Date, length: Int, duration: Int, conferenceTitle: String, conferenceURL: URL, thumbURL: URL?, posterURL: URL, timelineURL: URL, thumbnailsURL: URL, frontendLink: URL, url: URL, related: [RelatedTalk]) {
     self.guid = guid
     self.title = title
     self.subtitle = subtitle
@@ -55,7 +55,7 @@ public struct Talk: Decodable, Identifiable {
     self.persons = persons
     self.tags = tags
     self.viewCount = viewCount
-    self.promoted = promoted
+    self.isPromoted = isPromoted
     self.date = date
     self.releaseDate = releaseDate
     self.updatedAt = updatedAt
@@ -83,7 +83,7 @@ public struct Talk: Decodable, Identifiable {
     case persons = "persons"
     case tags = "tags"
     case viewCount = "view_count"
-    case promoted = "promoted"
+    case isPromoted = "promoted"
     case date = "date"
     case releaseDate = "release_date"
     case updatedAt = "updated_at"
@@ -113,7 +113,7 @@ public struct Talk: Decodable, Identifiable {
     persons = try container.decode([String].self, forKey: .persons)
     tags = try container.decode([String].self, forKey: .tags)
     viewCount = try container.decode(Int.self, forKey: .viewCount)
-    promoted = try container.decode(Bool.self, forKey: .promoted)
+    isPromoted = try container.decode(Bool.self, forKey: .isPromoted)
     date = try container.decode(Date?.self, forKey: .date)
     releaseDate = try container.decode(Date.self, forKey: .releaseDate)
     updatedAt = try container.decode(Date.self, forKey: .updatedAt)

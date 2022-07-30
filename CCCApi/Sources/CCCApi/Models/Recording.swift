@@ -10,25 +10,27 @@ import Foundation
 /// A recording is a file that belongs to a talk (event).
 /// These can be video or audio recordings of the talk in different formats and languages (live-translation), subtitle tracks as srt or slides as pdf.
 public struct Recording: Decodable, Identifiable {
-  public let size: Int // 104,
-  public let length: Int // 1066,
-  public let mimeType: String // "video/webm",
-  public let language: String // "eng",
-  public let filename: String // "mch2022-110-eng-May_Contain_Hackers_2022_Closing_webm-sd.webm",
-  public let state: String // "new",
-  public let folder: String // "webm-sd",
-  public let isHighQuality: Bool // false,
-  public let width: Int // 720,
-  public let height: Int // 576,
-  public let updatedAt: Date // "2022-07-27T16:32:06.835+02:00",
-  public let url: URL // "https://cdn.media.ccc.de/events/MCH2022/webm-sd/mch2022-110-eng-May_Contain_Hackers_2022_Closing_webm-sd.webm",
-  public let recordingURL: URL // "https://api.media.ccc.de/public/recordings/60791",
-  public let eventURL: URL // "https://api.media.ccc.de/public/events/cf4dc17c-aab4-5868-9b57-100a55a1c2fb",
-  public let conferenceURL: URL // "https://api.media.ccc.de/public/conferences/MCH2022"
+  /// approximate file size in megabytes
+  public let size: Int?
+  /// duration in seconds
+  public let length: TimeInterval
+  public let mimeType: String
+  public let language: String
+  public let filename: String
+  public let state: String
+  public let folder: String
+  public let isHighQuality: Bool
+  public let width: Int
+  public let height: Int
+  public let updatedAt: Date
+  public let url: URL
+  public let recordingURL: URL
+  public let eventURL: URL
+  public let conferenceURL: URL
 
   public var id: String { filename }
 
-  init(size: Int, length: Int, mimeType: String, language: String, filename: String, state: String, folder: String, isHighQuality: Bool, width: Int, height: Int, updatedAt: Date, url: URL, recordingURL: URL, eventURL: URL, conferenceURL: URL) {
+  init(size: Int?, length: TimeInterval, mimeType: String, language: String, filename: String, state: String, folder: String, isHighQuality: Bool, width: Int, height: Int, updatedAt: Date, url: URL, recordingURL: URL, eventURL: URL, conferenceURL: URL) {
     self.size = size
     self.length = length
     self.mimeType = mimeType
@@ -67,8 +69,8 @@ public struct Recording: Decodable, Identifiable {
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    size = try container.decode(Int.self, forKey: .size)
-    length = try container.decode(Int.self, forKey: .length)
+    size = try container.decode(Int?.self, forKey: .size)
+    length = try container.decode(TimeInterval.self, forKey: .length)
     mimeType = try container.decode(String.self, forKey: .mimeType)
     language = try container.decode(String.self, forKey: .language)
     filename = try container.decode(String.self, forKey: .filename)

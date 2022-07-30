@@ -13,19 +13,19 @@ struct ConferencesResponse: Decodable {
 
 /// e.g. the congress or lecture series like datengarten or openchaos
 public struct Conference: Decodable, Identifiable {
-  public let acronym: String // "rc3-2021",
-  public let slug: String // "conferences/rc3/2021",
-  public let title: String // "rC3 NOWHERE",
-  public let updatedAt: Date // "2022-07-29T20:45:05.144+02:00",
-  public let eventLastReleasedAt: Date? // "2022-06-06T00:00:00.000+02:00",
-  public let link: URL? // "https://streaming.media.ccc.de/rc3/relive",
-  public let description: String? // "bla:",
-  public let aspectRatio: AspectRatio? // "16:9",
-  public let webgenLocation: String // "conferences/rc3/2021",
-  public let url: URL // "https://api.media.ccc.de/public/conferences/rc3-2021"
-  public let logoURL: URL // "https://static.media.ccc.de/media/events/rc3/2021/rC3_21-logo.png",
-  public let imagesURL: URL? // "https://static.media.ccc.de/media/events/rc3/2021",
-  public let recordingsURL: URL? // "https://cdn.media.ccc.de/events/rc3/2021",
+  public let acronym: String
+  public let slug: String
+  public let title: String
+  public let updatedAt: Date
+  public let eventLastReleasedAt: Date?
+  public let link: URL?
+  public let description: String?
+  public let aspectRatio: AspectRatio?
+  public let webgenLocation: String
+  public let url: URL
+  public let logoURL: URL
+  public let imagesURL: URL?
+  public let recordingsURL: URL?
 
   public var id: String { slug }
 
