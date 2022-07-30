@@ -45,6 +45,12 @@ public class ApiService: ObservableObject {
 
   // MARK: Talks
 
+  public func talk(id: String) async throws -> Talk {
+    let (data, _) = try await session.data(from: baseURL.appendingPathComponent("events").appendingPathComponent(id))
+    let response = try decoder.decode(Talk.self, from: data)
+    return response
+  }
+
   public func talks() async throws -> [Talk] {
     let (data, _) = try await session.data(from: baseURL.appendingPathComponent("events"))
     let response = try decoder.decode(EventsResponse.self, from: data)

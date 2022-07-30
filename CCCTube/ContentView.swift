@@ -10,6 +10,7 @@ import CCCApi
 
 struct ContentView: View {
   let api = ApiService()
+  @State var talk: Talk?
 
   var body: some View {
     TabView {
@@ -26,6 +27,25 @@ struct ContentView: View {
 
     }
     .environmentObject(api)
+    .sheet(item: $talk, content: { talk in
+      TalkView(talk: talk)
+        .environmentObject(api)
+    })
+    .onOpenURL { url in
+      print(url.absoluteString)
+      let factory = URLParser()
+      guard let route = factory.parseURL(url) else { return }
+      Task {
+        switch route {
+        case .openTalk(let id):
+          let talk = try await api.talk(id: id)
+          self.talk = talk
+        case .playTalk(let id):
+          let talk = try await api.talk(id: id)
+          self.talk = talk
+        }
+      }
+    }
   }
 }
 

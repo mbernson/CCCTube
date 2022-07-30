@@ -63,18 +63,13 @@ struct TalkThumbnail: View {
   let talk: Talk
   
   var body: some View {
-//    VStack(alignment: .center, spacing: 8) {
-      AsyncImage(url: talk.thumbURL) { image in
-        image.resizable()
-      } placeholder: {
-        ProgressView()
-      }
-      .aspectRatio(4/3, contentMode: .fit)
-      .frame(idealWidth: 400, idealHeight: 300)
-
-//      Text(talk.title)
-//        .font(.caption)
-//    }
+    AsyncImage(url: talk.thumbURL) { image in
+      image.resizable()
+    } placeholder: {
+      ProgressView()
+    }
+    .aspectRatio(4/3, contentMode: .fit)
+    .frame(idealWidth: 400, idealHeight: 300)
   }
 }
 
@@ -110,10 +105,15 @@ struct TalksGrid: View {
   var body: some View {
     LazyVGrid(columns: columns) {
       ForEach(talks) { talk in
-        NavigationLink {
-          TalkView(talk: talk)
-        } label: {
-          TalkThumbnail(talk: talk)
+        VStack(alignment: .center, spacing: 4) {
+          NavigationLink {
+            TalkView(talk: talk)
+          } label: {
+            TalkThumbnail(talk: talk)
+          }
+          
+          Text(talk.title)
+            .font(.caption)
         }
       }
     }

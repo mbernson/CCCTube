@@ -12,6 +12,14 @@
 		D550CA2A289530FC00FD8AB2 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550CA29289530FC00FD8AB2 /* SearchView.swift */; };
 		D550CA2C2895317E00FD8AB2 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550CA2B2895317E00FD8AB2 /* ViewModel.swift */; };
 		D550CA3128953B4000FD8AB2 /* TalkPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550CA3028953B4000FD8AB2 /* TalkPlayerView.swift */; };
+		D59139412895851300369402 /* TVServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D59139402895851300369402 /* TVServices.framework */; };
+		D59139442895851300369402 /* ContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59139432895851300369402 /* ContentProvider.swift */; };
+		D59139482895851300369402 /* TopShelf.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D591393F2895851300369402 /* TopShelf.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D591394E2895854100369402 /* CCCApi in Frameworks */ = {isa = PBXBuildFile; productRef = D591394D2895854100369402 /* CCCApi */; };
+		D5913950289585AC00369402 /* TopShelfContentFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D591394F289585AC00369402 /* TopShelfContentFactory.swift */; };
+		D591395428958B0100369402 /* URLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D591395328958B0100369402 /* URLParser.swift */; };
+		D591395C28958B2600369402 /* URLParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D591395B28958B2600369402 /* URLParserTests.swift */; };
+		D591396328958CE500369402 /* URLRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = D591396228958CE500369402 /* URLRoute.swift */; };
 		D5A156D8289462B3006989FF /* CCCTubeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A156D7289462B3006989FF /* CCCTubeApp.swift */; };
 		D5A156DA289462B3006989FF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A156D9289462B3006989FF /* ContentView.swift */; };
 		D5A156DC289462B3006989FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5A156DB289462B3006989FF /* Assets.xcassets */; };
@@ -21,12 +29,53 @@
 		D5A4618B289561D700F7A038 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5A4618D289561D700F7A038 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D59139462895851300369402 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5A156CC289462B3006989FF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D591393E2895851300369402;
+			remoteInfo = TopShelf;
+		};
+		D591395D28958B2600369402 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5A156CC289462B3006989FF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5A156D3289462B3006989FF;
+			remoteInfo = CCCTube;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D59139492895851300369402 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D59139482895851300369402 /* TopShelf.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		D50C6F7328956D770003D1D0 /* CCCApi */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = CCCApi; sourceTree = "<group>"; };
 		D550CA252895304A00FD8AB2 /* BrowseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseView.swift; sourceTree = "<group>"; };
 		D550CA29289530FC00FD8AB2 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		D550CA2B2895317E00FD8AB2 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		D550CA3028953B4000FD8AB2 /* TalkPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkPlayerView.swift; sourceTree = "<group>"; };
+		D591393F2895851300369402 /* TopShelf.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TopShelf.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D59139402895851300369402 /* TVServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TVServices.framework; path = System/Library/Frameworks/TVServices.framework; sourceTree = SDKROOT; };
+		D59139432895851300369402 /* ContentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentProvider.swift; sourceTree = "<group>"; };
+		D59139452895851300369402 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D591394F289585AC00369402 /* TopShelfContentFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopShelfContentFactory.swift; sourceTree = "<group>"; };
+		D5913952289589A200369402 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D591395328958B0100369402 /* URLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParser.swift; sourceTree = "<group>"; };
+		D591395928958B2600369402 /* CCCTubeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CCCTubeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D591395B28958B2600369402 /* URLParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParserTests.swift; sourceTree = "<group>"; };
+		D591396228958CE500369402 /* URLRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRoute.swift; sourceTree = "<group>"; };
 		D5A156D4289462B3006989FF /* CCCTube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCCTube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5A156D7289462B3006989FF /* CCCTubeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCCTubeApp.swift; sourceTree = "<group>"; };
 		D5A156D9289462B3006989FF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -39,6 +88,22 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D591393C2895851300369402 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D59139412895851300369402 /* TVServices.framework in Frameworks */,
+				D591394E2895854100369402 /* CCCApi in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D591395628958B2600369402 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D5A156D1289462B3006989FF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -53,6 +118,7 @@
 		D50C6F7428956DFC0003D1D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D59139402895851300369402 /* TVServices.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -84,11 +150,31 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		D59139422895851300369402 /* TopShelf */ = {
+			isa = PBXGroup;
+			children = (
+				D59139432895851300369402 /* ContentProvider.swift */,
+				D591394F289585AC00369402 /* TopShelfContentFactory.swift */,
+				D59139452895851300369402 /* Info.plist */,
+			);
+			path = TopShelf;
+			sourceTree = "<group>";
+		};
+		D591395A28958B2600369402 /* CCCTubeTests */ = {
+			isa = PBXGroup;
+			children = (
+				D591395B28958B2600369402 /* URLParserTests.swift */,
+			);
+			path = CCCTubeTests;
+			sourceTree = "<group>";
+		};
 		D5A156CB289462B3006989FF = {
 			isa = PBXGroup;
 			children = (
 				D5A156D6289462B3006989FF /* CCCTube */,
 				D50C6F7328956D770003D1D0 /* CCCApi */,
+				D59139422895851300369402 /* TopShelf */,
+				D591395A28958B2600369402 /* CCCTubeTests */,
 				D5A156D5289462B3006989FF /* Products */,
 				D50C6F7428956DFC0003D1D0 /* Frameworks */,
 			);
@@ -98,6 +184,8 @@
 			isa = PBXGroup;
 			children = (
 				D5A156D4289462B3006989FF /* CCCTube.app */,
+				D591393F2895851300369402 /* TopShelf.appex */,
+				D591395928958B2600369402 /* CCCTubeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -112,7 +200,10 @@
 				D5A156DB289462B3006989FF /* Assets.xcassets */,
 				D5A156DD289462B3006989FF /* Preview Content */,
 				D550CA3028953B4000FD8AB2 /* TalkPlayerView.swift */,
+				D5913952289589A200369402 /* Info.plist */,
 				D5A4618D289561D700F7A038 /* Localizable.strings */,
+				D591395328958B0100369402 /* URLParser.swift */,
+				D591396228958CE500369402 /* URLRoute.swift */,
 			);
 			path = CCCTube;
 			sourceTree = "<group>";
@@ -128,6 +219,44 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D591393E2895851300369402 /* TopShelf */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D591394C2895851300369402 /* Build configuration list for PBXNativeTarget "TopShelf" */;
+			buildPhases = (
+				D591393B2895851300369402 /* Sources */,
+				D591393C2895851300369402 /* Frameworks */,
+				D591393D2895851300369402 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TopShelf;
+			packageProductDependencies = (
+				D591394D2895854100369402 /* CCCApi */,
+			);
+			productName = TopShelf;
+			productReference = D591393F2895851300369402 /* TopShelf.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		D591395828958B2600369402 /* CCCTubeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D591395F28958B2600369402 /* Build configuration list for PBXNativeTarget "CCCTubeTests" */;
+			buildPhases = (
+				D591395528958B2600369402 /* Sources */,
+				D591395628958B2600369402 /* Frameworks */,
+				D591395728958B2600369402 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D591395E28958B2600369402 /* PBXTargetDependency */,
+			);
+			name = CCCTubeTests;
+			productName = CCCTubeTests;
+			productReference = D591395928958B2600369402 /* CCCTubeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D5A156D3289462B3006989FF /* CCCTube */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D5A156E2289462B3006989FF /* Build configuration list for PBXNativeTarget "CCCTube" */;
@@ -135,10 +264,12 @@
 				D5A156D0289462B3006989FF /* Sources */,
 				D5A156D1289462B3006989FF /* Frameworks */,
 				D5A156D2289462B3006989FF /* Resources */,
+				D59139492895851300369402 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D59139472895851300369402 /* PBXTargetDependency */,
 			);
 			name = CCCTube;
 			packageProductDependencies = (
@@ -158,6 +289,13 @@
 				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
+					D591393E2895851300369402 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					D591395828958B2600369402 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = D5A156D3289462B3006989FF;
+					};
 					D5A156D3289462B3006989FF = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
@@ -179,11 +317,27 @@
 			projectRoot = "";
 			targets = (
 				D5A156D3289462B3006989FF /* CCCTube */,
+				D591393E2895851300369402 /* TopShelf */,
+				D591395828958B2600369402 /* CCCTubeTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D591393D2895851300369402 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D591395728958B2600369402 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D5A156D2289462B3006989FF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -197,12 +351,31 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D591393B2895851300369402 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D59139442895851300369402 /* ContentProvider.swift in Sources */,
+				D5913950289585AC00369402 /* TopShelfContentFactory.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D591395528958B2600369402 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D591395C28958B2600369402 /* URLParserTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D5A156D0289462B3006989FF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D5A156DA289462B3006989FF /* ContentView.swift in Sources */,
+				D591395428958B0100369402 /* URLParser.swift in Sources */,
 				D5A156D8289462B3006989FF /* CCCTubeApp.swift in Sources */,
+				D591396328958CE500369402 /* URLRoute.swift in Sources */,
 				D5A156F128946FEB006989FF /* ConferenceView.swift in Sources */,
 				D550CA262895304A00FD8AB2 /* BrowseView.swift in Sources */,
 				D550CA2A289530FC00FD8AB2 /* SearchView.swift in Sources */,
@@ -213,6 +386,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D59139472895851300369402 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D591393E2895851300369402 /* TopShelf */;
+			targetProxy = D59139462895851300369402 /* PBXContainerItemProxy */;
+		};
+		D591395E28958B2600369402 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5A156D3289462B3006989FF /* CCCTube */;
+			targetProxy = D591395D28958B2600369402 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D5A4618D289561D700F7A038 /* Localizable.strings */ = {
@@ -227,6 +413,92 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D591394A2895851300369402 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3W68UU92K3;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TopShelf/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TopShelf;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.bernson.CCCTube.TopShelf;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Debug;
+		};
+		D591394B2895851300369402 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3W68UU92K3;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TopShelf/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TopShelf;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.bernson.CCCTube.TopShelf;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Release;
+		};
+		D591396028958B2600369402 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3W68UU92K3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.bernson.CCCTubeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CCCTube.app/CCCTube";
+			};
+			name = Debug;
+		};
+		D591396128958B2600369402 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3W68UU92K3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.bernson.CCCTubeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CCCTube.app/CCCTube";
+			};
+			name = Release;
+		};
 		D5A156E0289462B3006989FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -344,6 +616,7 @@
 		D5A156E3289462B3006989FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -352,6 +625,8 @@
 				DEVELOPMENT_TEAM = 3W68UU92K3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CCCTube/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -370,6 +645,7 @@
 		D5A156E4289462B3006989FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -378,6 +654,8 @@
 				DEVELOPMENT_TEAM = 3W68UU92K3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CCCTube/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -396,6 +674,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D591394C2895851300369402 /* Build configuration list for PBXNativeTarget "TopShelf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D591394A2895851300369402 /* Debug */,
+				D591394B2895851300369402 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D591395F28958B2600369402 /* Build configuration list for PBXNativeTarget "CCCTubeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D591396028958B2600369402 /* Debug */,
+				D591396128958B2600369402 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D5A156CF289462B3006989FF /* Build configuration list for PBXProject "CCCTube" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -418,6 +714,10 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		D50C6F7528956DFC0003D1D0 /* CCCApi */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CCCApi;
+		};
+		D591394D2895854100369402 /* CCCApi */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CCCApi;
 		};
