@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CCCApi
 
 struct ContentView: View {
   let api = ApiService()

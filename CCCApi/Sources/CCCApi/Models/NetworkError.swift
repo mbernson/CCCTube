@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct NetworkError: LocalizedError {
-  let errorDescription: String?
-  let failureReason: String?
+public struct NetworkError: LocalizedError {
+  public let errorDescription: String?
+  public let failureReason: String?
 
-  init(errorDescription: String, error: Error) {
+  public init(errorDescription: String, error: Error) {
     self.errorDescription = errorDescription
     failureReason = error.localizedDescription
   }

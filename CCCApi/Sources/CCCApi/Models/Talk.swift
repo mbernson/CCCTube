@@ -15,34 +15,34 @@ typealias Event = Talk
 
 /// Every talk (alias event, in other systems also called lecture or session) is assigned to exactly one conference (e.g. the congress or lecture series like datengarten or openchaos) and consists of multiple files alias recordings.
 /// These files can be video or audio recordings of the talk in different formats and languages (live-translation), subtitle tracks as srt or slides as pdf.
-struct Talk: Decodable, Identifiable {
-  var id: String { guid }
+public struct Talk: Decodable, Identifiable {
+  public var id: String { guid }
 
-  let guid: String
-  let title: String
-  let subtitle: String?
-  let slug: String
-  let link: URL?
-  let description: String?
-  let originalLanguage: String?
-  let persons: [String]
-  let tags: [String]
-  let viewCount: Int
-  let promoted: Bool
-  let date: Date?
-  let releaseDate: Date
-  let updatedAt: Date
-  let length: Int
-  let duration: Int
-  let conferenceTitle: String
-  let conferenceURL: URL
-  let thumbURL: URL?
-  let posterURL: URL?
-  let timelineURL: URL
-  let thumbnailsURL: URL
-  let frontendLink: URL
-  let url: URL
-  let related: [RelatedTalk]
+  public let guid: String
+  public let title: String
+  public let subtitle: String?
+  public let slug: String
+  public let link: URL?
+  public let description: String?
+  public let originalLanguage: String?
+  public let persons: [String]
+  public let tags: [String]
+  public let viewCount: Int
+  public let promoted: Bool
+  public let date: Date?
+  public let releaseDate: Date
+  public let updatedAt: Date
+  public let length: Int
+  public let duration: Int
+  public let conferenceTitle: String
+  public let conferenceURL: URL
+  public let thumbURL: URL?
+  public let posterURL: URL?
+  public let timelineURL: URL
+  public let thumbnailsURL: URL
+  public let frontendLink: URL
+  public let url: URL
+  public let related: [RelatedTalk]
 
   init(guid: String, title: String, subtitle: String?, slug: String, link: URL?, description: String?, originalLanguage: String?, persons: [String], tags: [String], viewCount: Int, promoted: Bool, date: Date?, releaseDate: Date, updatedAt: Date, length: Int, duration: Int, conferenceTitle: String, conferenceURL: URL, thumbURL: URL?, posterURL: URL, timelineURL: URL, thumbnailsURL: URL, frontendLink: URL, url: URL, related: [RelatedTalk]) {
     self.guid = guid
@@ -100,7 +100,7 @@ struct Talk: Decodable, Identifiable {
     case related = "related"
   }
 
-  init(from decoder: Decoder) throws {
+  public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     guid = try container.decode(String.self, forKey: .guid)
@@ -140,7 +140,7 @@ struct TalkExtended: Decodable {
   }
 }
 
-struct RelatedTalk: Decodable {
+public struct RelatedTalk: Decodable {
   let event_id: Int // 7361,
   let event_guid: String // "977957d7-ef42-4ea0-8380-b9a48bd583f0",
   let weight: Int // 88

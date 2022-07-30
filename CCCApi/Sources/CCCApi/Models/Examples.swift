@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Conference {
+public extension Conference {
   static let example = Conference(
     acronym: "MCH2022",
     slug: "conferences/camp-NL/mch2022",
@@ -25,7 +25,7 @@ extension Conference {
   )
 }
 
-extension Talk {
+public extension Talk {
   static let example = Talk(
     guid: "cf4dc17c-aab4-5868-9b57-100a55a1c2fb",
     title: "⚠️ May Contain Hackers 2022 Closing",
@@ -62,7 +62,7 @@ extension Talk {
   )
 }
 
-extension Recording {
+public extension Recording {
   static let example = Recording(
     size: 461,
     length: 1066,
@@ -82,7 +82,7 @@ extension Recording {
   )
 }
 
-extension Array where Element == RelatedTalk {
+public extension Array where Element == RelatedTalk {
   static let example: [RelatedTalk] = [
     RelatedTalk(
       event_id: 2291,

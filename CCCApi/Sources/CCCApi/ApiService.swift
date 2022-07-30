@@ -7,13 +7,13 @@
 
 import Foundation
 
-class ApiService: ObservableObject {
+public class ApiService: ObservableObject {
   private let session: URLSession
   private let baseURL = URL(string: "https://api.media.ccc.de/public")!
   private let decoder = JSONDecoder()
   private let iso8601Formatter = ISO8601DateFormatter()
 
-  init() {
+  public init() {
     session = .shared
 
     // Format should be: yyyy-MM-dd'T'HH:mm:ss.mmm+hh:mm
@@ -37,7 +37,7 @@ class ApiService: ObservableObject {
 
   // MARK: Conferences
 
-  func conferences() async throws -> [Conference] {
+  public func conferences() async throws -> [Conference] {
     let (data, _) = try await session.data(from: baseURL.appendingPathComponent("conferences"))
     let response = try decoder.decode(ConferencesResponse.self, from: data)
     return response.conferences
@@ -45,19 +45,19 @@ class ApiService: ObservableObject {
 
   // MARK: Talks
 
-  func talks() async throws -> [Talk] {
+  public func talks() async throws -> [Talk] {
     let (data, _) = try await session.data(from: baseURL.appendingPathComponent("events"))
     let response = try decoder.decode(EventsResponse.self, from: data)
     return response.events
   }
 
-  func recentTalks() async throws -> [Talk] {
+  public func recentTalks() async throws -> [Talk] {
     let (data, _) = try await session.data(from: baseURL.appendingPathComponent("events").appendingPathComponent("recent"))
     let response = try decoder.decode(EventsResponse.self, from: data)
     return response.events
   }
 
-  func searchTalks(query: String) async throws -> [Talk] {
+  public func searchTalks(query: String) async throws -> [Talk] {
     let url = baseURL.appendingPathComponent("events").appendingPathComponent("search")
     var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
     components.queryItems = [URLQueryItem(name: "q", value: query)]
@@ -68,7 +68,7 @@ class ApiService: ObservableObject {
 
   // MARK: Recordings
 
-  func recordings(for talk: Talk) async throws -> [Recording] {
+  public func recordings(for talk: Talk) async throws -> [Recording] {
     let (data, _) = try await session.data(from: baseURL.appendingPathComponent("events").appendingPathComponent(talk.guid))
     let response = try decoder.decode(TalkExtended.self, from: data)
     return response.recordings

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CCCApi
 
 struct BrowseView: View {
   @State var conferences: [Conference] = []

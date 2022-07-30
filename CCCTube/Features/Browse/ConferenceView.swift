@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CCCApi
 
 struct ConferenceView: View {
   let conference: Conference

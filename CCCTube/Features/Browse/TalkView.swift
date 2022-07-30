@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CCCApi
 
 struct TalkView: View {
   let talk: Talk

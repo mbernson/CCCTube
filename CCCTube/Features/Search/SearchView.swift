@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CCCApi
 
 class SearchViewModel: ObservableObject {
   //
