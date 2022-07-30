@@ -49,7 +49,7 @@ struct ConferenceThumbnail: View {
   let conference: Conference
   
   var body: some View {
-    AsyncImage(url: conference.logo_url) { image in
+    AsyncImage(url: conference.logoURL) { image in
       image.resizable()
     } placeholder: {
       ProgressView()
@@ -63,7 +63,7 @@ struct TalkThumbnail: View {
   
   var body: some View {
 //    VStack(alignment: .center, spacing: 8) {
-      AsyncImage(url: talk.thumb_url) { image in
+      AsyncImage(url: talk.thumbURL) { image in
         image.resizable()
       } placeholder: {
         ProgressView()
@@ -82,7 +82,7 @@ struct TalkListItem: View {
 
   var body: some View {
     HStack(alignment: .top, spacing: 20) {
-      AsyncImage(url: talk.thumb_url) { image in
+      AsyncImage(url: talk.thumbURL) { image in
         image.resizable()
       } placeholder: {
         ProgressView()

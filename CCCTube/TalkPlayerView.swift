@@ -17,7 +17,7 @@ struct TalkPlayerView: View {
     let factory = TalkMetadataFactory()
     self.talk = talk
     self.recording = recording
-    let item = AVPlayerItem(url: recording.recording_url)
+    let item = AVPlayerItem(url: recording.recordingURL)
     item.externalMetadata = factory.createMetadataItems(for: recording, talk: talk)
     player = AVPlayer(playerItem: item)
   }
@@ -27,7 +27,7 @@ struct TalkPlayerView: View {
       .ignoresSafeArea()
       .onAppear {
         player.play()
-        print("Starting playback of: \(recording.recording_url.absoluteString)")
+        print("Starting playback of: \(recording.recordingURL.absoluteString)")
       }
   }
 }
@@ -36,12 +36,14 @@ struct TalkMetadataFactory {
   func createMetadataItems(for recording: Recording, talk: Talk) -> [AVMetadataItem] {
     var mapping: [AVMetadataIdentifier: Any] = [
       .commonIdentifierTitle: talk.title,
-      .commonIdentifierCreationDate: talk.release_date,
+      .commonIdentifierCreationDate: talk.releaseDate,
       .commonIdentifierLanguage: recording.language,
     ]
 
     do {
-      mapping[.commonIdentifierArtwork] = UIImage(data: try Data(contentsOf: talk.poster_url))?.pngData() as Any
+      if let posterURL = talk.posterURL {
+        mapping[.commonIdentifierArtwork] = UIImage(data: try Data(contentsOf: posterURL))?.pngData() as Any
+      }
     } catch {
       //
     }
@@ -59,7 +61,7 @@ struct TalkMetadataFactory {
     }
 
     return mapping.compactMap { id, value in
-      createMetadataItem(for: id, value: value, language: talk.original_language)
+      createMetadataItem(for: id, value: value, language: talk.originalLanguage)
     }
   }
 

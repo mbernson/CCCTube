@@ -42,7 +42,7 @@ struct TalkView: View {
     .task {
       do {
         recordings = try await api.recordings(for: talk)
-          .filter { $0.mime_type == "video/mp4" }
+//          .filter { $0.mime_type == "video/mp4" }
       } catch {
         print(error)
       }
