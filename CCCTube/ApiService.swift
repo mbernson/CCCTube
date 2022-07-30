@@ -16,7 +16,7 @@ class ApiService: ObservableObject {
   init() {
     session = .shared
 
-    // Format should be: yyyy-MM-dd'T'HH:mm:ss+hh:mm
+    // Format should be: yyyy-MM-dd'T'HH:mm:ss.mmm+hh:mm
     iso8601Formatter.formatOptions = [
       .withFullDate, .withFullTime, .withTimeZone,
       .withDashSeparatorInDate, .withColonSeparatorInTime, .withColonSeparatorInTimeZone,
