@@ -24,7 +24,8 @@ struct SearchView: View {
 
   @State var results: [Talk] = []
   @State var suggestions: [SearchSuggestion] = [
-    "Hacking", "Freedom", "Linux", "ethics", "IoT", "security", "lightning talks",
+    "Freedom", "Linux", "ethics", "IoT",
+    "security", "lightning talks", "climate", "cryptography"
   ].map(SearchSuggestion.init)
 
   @State var error: NetworkError? = nil
