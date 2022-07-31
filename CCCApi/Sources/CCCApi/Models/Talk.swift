@@ -132,10 +132,14 @@ public struct Talk: Decodable, Identifiable {
 }
 
 struct TalkExtended: Decodable {
-  let recordings: [Recording]
+  let recordings: [Recording]?
 
   func compatibleRecordings() -> [Recording] {
-    recordings
+    guard let recordings = recordings else {
+      return []
+    }
+
+    return recordings
       .filter { $0.mimeType == "video/mp4" }
   }
 }

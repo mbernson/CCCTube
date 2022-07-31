@@ -13,15 +13,15 @@ public struct Recording: Decodable, Identifiable {
   /// approximate file size in megabytes
   public let size: Int?
   /// duration in seconds
-  public let length: TimeInterval
+  public let length: TimeInterval?
   public let mimeType: String
   public let language: String
   public let filename: String
   public let state: String
   public let folder: String
   public let isHighQuality: Bool
-  public let width: Int
-  public let height: Int
+  public let width: Int?
+  public let height: Int?
   public let updatedAt: Date
   public let url: URL
   public let recordingURL: URL
@@ -34,7 +34,7 @@ public struct Recording: Decodable, Identifiable {
     mimeType.starts(with: "audio")
   }
 
-  init(size: Int?, length: TimeInterval, mimeType: String, language: String, filename: String, state: String, folder: String, isHighQuality: Bool, width: Int, height: Int, updatedAt: Date, recordingURL: URL, url: URL, eventURL: URL, conferenceURL: URL) {
+  init(size: Int?, length: TimeInterval?, mimeType: String, language: String, filename: String, state: String, folder: String, isHighQuality: Bool, width: Int?, height: Int?, updatedAt: Date, recordingURL: URL, url: URL, eventURL: URL, conferenceURL: URL) {
     self.size = size
     self.length = length
     self.mimeType = mimeType
@@ -74,15 +74,15 @@ public struct Recording: Decodable, Identifiable {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     size = try container.decode(Int?.self, forKey: .size)
-    length = try container.decode(TimeInterval.self, forKey: .length)
+    length = try container.decode(TimeInterval?.self, forKey: .length)
     mimeType = try container.decode(String.self, forKey: .mimeType)
     language = try container.decode(String.self, forKey: .language)
     filename = try container.decode(String.self, forKey: .filename)
     state = try container.decode(String.self, forKey: .state)
     folder = try container.decode(String.self, forKey: .folder)
     isHighQuality = try container.decode(Bool.self, forKey: .isHighQuality)
-    width = try container.decode(Int.self, forKey: .width)
-    height = try container.decode(Int.self, forKey: .height)
+    width = try container.decode(Int?.self, forKey: .width)
+    height = try container.decode(Int?.self, forKey: .height)
     updatedAt = try container.decode(Date.self, forKey: .updatedAt)
     url = try container.decode(URL.self, forKey: .url)
     recordingURL = try container.decode(URL.self, forKey: .recordingURL)

@@ -83,10 +83,14 @@ public class ApiService: ObservableObject {
   public func recordings(for talk: Talk) async throws -> [Recording] {
     let (data, _) = try await session.data(from: baseURL.appendingPathComponent("events").appendingPathComponent(talk.guid))
     let response = try decoder.decode(TalkExtended.self, from: data)
-    return response.recordings
+    guard let recordings = response.recordings else {
+      return []
+    }
+    return recordings
       // Remove format's Apple doesn't support
       .filter { !$0.mimeType.contains("opus") }
       .filter { !$0.mimeType.contains("webm") }
+      .filter { !$0.mimeType.starts(with: "application") }
       // Put the HD versions first
       .sorted(by: { a, b in
         a.isHighQuality && !b.isHighQuality
