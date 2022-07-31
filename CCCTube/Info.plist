@@ -5,12 +5,12 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleURLName</key>
+			<string>nl.bernson.CCCTube</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>ccctube</string>
 			</array>
-			<key>CFBundleURLName</key>
-			<string>nl.bernson.CCCTube</string>
 		</dict>
 	</array>
 </dict>

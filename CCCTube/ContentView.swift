@@ -14,17 +14,17 @@ struct ContentView: View {
 
   var body: some View {
     TabView {
-      BrowseView()
-        .tabItem {
-          Text("Browse")
-        }
+      BrowseView(query: .recent)
+        .tabItem { Text("Browse") }
+
+      BrowseView(query: .popular)
+        .tabItem { Text("Popular") }
+
+      ConferencesView()
+        .tabItem { Text("Conferences") }
 
       SearchView()
-        .tabItem {
-          Label("Search", systemImage: "magnifyingglass")
-            .labelStyle(.iconOnly)
-        }
-
+        .tabItem { Label("Search", systemImage: "magnifyingglass").labelStyle(.iconOnly) }
     }
     .environmentObject(api)
     .sheet(item: $talk, content: { talk in

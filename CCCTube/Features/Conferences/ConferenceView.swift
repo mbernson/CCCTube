@@ -10,6 +10,7 @@ import CCCApi
 
 struct ConferenceView: View {
   let conference: Conference
+
   var body: some View {
     Text(conference.title)
   }

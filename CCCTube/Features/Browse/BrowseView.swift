@@ -8,8 +8,13 @@
 import SwiftUI
 import CCCApi
 
+enum EventsQuery {
+  case recent
+  case popular
+}
+
 struct BrowseView: View {
-  @State var conferences: [Conference] = []
+  let query: EventsQuery
   @State var talks: [Talk] = []
 
   @State var error: NetworkError? = nil
@@ -24,8 +29,12 @@ struct BrowseView: View {
       }
       .task {
         do {
-          // conferences = try await api.conferences()
-          talks = try await api.recentTalks()
+          switch query {
+          case .recent:
+            talks = try await api.recentTalks()
+          case .popular:
+            talks = try await api.popularTalks()
+          }
         } catch {
           self.error = NetworkError(errorDescription: NSLocalizedString("Failed to load data from the media.cc.de API", comment: ""), error: error)
           isErrorPresented = true
@@ -39,12 +48,12 @@ struct BrowseView: View {
   }
 }
 
-struct HomeView_Previews: PreviewProvider {
-  static var previews: some View {
-    BrowseView()
-      .environmentObject(ApiService())
-  }
-}
+//struct HomeView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    BrowseView()
+//      .environmentObject(ApiService())
+//  }
+//}
 
 struct ConferenceThumbnail: View {
   let conference: Conference

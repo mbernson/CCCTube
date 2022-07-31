@@ -48,7 +48,6 @@ struct TalkView: View {
     .task {
       do {
         recordings = try await api.recordings(for: talk)
-//          .filter { $0.mime_type == "video/mp4" }
       } catch {
         self.error = NetworkError(errorDescription: NSLocalizedString("Failed to load data from the media.cc.de API", comment: ""), error: error)
         isErrorPresented = true

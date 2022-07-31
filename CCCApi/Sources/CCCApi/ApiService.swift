@@ -63,6 +63,12 @@ public class ApiService: ObservableObject {
     return response.events
   }
 
+  public func popularTalks() async throws -> [Talk] {
+    let (data, _) = try await session.data(from: baseURL.appendingPathComponent("events").appendingPathComponent("popular"))
+    let response = try decoder.decode(EventsResponse.self, from: data)
+    return response.events
+  }
+
   public func searchTalks(query: String) async throws -> [Talk] {
     let url = baseURL.appendingPathComponent("events").appendingPathComponent("search")
     var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
@@ -78,5 +84,12 @@ public class ApiService: ObservableObject {
     let (data, _) = try await session.data(from: baseURL.appendingPathComponent("events").appendingPathComponent(talk.guid))
     let response = try decoder.decode(TalkExtended.self, from: data)
     return response.recordings
+      // Remove format's Apple doesn't support
+      .filter { !$0.mimeType.contains("opus") }
+      .filter { !$0.mimeType.contains("webm") }
+      // Put the HD versions first
+      .sorted(by: { a, b in
+        a.isHighQuality && !b.isHighQuality
+      })
   }
 }
