@@ -110,10 +110,12 @@ struct TalkListItem: View {
       VStack(alignment: .leading, spacing: 10) {
         Text(talk.title)
           .font(.headline)
+          .lineLimit(1)
 
         if let subtitle = talk.subtitle {
           Text(subtitle)
             .font(.subheadline)
+            .lineLimit(1)
         }
 
         Text(talk.conferenceTitle)
@@ -151,6 +153,7 @@ struct TalksGrid: View {
           
           Text(talk.title)
             .font(.caption)
+            .lineLimit(1)
         }
       }
     }
