@@ -30,7 +30,11 @@ public struct Recording: Decodable, Identifiable {
 
   public var id: String { filename }
 
-  init(size: Int?, length: TimeInterval, mimeType: String, language: String, filename: String, state: String, folder: String, isHighQuality: Bool, width: Int, height: Int, updatedAt: Date, url: URL, recordingURL: URL, eventURL: URL, conferenceURL: URL) {
+  public var isAudio: Bool {
+    mimeType.starts(with: "audio")
+  }
+
+  init(size: Int?, length: TimeInterval, mimeType: String, language: String, filename: String, state: String, folder: String, isHighQuality: Bool, width: Int, height: Int, updatedAt: Date, recordingURL: URL, url: URL, eventURL: URL, conferenceURL: URL) {
     self.size = size
     self.length = length
     self.mimeType = mimeType

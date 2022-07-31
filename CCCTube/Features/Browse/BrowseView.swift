@@ -84,13 +84,25 @@ struct TalkThumbnail: View {
 
 struct TalkListItem: View {
   let talk: Talk
+  static let minutesFormatter: DateComponentsFormatter = {
+    let f = DateComponentsFormatter()
+    f.allowedUnits = .minute
+    return f
+  }()
 
   var body: some View {
     HStack(alignment: .top, spacing: 20) {
-      AsyncImage(url: talk.thumbURL) { image in
-        image.resizable()
-      } placeholder: {
-        ProgressView()
+      AsyncImage(url: talk.thumbURL) { phase in
+        switch phase {
+        case .empty:
+          ProgressView()
+        case .success(let image):
+          image.resizable()
+        case .failure:
+          Image(systemName: "photo")
+        @unknown default:
+          EmptyView()
+        }
       }
       .aspectRatio(4/3, contentMode: .fit)
       .frame(idealWidth: 400, idealHeight: 300)
@@ -98,9 +110,25 @@ struct TalkListItem: View {
       VStack(alignment: .leading, spacing: 10) {
         Text(talk.title)
           .font(.headline)
+
         if let subtitle = talk.subtitle {
           Text(subtitle)
             .font(.subheadline)
+        }
+
+        Text(talk.conferenceTitle)
+          .font(.body)
+
+        HStack(alignment: .center, spacing: 20) {
+          Label("\(Self.minutesFormatter.string(from: talk.duration) ?? "0") min", systemImage: "clock")
+
+          Label("\(talk.releaseDate, style: .date)", systemImage: "calendar")
+
+          Label(String(talk.viewCount), systemImage: "eye")
+
+          if !talk.persons.isEmpty {
+            Label(talk.persons.joined(separator: ", "), systemImage: "person")
+          }
         }
       }
     }

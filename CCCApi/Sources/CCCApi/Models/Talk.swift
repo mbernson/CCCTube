@@ -32,8 +32,8 @@ public struct Talk: Decodable, Identifiable {
   public let date: Date?
   public let releaseDate: Date
   public let updatedAt: Date
-  public let length: Int
-  public let duration: Int
+  public let length: TimeInterval
+  public let duration: TimeInterval
   public let conferenceTitle: String
   public let conferenceURL: URL
   public let thumbURL: URL?
@@ -44,7 +44,7 @@ public struct Talk: Decodable, Identifiable {
   public let url: URL
   public let related: [RelatedTalk]
 
-  init(guid: String, title: String, subtitle: String?, slug: String, link: URL?, description: String?, originalLanguage: String?, persons: [String], tags: [String], viewCount: Int, isPromoted: Bool, date: Date?, releaseDate: Date, updatedAt: Date, length: Int, duration: Int, conferenceTitle: String, conferenceURL: URL, thumbURL: URL?, posterURL: URL, timelineURL: URL, thumbnailsURL: URL, frontendLink: URL, url: URL, related: [RelatedTalk]) {
+  init(guid: String, title: String, subtitle: String?, slug: String, link: URL?, description: String?, originalLanguage: String?, persons: [String], tags: [String], viewCount: Int, isPromoted: Bool, date: Date?, releaseDate: Date, updatedAt: Date, length: TimeInterval, duration: TimeInterval, conferenceTitle: String, conferenceURL: URL, thumbURL: URL?, posterURL: URL, timelineURL: URL, thumbnailsURL: URL, frontendLink: URL, url: URL, related: [RelatedTalk]) {
     self.guid = guid
     self.title = title
     self.subtitle = subtitle
@@ -117,8 +117,8 @@ public struct Talk: Decodable, Identifiable {
     date = try container.decode(Date?.self, forKey: .date)
     releaseDate = try container.decode(Date.self, forKey: .releaseDate)
     updatedAt = try container.decode(Date.self, forKey: .updatedAt)
-    length = try container.decode(Int.self, forKey: .length)
-    duration = try container.decode(Int.self, forKey: .duration)
+    length = try container.decode(TimeInterval.self, forKey: .length)
+    duration = try container.decode(TimeInterval.self, forKey: .duration)
     conferenceTitle = try container.decode(String.self, forKey: .conferenceTitle)
     conferenceURL = try container.decode(URL.self, forKey: .conferenceURL)
     thumbURL = try? container.decode(URL?.self, forKey: .thumbURL)

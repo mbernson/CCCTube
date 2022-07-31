@@ -91,5 +91,9 @@ public class ApiService: ObservableObject {
       .sorted(by: { a, b in
         a.isHighQuality && !b.isHighQuality
       })
+      // Put the audio versions last
+      .sorted(by: { a, b in
+        !a.isAudio && b.isAudio
+      })
   }
 }

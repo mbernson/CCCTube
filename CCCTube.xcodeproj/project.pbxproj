@@ -13,6 +13,8 @@
 		D550CA2C2895317E00FD8AB2 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550CA2B2895317E00FD8AB2 /* ViewModel.swift */; };
 		D550CA3128953B4000FD8AB2 /* TalkPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550CA3028953B4000FD8AB2 /* TalkPlayerView.swift */; };
 		D557E8B52895C06100342EE2 /* ConferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D557E8B42895C06100342EE2 /* ConferencesView.swift */; };
+		D557E8B72896812C00342EE2 /* SearchSuggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D557E8B62896812C00342EE2 /* SearchSuggestion.swift */; };
+		D557E8B92896815700342EE2 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D557E8B82896815700342EE2 /* SearchViewModel.swift */; };
 		D59139412895851300369402 /* TVServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D59139402895851300369402 /* TVServices.framework */; };
 		D59139442895851300369402 /* ContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59139432895851300369402 /* ContentProvider.swift */; };
 		D59139482895851300369402 /* TopShelf.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D591393F2895851300369402 /* TopShelf.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -68,6 +70,8 @@
 		D550CA2B2895317E00FD8AB2 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		D550CA3028953B4000FD8AB2 /* TalkPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkPlayerView.swift; sourceTree = "<group>"; };
 		D557E8B42895C06100342EE2 /* ConferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferencesView.swift; sourceTree = "<group>"; };
+		D557E8B62896812C00342EE2 /* SearchSuggestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSuggestion.swift; sourceTree = "<group>"; };
+		D557E8B82896815700342EE2 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		D591393F2895851300369402 /* TopShelf.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TopShelf.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D59139402895851300369402 /* TVServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TVServices.framework; path = System/Library/Frameworks/TVServices.framework; sourceTree = SDKROOT; };
 		D59139432895851300369402 /* ContentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentProvider.swift; sourceTree = "<group>"; };
@@ -148,6 +152,8 @@
 			isa = PBXGroup;
 			children = (
 				D550CA29289530FC00FD8AB2 /* SearchView.swift */,
+				D557E8B82896815700342EE2 /* SearchViewModel.swift */,
+				D557E8B62896812C00342EE2 /* SearchSuggestion.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -388,8 +394,10 @@
 				D5A156D8289462B3006989FF /* CCCTubeApp.swift in Sources */,
 				D591396328958CE500369402 /* URLRoute.swift in Sources */,
 				D5A156F128946FEB006989FF /* ConferenceView.swift in Sources */,
+				D557E8B92896815700342EE2 /* SearchViewModel.swift in Sources */,
 				D550CA262895304A00FD8AB2 /* BrowseView.swift in Sources */,
 				D557E8B52895C06100342EE2 /* ConferencesView.swift in Sources */,
+				D557E8B72896812C00342EE2 /* SearchSuggestion.swift in Sources */,
 				D550CA2A289530FC00FD8AB2 /* SearchView.swift in Sources */,
 				D550CA3128953B4000FD8AB2 /* TalkPlayerView.swift in Sources */,
 				D5A156F328947625006989FF /* TalkView.swift in Sources */,

@@ -8,33 +8,14 @@
 import SwiftUI
 import CCCApi
 
-class SearchViewModel: ObservableObject {
-  //
-}
-
-struct SearchSuggestion: Identifiable {
-  let title: String
-  var id: String { title }
-}
-
 struct SearchView: View {
-  @State var query: String = ""
-
-  @EnvironmentObject var api: ApiService
-
-  @State var results: [Talk] = []
-  @State var suggestions: [SearchSuggestion] = [
-    "Freedom", "Linux", "ethics", "IoT",
-    "security", "lightning talks", "climate", "cryptography"
-  ].map(SearchSuggestion.init)
-
-  @State var error: NetworkError? = nil
-  @State var isErrorPresented = false
+  @StateObject var viewModel = SearchViewModel()
+  @State var suggestions: [SearchSuggestion] = SearchSuggestion.defaultSuggestions
 
   var body: some View {
     NavigationView {
       List {
-        ForEach(results) { talk in
+        ForEach(viewModel.results) { talk in
           NavigationLink {
             TalkView(talk: talk)
           } label: {
@@ -42,24 +23,12 @@ struct SearchView: View {
           }
         }
       }
-      .searchable(text: $query, prompt: "Search talks...", suggestions: {
+      .searchable(text: $viewModel.query, prompt: "Search talks...", suggestions: {
         ForEach(suggestions) { suggest in
           Text(suggest.title).searchCompletion(suggest.title)
         }
       })
-      .onChange(of: query, perform: { query in
-        print(query)
-        Task {
-          do {
-            results = try await api.searchTalks(query: query)
-          } catch {
-            self.error = NetworkError(errorDescription: NSLocalizedString("Failed to load data from the media.cc.de API", comment: ""), error: error)
-            isErrorPresented = true
-            debugPrint(error)
-          }
-        }
-      })
-      .alert(isPresented: $isErrorPresented, error: error) {
+      .alert(isPresented: $viewModel.isErrorPresented, error: viewModel.error) {
         Button("OK") {}
       }
     }

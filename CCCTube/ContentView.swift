@@ -28,8 +28,10 @@ struct ContentView: View {
     }
     .environmentObject(api)
     .sheet(item: $talk, content: { talk in
-      TalkView(talk: talk)
-        .environmentObject(api)
+      NavigationView {
+        TalkView(talk: talk)
+          .environmentObject(api)
+      }
     })
     .onOpenURL { url in
       print(url.absoluteString)
