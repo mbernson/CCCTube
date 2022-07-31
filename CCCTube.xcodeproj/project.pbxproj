@@ -72,6 +72,7 @@
 		D557E8B42895C06100342EE2 /* ConferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferencesView.swift; sourceTree = "<group>"; };
 		D557E8B62896812C00342EE2 /* SearchSuggestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSuggestion.swift; sourceTree = "<group>"; };
 		D557E8B82896815700342EE2 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		D557E8BA2896F70400342EE2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D591393F2895851300369402 /* TopShelf.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TopShelf.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D59139402895851300369402 /* TVServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TVServices.framework; path = System/Library/Frameworks/TVServices.framework; sourceTree = SDKROOT; };
 		D59139432895851300369402 /* ContentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentProvider.swift; sourceTree = "<group>"; };
@@ -188,6 +189,7 @@
 		D5A156CB289462B3006989FF = {
 			isa = PBXGroup;
 			children = (
+				D557E8BA2896F70400342EE2 /* README.md */,
 				D5A156D6289462B3006989FF /* CCCTube */,
 				D50C6F7328956D770003D1D0 /* CCCApi */,
 				D59139422895851300369402 /* TopShelf */,
