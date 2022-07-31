@@ -8,7 +8,19 @@
 "OK" = "OK";
 
 /* No comment provided by engineer. */
-"Recordings" = "Aufnahmen";
+"Play audio" = "Audio abspielen";
+
+/* No comment provided by engineer. */
+"Play HD" = "HD abspielen";
+
+/* No comment provided by engineer. */
+"Play SD" = "SD abspielen";
+
+/* No comment provided by engineer. */
+"Popular" = "Populär";
+
+/* No comment provided by engineer. */
+"Read more..." = "Weiterlesen...";
 
 /* No comment provided by engineer. */
 "Search" = "Suche";

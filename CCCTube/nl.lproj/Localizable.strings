@@ -8,7 +8,19 @@
 "OK" = "OK";
 
 /* No comment provided by engineer. */
-"Recordings" = "Opnames";
+"Play audio" = "Speel audio af";
+
+/* No comment provided by engineer. */
+"Play HD" = "Speel HD af";
+
+/* No comment provided by engineer. */
+"Play SD" = "Speel SD af";
+
+/* No comment provided by engineer. */
+"Popular" = "Populair";
+
+/* No comment provided by engineer. */
+"Read more..." = "Lees meer...";
 
 /* No comment provided by engineer. */
 "Search" = "Zoeken";
