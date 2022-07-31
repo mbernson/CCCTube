@@ -20,8 +20,8 @@ struct ContentView: View {
       BrowseView(query: .popular)
         .tabItem { Text("Popular") }
 
-      ConferencesView()
-        .tabItem { Text("Conferences") }
+//      ConferencesView()
+//        .tabItem { Text("Conferences") }
 
       SearchView()
         .tabItem { Label("Search", systemImage: "magnifyingglass").labelStyle(.iconOnly) }
