@@ -145,8 +145,7 @@ struct TalkExtended: Decodable {
 }
 
 public struct RelatedTalk: Decodable {
-  let event_id: Int // 7361,
-  let event_guid: String // "977957d7-ef42-4ea0-8380-b9a48bd583f0",
-  let weight: Int // 88
+  let event_id: Int
+  let event_guid: String
+  let weight: Int
 }
-
