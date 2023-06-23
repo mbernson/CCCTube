@@ -1,8 +1,29 @@
 /* No comment provided by engineer. */
+"%@ min" = "%@ min.";
+
+/* No comment provided by engineer. */
+"%@ minutes" = "%@ minuten";
+
+/* No comment provided by engineer. */
 "Browse" = "Bladeren";
 
 /* No comment provided by engineer. */
+"Copyright" = "Copyright ©";
+
+/* No comment provided by engineer. */
+"Date %@" = "Datum: %@";
+
+/* No comment provided by engineer. */
 "Failed to load data from the media.cc.de API" = "Kon geen data laden van de media.ccc.de API";
+
+/* No comment provided by engineer. */
+"Hello, World!" = "Hallo, wereld!";
+
+/* No comment provided by engineer. */
+"No copyright information encoded in video. Please refer to the conference organizer at: %@" = "Geen copyright-informatie gecodeerd in video. Raadpleeg de organisator van de conferentie op: %@";
+
+/* No comment provided by engineer. */
+"No copyright information encoded in video. Please refer to the conference organizer of %@ at: %@" = "Geen copyright-informatie gecodeerd in video. Raadpleeg de conferentieorganisator van %@ op: %@";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -18,9 +39,6 @@
 
 /* No comment provided by engineer. */
 "Popular" = "Populair";
-
-/* No comment provided by engineer. */
-"Read more..." = "Lees meer...";
 
 /* No comment provided by engineer. */
 "Search" = "Zoeken";

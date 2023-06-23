@@ -91,7 +91,7 @@ struct TalkView: View {
         }
         .padding(.bottom, 20)
 
-        Label("\(Self.minutesFormatter.string(from: talk.duration) ?? "0") min", systemImage: "clock")
+        Label("\(Self.minutesFormatter.string(from: talk.duration) ?? "0") minutes", systemImage: "clock")
 
         Label("\(talk.releaseDate, style: .date)", systemImage: "calendar")
 
