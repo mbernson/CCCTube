@@ -1,6 +1,6 @@
 # CCC Tube
 
-A Frontend to the content from [media.ccc.de] for Apple TV.
+This is an Apple TV app for viewing the wide variety of video and audio material distributed by the Chaos Computer Club on [media.ccc.de](https://media.ccc.de/).
 
 ## About
 
@@ -40,4 +40,4 @@ As all other C3VOC tools, this software is distributed under the GPL v3. See the
 
 ## Contributors
 
-* Mathijs Bernson (Space Leiden)
+* Mathijs Bernson (The Space Leiden)
