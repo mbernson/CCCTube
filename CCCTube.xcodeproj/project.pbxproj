@@ -203,7 +203,9 @@
 				D5A156D5289462B3006989FF /* Products */,
 				D50C6F7428956DFC0003D1D0 /* Frameworks */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		D5A156D5289462B3006989FF /* Products */ = {
 			isa = PBXGroup;
