@@ -10,7 +10,7 @@ import AVFoundation
 import CCCApi
 
 struct MediaAnalyzer {
-  func copyrightMetadata(for recording: Recording) async -> AVMetadataItem? {
+  func copyrightMetadata(for recording: Recording) async -> String? {
     let asset = AVAsset(url: recording.recordingURL)
     let formatsKey = "availableMetadataFormats"
     _ = await asset.loadValues(forKeys: [formatsKey])
@@ -23,7 +23,7 @@ struct MediaAnalyzer {
         print(metadata)
         for meta in metadata {
           if meta.identifier == .commonIdentifierCopyrights || meta.identifier == .id3MetadataCopyright || meta.identifier == .iTunesMetadataCopyright {
-            return meta
+            return meta.stringValue
           }
         }
       }

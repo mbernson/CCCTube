@@ -112,7 +112,7 @@ struct TalkView: View {
 
         for recording in recordings {
           if copyright == .loading {
-            let copyrightString = await mediaAnalyzer.copyrightMetadata(for: recording)?.stringValue
+            let copyrightString = await mediaAnalyzer.copyrightMetadata(for: recording)
             if let copyrightString = copyrightString {
               copyright = .copyright(copyrightString)
             }
