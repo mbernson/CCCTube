@@ -24,7 +24,7 @@ struct BrowseView: View {
 
   var body: some View {
     NavigationView {
-      ScrollView(.vertical) {
+      ScrollView {
         TalksGrid(talks: talks)
       }
       .task {
@@ -64,7 +64,7 @@ struct ConferenceThumbnail: View {
     } placeholder: {
       ProgressView()
     }
-    .aspectRatio(4/3, contentMode: .fill)
+    .aspectRatio(16 / 6, contentMode: .fit)
   }
 }
 
@@ -72,13 +72,13 @@ struct TalkThumbnail: View {
   let talk: Talk
   
   var body: some View {
+    let width: CGFloat = 320
     AsyncImage(url: talk.thumbURL) { image in
-      image.resizable()
+      image.resizable().scaledToFit()
     } placeholder: {
       ProgressView()
     }
-    .aspectRatio(4/3, contentMode: .fit)
-    .frame(idealWidth: 400, idealHeight: 300)
+    .frame(width: width, height: width * (9 / 16))
   }
 }
 
@@ -92,20 +92,15 @@ struct TalkListItem: View {
 
   var body: some View {
     HStack(alignment: .top, spacing: 20) {
-      AsyncImage(url: talk.thumbURL) { phase in
-        switch phase {
-        case .empty:
+      if let thumbURL = talk.thumbURL {
+        AsyncImage(url: thumbURL) { image in
+          image.resizable().scaledToFit()
+        } placeholder: {
           ProgressView()
-        case .success(let image):
-          image.resizable()
-        case .failure:
-          Image(systemName: "photo")
-        @unknown default:
-          EmptyView()
         }
+        .aspectRatio(16 / 9, contentMode: .fit)
+        .frame(maxHeight: 200)
       }
-      .aspectRatio(4/3, contentMode: .fit)
-      .frame(idealWidth: 400, idealHeight: 300)
 
       VStack(alignment: .leading, spacing: 10) {
         Text(talk.title)
@@ -144,7 +139,7 @@ struct TalksGrid: View {
   var body: some View {
     LazyVGrid(columns: columns) {
       ForEach(talks) { talk in
-        VStack(alignment: .center, spacing: 4) {
+        VStack {
           NavigationLink {
             TalkView(talk: talk)
           } label: {
@@ -153,10 +148,12 @@ struct TalksGrid: View {
           
           Text(talk.title)
             .font(.caption)
-            .lineLimit(1)
+            .lineLimit(2)
         }
+        .padding()
       }
     }
+    .multilineTextAlignment(.center)
     .focusSection()
     .buttonStyle(.card)
   }

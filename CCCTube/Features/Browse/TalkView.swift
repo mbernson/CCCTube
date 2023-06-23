@@ -18,7 +18,9 @@ struct TalkView: View {
   let talk: Talk
   let mediaAnalyzer = MediaAnalyzer()
 
-  @State var recordings: [Recording] = []
+  @State var hdRecording: Recording?
+  @State var sdRecording: Recording?
+  @State var audioRecording: Recording?
   @State var selectedRecording: Recording?
 
   @State var copyright: CopyrightState = .loading
@@ -72,24 +74,23 @@ struct TalkView: View {
       .frame(maxWidth: .infinity, maxHeight: .infinity)
 
       VStack(alignment: .leading, spacing: 20) {
-        HStack(alignment: .top, spacing: 20) {
-          ForEach(recordings) { recording in
-            if recording.isAudio {
-              Button("Play audio") {
-                self.selectedRecording = recording
-              }
-            } else if recording.isHighQuality {
-              Button("Play HD") {
-                self.selectedRecording = recording
-              }
-            } else {
-              Button("Play SD") {
-                self.selectedRecording = recording
-              }
-            }
+        if let hdRecording {
+          Button("Play HD") {
+            self.selectedRecording = hdRecording
           }
         }
-        .padding(.bottom, 20)
+
+        if let sdRecording {
+          Button("Play SD") {
+            self.selectedRecording = sdRecording
+          }
+        }
+
+        if let audioRecording {
+          Button("Play audio") {
+            self.selectedRecording = audioRecording
+          }
+        }
 
         Label("\(Self.minutesFormatter.string(from: talk.duration) ?? "0") minutes", systemImage: "clock")
 
@@ -106,9 +107,11 @@ struct TalkView: View {
     }
     .navigationTitle(Text(talk.title))
     .task {
-      guard recordings.isEmpty else { return }
       do {
-        recordings = try await api.recordings(for: talk)
+        let recordings = try await api.recordings(for: talk)
+        hdRecording = recordings.first(where: { $0.isHighQuality })
+        sdRecording = recordings.first(where: { !$0.isHighQuality && $0.isVideo })
+        audioRecording = recordings.first(where: { $0.isAudio })
 
         for recording in recordings {
           if copyright == .loading {
@@ -136,10 +139,10 @@ struct TalkView: View {
   }
 }
 
-struct EventView_Previews: PreviewProvider {
+struct TalkView_Previews: PreviewProvider {
   static var previews: some View {
     NavigationView {
-      TalkView(talk: .example, recordings: .example)
+      TalkView(talk: .example, hdRecording: .example)
         .environmentObject(ApiService())
     }
   }
