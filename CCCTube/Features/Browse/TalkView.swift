@@ -8,11 +8,20 @@
 import SwiftUI
 import CCCApi
 
+enum CopyrightState: Equatable {
+  case loading
+  case copyright(String)
+  case unknown
+}
+
 struct TalkView: View {
   let talk: Talk
+  let mediaAnalyzer = MediaAnalyzer()
 
   @State var recordings: [Recording] = []
   @State var selectedRecording: Recording?
+
+  @State var copyright: CopyrightState = .loading
 
   @State var error: NetworkError? = nil
   @State var isErrorPresented = false
@@ -27,19 +36,37 @@ struct TalkView: View {
 
   var body: some View {
     HStack(alignment: .top, spacing: 20) {
-      ScrollView(.vertical) {
-        VStack(alignment: .leading, spacing: 10) {
-          if let description = talk.description,
-              let descriptionParts = talk.description?.components(separatedBy: "\n\n"),
-              let shortDescription = descriptionParts.first {
-            Text(shortDescription)
+      VStack(alignment: .leading, spacing: 10) {
+        if let description = talk.description {
+          if let descriptionParts = talk.description?.components(separatedBy: "\n\n"),
+             let shortDescription = descriptionParts.first, descriptionParts.count > 1 {
+            NavigationLink(shortDescription, destination: Text(description))
+              .buttonStyle(.plain)
               .font(.body)
-            if descriptionParts.count > 1 {
-              NavigationLink("Read more...", destination: Text(description))
-            }
+          } else {
+            Text(description)
+              .font(.body)
+          }
+        }
+
+        Text("Copyright")
+          .font(.headline)
+
+        switch copyright {
+        case .loading:
+          ProgressView()
+        case .copyright(let string):
+          Text(string)
+            .font(.caption)
+        case .unknown:
+          if let link = talk.link {
+            Text("No copyright information encoded in video. Please refer to the conference organizer at: \(link.absoluteString)")
+          } else {
+            Text("No copyright information encoded in video. Please refer to the conference organizer of \(talk.conferenceTitle) at: \(talk.conferenceURL.absoluteString)")
           }
         }
       }
+      .animation(.default, value: copyright)
       .focusSection()
       .multilineTextAlignment(.leading)
       .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -82,6 +109,18 @@ struct TalkView: View {
       guard recordings.isEmpty else { return }
       do {
         recordings = try await api.recordings(for: talk)
+
+        for recording in recordings {
+          if copyright == .loading {
+            let copyrightString = await mediaAnalyzer.copyrightMetadata(for: recording)?.stringValue
+            if let copyrightString = copyrightString {
+              copyright = .copyright(copyrightString)
+            }
+          }
+        }
+        if copyright == .loading {
+          copyright = .unknown
+        }
       } catch {
         self.error = NetworkError(errorDescription: NSLocalizedString("Failed to load data from the media.cc.de API", comment: ""), error: error)
         isErrorPresented = true
