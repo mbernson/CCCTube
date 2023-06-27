@@ -15,7 +15,7 @@ struct ContentView: View {
   var body: some View {
     TabView {
       BrowseView(query: .recent)
-        .tabItem { Text("Browse") }
+        .tabItem { Text("Recent") }
 
       BrowseView(query: .popular)
         .tabItem { Text("Popular") }
@@ -27,14 +27,13 @@ struct ContentView: View {
         .tabItem { Label("Search", systemImage: "magnifyingglass").labelStyle(.iconOnly) }
     }
     .environmentObject(api)
-    .sheet(item: $talk, content: { talk in
+    .sheet(item: $talk) { talk in
       NavigationView {
         TalkView(talk: talk)
           .environmentObject(api)
       }
-    })
+    }
     .onOpenURL { url in
-      print(url.absoluteString)
       let factory = URLParser()
       guard let route = factory.parseURL(url) else { return }
       Task {

@@ -39,6 +39,16 @@ struct TalkView: View {
   var body: some View {
     HStack(alignment: .top, spacing: 20) {
       VStack(alignment: .leading, spacing: 10) {
+        if let thumbURL = talk.thumbURL {
+          AsyncImage(url: thumbURL) { image in
+            image.resizable().scaledToFit()
+              .cornerRadius(8)
+          } placeholder: {
+            ProgressView()
+          }
+          .frame(maxWidth: 480)
+        }
+
         if let description = talk.description {
           if let descriptionParts = talk.description?.components(separatedBy: "\n\n"),
              let shortDescription = descriptionParts.first, descriptionParts.count > 1 {
@@ -74,21 +84,32 @@ struct TalkView: View {
       .frame(maxWidth: .infinity, maxHeight: .infinity)
 
       VStack(alignment: .leading, spacing: 20) {
-        if let hdRecording {
-          Button("Play HD") {
-            self.selectedRecording = hdRecording
+        Group {
+          if let hdRecording {
+            Button {
+              self.selectedRecording = hdRecording
+            } label: {
+              Label("Play HD", systemImage: "play")
+                .frame(maxWidth: .infinity)
+            }
           }
-        }
 
-        if let sdRecording {
-          Button("Play SD") {
-            self.selectedRecording = sdRecording
+          if let sdRecording {
+            Button {
+              self.selectedRecording = sdRecording
+            } label: {
+              Label("Play SD", systemImage: "play")
+                .frame(maxWidth: .infinity)
+            }
           }
-        }
 
-        if let audioRecording {
-          Button("Play audio") {
-            self.selectedRecording = audioRecording
+          if let audioRecording {
+            Button {
+              self.selectedRecording = audioRecording
+            } label: {
+              Label("Play audio", systemImage: "play")
+                .frame(maxWidth: .infinity)
+            }
           }
         }
 
@@ -103,7 +124,7 @@ struct TalkView: View {
         }
       }
       .focusSection()
-      .frame(maxWidth: .infinity, maxHeight: .infinity)
+      .frame(maxWidth: 480, maxHeight: .infinity)
     }
     .navigationTitle(Text(talk.title))
     .task {
