@@ -38,6 +38,10 @@ Gewoon lekker gaan zitten, CCC Tube selecteren, en duik in de wonderbaarlijk div
 
 As all other C3VOC tools, this software is distributed under the GPL v3. See the `LICENSE.txt` file.
 
+## Acknowledgements
+
+* [Voctocat logo by Blinry](https://blinry.org/voctocat/), [CC BY-SA 4.0](https://blinry.org/about/#license)
+
 ## Contributors
 
-* Mathijs Bernson (The Space Leiden)
+* Mathijs Bernson
