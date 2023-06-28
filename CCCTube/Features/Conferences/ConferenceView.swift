@@ -11,6 +11,11 @@ import CCCApi
 struct ConferenceView: View {
   let conference: Conference
 
+  @State var error: NetworkError? = nil
+  @State var isErrorPresented = false
+
+  @EnvironmentObject var api: ApiService
+
   var body: some View {
     Text(conference.title)
   }

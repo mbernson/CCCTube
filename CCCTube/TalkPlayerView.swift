@@ -35,30 +35,30 @@ struct TalkPlayerView: View {
 
 struct TalkMetadataFactory {
   func createMetadataItems(for recording: Recording, talk: Talk) -> [AVMetadataItem] {
-    var mapping: [AVMetadataIdentifier: Any] = [
-      .commonIdentifierTitle: talk.title,
-      .commonIdentifierCreationDate: talk.releaseDate,
-      .commonIdentifierLanguage: recording.language,
+    var mapping: [AVMetadataIdentifier: AVMetadataValue] = [
+      .commonIdentifierTitle: talk.title as NSString,
+      .commonIdentifierCreationDate: talk.releaseDate as NSDate,
+      .commonIdentifierLanguage: recording.language as NSString,
     ]
 
     do {
       if let posterURL = talk.posterURL {
-        mapping[.commonIdentifierArtwork] = UIImage(data: try Data(contentsOf: posterURL))?.pngData() as Any
+        mapping[.commonIdentifierArtwork] = UIImage(data: try Data(contentsOf: posterURL))?.pngData() as? NSData
       }
     } catch {
       // Ignore error
     }
 
     if let subtitle = talk.subtitle {
-      mapping[.iTunesMetadataTrackSubTitle] = subtitle
+      mapping[.iTunesMetadataTrackSubTitle] = subtitle as NSString
     }
 
     if let description = talk.description {
-      mapping[.commonIdentifierDescription] = description
+      mapping[.commonIdentifierDescription] = description as NSString
     }
 
     if !talk.persons.isEmpty {
-      mapping[.commonIdentifierArtist] = talk.persons.joined(separator: ", ")
+      mapping[.commonIdentifierArtist] = talk.persons.joined(separator: ", ") as NSString
     }
 
     return mapping.compactMap { id, value in
@@ -66,12 +66,16 @@ struct TalkMetadataFactory {
     }
   }
 
-  private func createMetadataItem(for identifier: AVMetadataIdentifier, value: Any, language: String?) -> AVMetadataItem {
+  /// Specifying "und" indicates an undefined language.
+  private let undefinedLanguageTag = "und"
+
+  typealias AVMetadataValue = NSCopying & NSObjectProtocol
+
+  private func createMetadataItem(for identifier: AVMetadataIdentifier, value: AVMetadataValue, language: String?) -> AVMetadataItem {
     let item = AVMutableMetadataItem()
     item.identifier = identifier
-    item.value = value as? NSCopying & NSObjectProtocol
-    // Specify "und" to indicate an undefined language.
-    item.extendedLanguageTag = "und"
+    item.value = value
+    item.extendedLanguageTag = language ?? undefinedLanguageTag
     return item.copy() as! AVMetadataItem
   }
 }

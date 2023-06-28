@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D501386B2A4B5ADC00ED68C0 /* TalksGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D501386A2A4B5ADC00ED68C0 /* TalksGrid.swift */; };
+		D501386D2A4B5AE100ED68C0 /* TalkListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D501386C2A4B5AE100ED68C0 /* TalkListItem.swift */; };
 		D50C6F7628956DFC0003D1D0 /* CCCApi in Frameworks */ = {isa = PBXBuildFile; productRef = D50C6F7528956DFC0003D1D0 /* CCCApi */; };
 		D550CA262895304A00FD8AB2 /* BrowseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550CA252895304A00FD8AB2 /* BrowseView.swift */; };
 		D550CA2A289530FC00FD8AB2 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550CA29289530FC00FD8AB2 /* SearchView.swift */; };
@@ -17,7 +19,7 @@
 		D557E8BD289715CD00342EE2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D557E8BF289715CD00342EE2 /* Localizable.strings */; };
 		D59139412895851300369402 /* TVServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D59139402895851300369402 /* TVServices.framework */; };
 		D59139442895851300369402 /* ContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59139432895851300369402 /* ContentProvider.swift */; };
-		D59139482895851300369402 /* TopShelf.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D591393F2895851300369402 /* TopShelf.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D59139482895851300369402 /* TopShelf.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D591393F2895851300369402 /* TopShelf.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D591394E2895854100369402 /* CCCApi in Frameworks */ = {isa = PBXBuildFile; productRef = D591394D2895854100369402 /* CCCApi */; };
 		D5913950289585AC00369402 /* TopShelfContentFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D591394F289585AC00369402 /* TopShelfContentFactory.swift */; };
 		D591395428958B0100369402 /* URLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D591395328958B0100369402 /* URLParser.swift */; };
@@ -51,20 +53,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D59139492895851300369402 /* Embed App Extensions */ = {
+		D59139492895851300369402 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				D59139482895851300369402 /* TopShelf.appex in Embed App Extensions */,
+				D59139482895851300369402 /* TopShelf.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D501386A2A4B5ADC00ED68C0 /* TalksGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalksGrid.swift; sourceTree = "<group>"; };
+		D501386C2A4B5AE100ED68C0 /* TalkListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkListItem.swift; sourceTree = "<group>"; };
 		D50C6F7328956D770003D1D0 /* CCCApi */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = CCCApi; sourceTree = "<group>"; };
 		D550CA252895304A00FD8AB2 /* BrowseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseView.swift; sourceTree = "<group>"; };
 		D550CA29289530FC00FD8AB2 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -150,6 +154,8 @@
 			children = (
 				D550CA252895304A00FD8AB2 /* BrowseView.swift */,
 				D5A156F228947625006989FF /* TalkView.swift */,
+				D501386A2A4B5ADC00ED68C0 /* TalksGrid.swift */,
+				D501386C2A4B5AE100ED68C0 /* TalkListItem.swift */,
 			);
 			path = Browse;
 			sourceTree = "<group>";
@@ -224,9 +230,9 @@
 				D5A156D7289462B3006989FF /* CCCTubeApp.swift */,
 				D5A156D9289462B3006989FF /* ContentView.swift */,
 				D5D4DF42289859AB00560E4F /* MediaAnalyzer.swift */,
+				D550CA3028953B4000FD8AB2 /* TalkPlayerView.swift */,
 				D5A156DB289462B3006989FF /* Assets.xcassets */,
 				D5A156DD289462B3006989FF /* Preview Content */,
-				D550CA3028953B4000FD8AB2 /* TalkPlayerView.swift */,
 				D5913952289589A200369402 /* Info.plist */,
 				D5A4618D289561D700F7A038 /* Localizable.strings */,
 				D591395328958B0100369402 /* URLParser.swift */,
@@ -291,7 +297,7 @@
 				D5A156D0289462B3006989FF /* Sources */,
 				D5A156D1289462B3006989FF /* Frameworks */,
 				D5A156D2289462B3006989FF /* Resources */,
-				D59139492895851300369402 /* Embed App Extensions */,
+				D59139492895851300369402 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -314,7 +320,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1340;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					D591393E2895851300369402 = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -411,6 +417,8 @@
 				D557E8B52895C06100342EE2 /* ConferencesView.swift in Sources */,
 				D557E8B72896812C00342EE2 /* SearchSuggestion.swift in Sources */,
 				D550CA2A289530FC00FD8AB2 /* SearchView.swift in Sources */,
+				D501386B2A4B5ADC00ED68C0 /* TalksGrid.swift in Sources */,
+				D501386D2A4B5AE100ED68C0 /* TalkListItem.swift in Sources */,
 				D550CA3128953B4000FD8AB2 /* TalkPlayerView.swift in Sources */,
 				D5A156F328947625006989FF /* TalkView.swift in Sources */,
 			);
@@ -545,6 +553,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -606,6 +615,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
