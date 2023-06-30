@@ -63,7 +63,7 @@ struct TalkMetadataFactory {
     }
 
     return mapping.compactMap { id, value in
-      createMetadataItem(for: id, value: value, language: talk.originalLanguage)
+      createMetadataItem(for: id, value: value, language: recording.language)
     }
   }
 

@@ -22,13 +22,20 @@ struct TalksGrid: View {
             TalkThumbnail(talk: talk)
           }
 
-          Text(talk.title)
-            .font(.caption)
-            .lineLimit(2)
+          if #available(tvOS 16, *) {
+            Text(talk.title)
+              .font(.caption)
+              .lineLimit(2, reservesSpace: true)
+          } else {
+            Text(talk.title)
+              .font(.caption)
+              .lineLimit(2)
+          }
         }
         .padding()
       }
     }
+    .padding()
     .multilineTextAlignment(.center)
     .focusSection()
     .buttonStyle(.card)

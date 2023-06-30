@@ -55,10 +55,16 @@ struct ConferencesGrid: View {
           } label: {
             ConferenceThumbnail(conference: conference)
           }
-          
-          Text(conference.title)
-            .font(.caption)
-            .lineLimit(2)
+
+          if #available(tvOS 16, *) {
+            Text(conference.title)
+              .font(.caption)
+              .lineLimit(2, reservesSpace: true)
+          } else {
+            Text(conference.title)
+              .font(.caption)
+              .lineLimit(2)
+          }
         }
       }
     }
@@ -83,6 +89,7 @@ struct ConferenceThumbnail: View {
         ProgressView()
       }
     }
+    .padding(10)
     .frame(width: width, height: width * (9 / 16))
   }
 }

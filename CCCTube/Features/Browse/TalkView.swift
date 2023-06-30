@@ -22,7 +22,7 @@ struct TalkView: View {
   @State var sdRecording: Recording?
   @State var audioRecording: Recording?
   @State var selectedRecording: Recording?
-
+  @State private var talkDescription: TalkDescription?
   @State var copyright: CopyrightState = .loading
 
   @State var error: NetworkError? = nil
@@ -52,9 +52,20 @@ struct TalkView: View {
         if let description = talk.description {
           if let descriptionParts = talk.description?.components(separatedBy: "\n\n"),
              let shortDescription = descriptionParts.first, descriptionParts.count > 1 {
-            NavigationLink(shortDescription, destination: Text(description))
-              .buttonStyle(.plain)
-              .font(.body)
+            Button {
+              talkDescription = TalkDescription(text: description)
+            } label: {
+              Text("\(shortDescription)... **MORE**")
+                .lineLimit(5)
+                .padding(10)
+            }
+            .buttonBorderShape(.roundedRectangle)
+            .buttonStyle(.card)
+            .font(.body)
+            .sheet(item: $talkDescription) { talkDescription in
+              Text(talkDescription.text)
+                .font(.body)
+            }
           } else {
             Text(description)
               .font(.body)
@@ -72,9 +83,11 @@ struct TalkView: View {
             .font(.caption)
         case .unknown:
           if let link = talk.link {
-            Text("No copyright information encoded in video. Please refer to the conference organizer at: \(link.absoluteString)")
+            Text("No copyright information encoded in video. Please refer to the conference organizer's schedule for more information:")
+            Link("Organizer schedule", destination: link)
           } else {
-            Text("No copyright information encoded in video. Please refer to the conference organizer of \(talk.conferenceTitle) at: \(talk.conferenceURL.absoluteString)")
+            Text("No copyright information encoded in video. Please refer to the website of the organizer of \(talk.conferenceTitle)")
+            Link("Organizer website", destination: talk.conferenceURL)
           }
         }
       }
@@ -158,6 +171,11 @@ struct TalkView: View {
       Button("OK") {}
     }
   }
+}
+
+private struct TalkDescription: Identifiable {
+  let id: Int = 1
+  let text: String
 }
 
 struct TalkView_Previews: PreviewProvider {
