@@ -43,6 +43,11 @@ public class ApiService: ObservableObject {
     return response.conferences
   }
 
+  public func conference(acronym: String) async throws -> Conference {
+    let (data, _) = try await session.data(from: baseURL.appendingPathComponent("conferences").appendingPathComponent(acronym))
+    return try decoder.decode(Conference.self, from: data)
+  }
+
   // MARK: Talks
 
   public func talk(id: String) async throws -> Talk {
@@ -87,15 +92,15 @@ public class ApiService: ObservableObject {
       return []
     }
     return recordings
-      // Remove format's Apple doesn't support
+    // Remove format's Apple doesn't support
       .filter { !$0.mimeType.contains("opus") }
       .filter { !$0.mimeType.contains("webm") }
       .filter { !$0.mimeType.starts(with: "application") }
-      // Put the HD versions first
+    // Put the HD versions first
       .sorted(by: { a, b in
         a.isHighQuality && !b.isHighQuality
       })
-      // Put the audio versions last
+    // Put the audio versions last
       .sorted(by: { a, b in
         !a.isAudio && b.isAudio
       })

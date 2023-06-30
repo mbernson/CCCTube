@@ -43,6 +43,7 @@ struct TalkMetadataFactory {
 
     do {
       if let posterURL = talk.posterURL {
+        // TODO: Fix synchronous loading of the poster image to be async
         mapping[.commonIdentifierArtwork] = UIImage(data: try Data(contentsOf: posterURL))?.pngData() as? NSData
       }
     } catch {
