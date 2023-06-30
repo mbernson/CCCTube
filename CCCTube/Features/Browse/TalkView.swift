@@ -94,7 +94,7 @@ struct TalkView: View {
       .animation(.default, value: copyright)
       .focusSection()
       .multilineTextAlignment(.leading)
-      .frame(maxWidth: .infinity, maxHeight: .infinity)
+      .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
 
       VStack(alignment: .leading, spacing: 20) {
         Group {
