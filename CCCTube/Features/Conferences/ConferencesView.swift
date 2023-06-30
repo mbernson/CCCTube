@@ -24,6 +24,9 @@ struct ConferencesView: View {
       .task {
         do {
           conferences = try await api.conferences()
+            .filter { conference in
+              conference.eventLastReleasedAt != nil
+            }
             .sorted { lhs, rhs in
               let lhsVal = lhs.eventLastReleasedAt ?? lhs.updatedAt
               let rhsVal = rhs.eventLastReleasedAt ?? rhs.updatedAt
