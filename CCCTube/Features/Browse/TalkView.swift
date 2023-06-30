@@ -50,7 +50,8 @@ struct TalkView: View {
         }
 
         if let description = talk.description {
-          if let descriptionParts = talk.description?.components(separatedBy: "\n\n"),
+          if let descriptionParts = talk.description?.components(separatedBy: "\n\n")
+            .map({ $0.trimmingCharacters(in: .whitespacesAndNewlines) }),
              let shortDescription = descriptionParts.first, descriptionParts.count > 1 {
             Button {
               talkDescription = TalkDescription(text: description)
@@ -75,21 +76,20 @@ struct TalkView: View {
         Text("Copyright")
           .font(.headline)
 
-        switch copyright {
-        case .loading:
-          ProgressView()
-        case .copyright(let string):
-          Text(string)
-            .font(.caption)
-        case .unknown:
-          if let link = talk.link {
-            Text("No copyright information encoded in video. Please refer to the conference organizer's schedule for more information:")
-            Link("Organizer schedule", destination: link)
-          } else {
-            Text("No copyright information encoded in video. Please refer to the website of the organizer of \(talk.conferenceTitle)")
-            Link("Organizer website", destination: talk.conferenceURL)
+        Group {
+          switch copyright {
+          case .loading:
+            ProgressView()
+          case .copyright(let string):
+            Text(string)
+          case .unknown:
+            if let link = talk.link {
+              Text("No copyright information encoded in video. Please refer to the schedule of the organizer of \(talk.conferenceTitle) at: \(link)")
+            } else {
+              Text("No copyright information encoded in video. Please refer to the website of the organizer of \(talk.conferenceTitle) at: \(talk.conferenceURL)")
+            }
           }
-        }
+        }.font(.caption)
       }
       .animation(.default, value: copyright)
       .focusSection()
@@ -126,11 +126,20 @@ struct TalkView: View {
           }
         }
 
-        Label("\(Self.minutesFormatter.string(from: talk.duration) ?? "0") minutes", systemImage: "clock")
+        Label {
+          let minutes = Self.minutesFormatter.string(from: talk.duration) ?? "0"
+          Text("\(minutes) minutes")
+        } icon: {
+          Image(systemName: "clock")
+        }
 
-        Label("\(talk.releaseDate, style: .date)", systemImage: "calendar")
+        Label {
+          Text(talk.releaseDate, style: .date)
+        } icon: {
+          Image(systemName: "calendar")
+        }
 
-        Label(String(talk.viewCount), systemImage: "eye")
+        Label("\(talk.viewCount) views", systemImage: "eye")
 
         if !talk.persons.isEmpty {
           Label(talk.persons.joined(separator: ", "), systemImage: "person")

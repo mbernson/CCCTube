@@ -5,7 +5,13 @@
 "%@ minutes" = "%@ minuten";
 
 /* No comment provided by engineer. */
-"Browse" = "Bladeren";
+"%@... **MORE**" = "%@... **MEER**";
+
+/* No comment provided by engineer. */
+"%lld views" = "%lld weergaven";
+
+/* No comment provided by engineer. */
+"Conferences" = "Conferenties";
 
 /* No comment provided by engineer. */
 "Copyright" = "Copyright ©";
@@ -14,16 +20,13 @@
 "Date %@" = "Datum: %@";
 
 /* No comment provided by engineer. */
-"Failed to load data from the media.cc.de API" = "Kon geen data laden van de media.ccc.de API";
+"Failed to load data from the media.cc.de API" = "Kon geen data laden uit de media.ccc.de API";
 
 /* No comment provided by engineer. */
-"Hello, World!" = "Hallo, wereld!";
+"No copyright information encoded in video. Please refer to the schedule of the organizer of %@ at: %@" = "Geen copyright-informatie gecodeerd in video. Raadpleeg het schema van de organisator van %@ op: %@";
 
 /* No comment provided by engineer. */
-"No copyright information encoded in video. Please refer to the conference organizer at: %@" = "Geen copyright-informatie gecodeerd in video. Raadpleeg de organisator van de conferentie op: %@";
-
-/* No comment provided by engineer. */
-"No copyright information encoded in video. Please refer to the conference organizer of %@ at: %@" = "Geen copyright-informatie gecodeerd in video. Raadpleeg de conferentieorganisator van %@ op: %@";
+"No copyright information encoded in video. Please refer to the website of the organizer of %@ at: %@" = "Geen copyright-informatie gecodeerd in video. Raadpleeg de website van de organisator van %@ op: %@";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -39,6 +42,9 @@
 
 /* No comment provided by engineer. */
 "Popular" = "Populair";
+
+/* No comment provided by engineer. */
+"Recent" = "Recent";
 
 /* No comment provided by engineer. */
 "Search" = "Zoeken";
