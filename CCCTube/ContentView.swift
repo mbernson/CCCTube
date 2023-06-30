@@ -10,7 +10,7 @@ import CCCApi
 
 struct ContentView: View {
   let api = ApiService()
-  @State var talk: Talk?
+  @State private var talk: TalkToPlay?
 
   var body: some View {
     TabView {
@@ -29,7 +29,7 @@ struct ContentView: View {
     .environmentObject(api)
     .sheet(item: $talk) { talk in
       NavigationView {
-        TalkView(talk: talk)
+        TalkView(talk: talk.talk, selectedRecording: talk.recordingToPlay)
           .environmentObject(api)
       }
     }
@@ -40,14 +40,22 @@ struct ContentView: View {
         switch route {
         case .openTalk(let id):
           let talk = try await api.talk(id: id)
-          self.talk = talk
+          self.talk = TalkToPlay(talk: talk, recordingToPlay: nil)
         case .playTalk(let id):
           let talk = try await api.talk(id: id)
-          self.talk = talk
+          let recordings = try await api.recordings(for: talk)
+          let recording = recordings.first(where: { $0.isHighQuality }) ?? recordings.first(where: { $0.isVideo })
+          self.talk = TalkToPlay(talk: talk, recordingToPlay: recording)
         }
       }
     }
   }
+}
+
+private struct TalkToPlay: Identifiable {
+  let id: Int = 1
+  let talk: Talk
+  let recordingToPlay: Recording?
 }
 
 struct ContentView_Previews: PreviewProvider {
