@@ -2,6 +2,8 @@
 
 This is an Apple TV app for viewing the wide variety of video and audio material distributed by the Chaos Computer Club on [media.ccc.de](https://media.ccc.de/).
 
+![Screenshot](https://github.com/mbernson/CCCTube/assets/477710/6b8438c8-c2e4-4375-af4b-d1e217c9f226)
+
 ## About
 
 ### English
