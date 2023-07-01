@@ -61,7 +61,9 @@ struct TalkView: View {
                 .padding(10)
             }
             .buttonBorderShape(.roundedRectangle)
+#if os(tvOS)
             .buttonStyle(.card)
+#endif
             .font(.body)
             .sheet(item: $talkDescription) { talkDescription in
               Text(talkDescription.text)
@@ -92,7 +94,9 @@ struct TalkView: View {
         }.font(.caption)
       }
       .animation(.default, value: copyright)
+#if os(tvOS)
       .focusSection()
+#endif
       .multilineTextAlignment(.leading)
       .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
 
@@ -145,7 +149,9 @@ struct TalkView: View {
           Label(talk.persons.joined(separator: ", "), systemImage: "person")
         }
       }
+#if os(tvOS)
       .focusSection()
+#endif
       .frame(maxWidth: 480, maxHeight: .infinity)
     }
     .navigationTitle(Text(talk.title))
@@ -173,7 +179,7 @@ struct TalkView: View {
         debugPrint(error)
       }
     }
-    .sheet(item: $selectedRecording) { recording in
+    .fullScreenCover(item: $selectedRecording) { recording in
       TalkPlayerView(talk: talk, recording: recording)
     }
     .alert(isPresented: $isErrorPresented, error: error) {

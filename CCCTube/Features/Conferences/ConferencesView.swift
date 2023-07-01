@@ -21,26 +21,34 @@ struct ConferencesView: View {
       ScrollView {
         ConferencesGrid(conferences: conferences)
       }
+      #if !os(tvOS)
+      .navigationTitle("Conferences")
+      #endif
       .task {
-        do {
-          conferences = try await api.conferences()
-            .filter { conference in
-              conference.eventLastReleasedAt != nil
-            }
-            .sorted { lhs, rhs in
-              let lhsVal = lhs.eventLastReleasedAt ?? lhs.updatedAt
-              let rhsVal = rhs.eventLastReleasedAt ?? rhs.updatedAt
-              return lhsVal > rhsVal
-            }
-        } catch {
-          self.error = NetworkError(errorDescription: NSLocalizedString("Failed to load data from the media.cc.de API", comment: ""), error: error)
-          isErrorPresented = true
-          debugPrint(error)
-        }
+        await refresh()
       }
       .alert(isPresented: $isErrorPresented, error: error) {
         Button("OK") {}
       }
+    }
+    .navigationViewStyle(.stack)
+  }
+
+  func refresh() async {
+    do {
+      conferences = try await api.conferences()
+        .filter { conference in
+          conference.eventLastReleasedAt != nil
+        }
+        .sorted { lhs, rhs in
+          let lhsVal = lhs.eventLastReleasedAt ?? lhs.updatedAt
+          let rhsVal = rhs.eventLastReleasedAt ?? rhs.updatedAt
+          return lhsVal > rhsVal
+        }
+    } catch {
+      self.error = NetworkError(errorDescription: NSLocalizedString("Failed to load data from the media.cc.de API", comment: ""), error: error)
+      isErrorPresented = true
+      debugPrint(error)
     }
   }
 }
@@ -59,7 +67,7 @@ struct ConferencesGrid: View {
             ConferenceThumbnail(conference: conference)
           }
 
-          if #available(tvOS 16, *) {
+          if #available(tvOS 16, iOS 16, *) {
             Text(conference.title)
               .font(.caption)
               .lineLimit(2, reservesSpace: true)
@@ -71,8 +79,10 @@ struct ConferencesGrid: View {
         }
       }
     }
+#if os(tvOS)
     .focusSection()
     .buttonStyle(.card)
+#endif
   }
 }
 
@@ -93,7 +103,11 @@ struct ConferenceThumbnail: View {
       }
     }
     .padding(10)
+#if os(tvOS)
     .frame(width: width, height: width * (9 / 16))
+#else
+    .aspectRatio(9 / 16, contentMode: .fit)
+#endif
   }
 }
 

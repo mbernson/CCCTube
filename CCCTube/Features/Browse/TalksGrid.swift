@@ -22,7 +22,7 @@ struct TalksGrid: View {
             TalkThumbnail(talk: talk)
           }
 
-          if #available(tvOS 16, *) {
+          if #available(tvOS 16, iOS 16, *) {
             Text(talk.title)
               .font(.caption)
               .lineLimit(2, reservesSpace: true)
@@ -36,8 +36,10 @@ struct TalksGrid: View {
     }
     .padding()
     .multilineTextAlignment(.center)
+#if os(tvOS)
     .focusSection()
     .buttonStyle(.card)
+#endif
   }
 }
 
