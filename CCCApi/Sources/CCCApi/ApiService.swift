@@ -74,6 +74,15 @@ public class ApiService: ObservableObject {
     return response.events
   }
 
+  public func popularTalks(year: Int) async throws -> [Talk] {
+    let url = baseURL.appendingPathComponent("events").appendingPathComponent("popular")
+    var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
+    components.queryItems = [URLQueryItem(name: "year", value: String(year))]
+    let (data, _) = try await session.data(from: components.url!)
+    let response = try decoder.decode(EventsResponse.self, from: data)
+    return response.events
+  }
+
   public func searchTalks(query: String) async throws -> [Talk] {
     let url = baseURL.appendingPathComponent("events").appendingPathComponent("search")
     var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
