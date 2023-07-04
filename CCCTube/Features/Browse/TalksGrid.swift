@@ -13,7 +13,7 @@ struct TalksGrid: View {
   let columns: [GridItem] = [GridItem(), GridItem(), GridItem(), GridItem()]
 
   var body: some View {
-    LazyVGrid(columns: columns) {
+    LazyVGrid(columns: columns, spacing: 24) {
       ForEach(talks) { talk in
         VStack {
           NavigationLink {
@@ -32,7 +32,6 @@ struct TalksGrid: View {
               .lineLimit(2)
           }
         }
-        .padding()
       }
     }
     .padding()
