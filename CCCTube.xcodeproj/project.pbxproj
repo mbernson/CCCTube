@@ -32,6 +32,8 @@
 		D5A156F128946FEB006989FF /* ConferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A156F028946FEB006989FF /* ConferenceView.swift */; };
 		D5A156F328947625006989FF /* TalkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A156F228947625006989FF /* TalkView.swift */; };
 		D5A4618B289561D700F7A038 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5A4618D289561D700F7A038 /* Localizable.strings */; };
+		D5C76ACB2A619BF100B7469C /* TalkThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C76ACA2A619BF100B7469C /* TalkThumbnail.swift */; };
+		D5C76ACD2A61A02700B7469C /* ConferenceThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C76ACC2A61A02700B7469C /* ConferenceThumbnail.swift */; };
 		D5D4DF43289859AB00560E4F /* MediaAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4DF42289859AB00560E4F /* MediaAnalyzer.swift */; };
 		D5F06C5D2A5035A500774C39 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F06C5C2A5035A500774C39 /* VideoPlayerView.swift */; };
 /* End PBXBuildFile section */
@@ -101,6 +103,8 @@
 		D5A1F2F528971751001D20B3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D5A4618E289561D800F7A038 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D5A4618F289561D900F7A038 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D5C76ACA2A619BF100B7469C /* TalkThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkThumbnail.swift; sourceTree = "<group>"; };
+		D5C76ACC2A61A02700B7469C /* ConferenceThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceThumbnail.swift; sourceTree = "<group>"; };
 		D5D4DF42289859AB00560E4F /* MediaAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAnalyzer.swift; sourceTree = "<group>"; };
 		D5F06C5C2A5035A500774C39 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -157,6 +161,7 @@
 				D550CA252895304A00FD8AB2 /* BrowseView.swift */,
 				D5A156F228947625006989FF /* TalkView.swift */,
 				D501386A2A4B5ADC00ED68C0 /* TalksGrid.swift */,
+				D5C76ACA2A619BF100B7469C /* TalkThumbnail.swift */,
 				D501386C2A4B5AE100ED68C0 /* TalkListItem.swift */,
 			);
 			path = Browse;
@@ -176,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				D557E8B42895C06100342EE2 /* ConferencesView.swift */,
+				D5C76ACC2A61A02700B7469C /* ConferenceThumbnail.swift */,
 				D5A156F028946FEB006989FF /* ConferenceView.swift */,
 			);
 			path = Conferences;
@@ -409,7 +415,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5C76ACD2A61A02700B7469C /* ConferenceThumbnail.swift in Sources */,
 				D5A156DA289462B3006989FF /* ContentView.swift in Sources */,
+				D5C76ACB2A619BF100B7469C /* TalkThumbnail.swift in Sources */,
 				D591395428958B0100369402 /* URLParser.swift in Sources */,
 				D5A156D8289462B3006989FF /* CCCTubeApp.swift in Sources */,
 				D591396328958CE500369402 /* URLRoute.swift in Sources */,
@@ -694,8 +702,8 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.video";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arm64;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -710,7 +718,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "2,3";
+				TARGETED_DEVICE_FAMILY = "1,2,3";
 			};
 			name = Debug;
 		};
@@ -732,8 +740,8 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.video";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arm64;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -748,7 +756,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "2,3";
+				TARGETED_DEVICE_FAMILY = "1,2,3";
 			};
 			name = Release;
 		};

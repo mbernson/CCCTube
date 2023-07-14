@@ -102,20 +102,11 @@ struct TalkView: View {
 
       VStack(alignment: .leading, spacing: 20) {
         Group {
-          if let hdRecording {
+          if hdRecording != nil || sdRecording != nil {
             Button {
-              self.selectedRecording = hdRecording
+              self.selectedRecording = hdRecording ?? sdRecording
             } label: {
-              Label("Play HD", systemImage: "play")
-                .frame(maxWidth: .infinity)
-            }
-          }
-
-          if let sdRecording {
-            Button {
-              self.selectedRecording = sdRecording
-            } label: {
-              Label("Play SD", systemImage: "play")
+              Label("Play", systemImage: "play")
                 .frame(maxWidth: .infinity)
             }
           }
@@ -127,6 +118,10 @@ struct TalkView: View {
               Label("Play audio", systemImage: "play")
                 .frame(maxWidth: .infinity)
             }
+          }
+
+          if hdRecording == nil && sdRecording == nil && audioRecording == nil {
+            Text("No recording available")
           }
         }
 

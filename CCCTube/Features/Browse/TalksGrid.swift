@@ -10,7 +10,12 @@ import CCCApi
 
 struct TalksGrid: View {
   let talks: [Talk]
+
+  #if os(tvOS)
   let columns: [GridItem] = [GridItem(), GridItem(), GridItem(), GridItem()]
+  #else
+  let columns: [GridItem] = [GridItem(.adaptive(minimum: 200, maximum: 400))]
+  #endif
 
   var body: some View {
     LazyVGrid(columns: columns, spacing: 24) {
@@ -20,15 +25,18 @@ struct TalksGrid: View {
             TalkView(talk: talk)
           } label: {
             TalkThumbnail(talk: talk)
+            #if os(tvOS)
+              .frame(width: 400, height: 225)
+            #endif
           }
 
           if #available(tvOS 16, iOS 16, *) {
             Text(talk.title)
-              .font(.caption)
+              .font(.subheadline)
               .lineLimit(2, reservesSpace: true)
           } else {
             Text(talk.title)
-              .font(.caption)
+              .font(.subheadline)
               .lineLimit(2)
           }
         }
@@ -40,20 +48,6 @@ struct TalksGrid: View {
     .focusSection()
     .buttonStyle(.card)
 #endif
-  }
-}
-
-struct TalkThumbnail: View {
-  let talk: Talk
-
-  var body: some View {
-    let width: CGFloat = 400
-    AsyncImage(url: talk.thumbURL) { image in
-      image.resizable().scaledToFit()
-    } placeholder: {
-      ProgressView()
-    }
-    .frame(width: width, height: width * (9 / 16))
   }
 }
 
