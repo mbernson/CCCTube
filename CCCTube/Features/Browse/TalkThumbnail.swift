@@ -5,24 +5,24 @@
 //  Created by Mathijs Bernson on 14/07/2023.
 //
 
-import SwiftUI
 import CCCApi
+import SwiftUI
 
 struct TalkThumbnail: View {
-  let talk: Talk
+    let talk: Talk
 
-  var body: some View {
-    AsyncImage(url: talk.thumbURL) { image in
-      image.resizable().scaledToFit()
-    } placeholder: {
-      ProgressView()
+    var body: some View {
+        AsyncImage(url: talk.thumbURL) { image in
+            image.resizable().scaledToFit()
+        } placeholder: {
+            ProgressView()
+        }
+        .aspectRatio(9 / 16, contentMode: .fill)
     }
-    .aspectRatio(9 / 16, contentMode: .fill)
-  }
 }
 
 struct TalkThumbnail_Previews: PreviewProvider {
-  static var previews: some View {
-    TalkThumbnail(talk: .example)
-  }
+    static var previews: some View {
+        TalkThumbnail(talk: .example)
+    }
 }

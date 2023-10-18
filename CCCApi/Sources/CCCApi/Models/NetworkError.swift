@@ -8,11 +8,11 @@
 import Foundation
 
 public struct NetworkError: LocalizedError {
-  public let errorDescription: String?
-  public let failureReason: String?
+    public let errorDescription: String?
+    public let failureReason: String?
 
-  public init(errorDescription: String, error: Error) {
-    self.errorDescription = errorDescription
-    failureReason = error.localizedDescription
-  }
+    public init(errorDescription: String, error: Error) {
+        self.errorDescription = errorDescription
+        failureReason = error.localizedDescription
+    }
 }

@@ -8,20 +8,20 @@
 import Foundation
 
 struct URLParser {
-  func parseURL(_ url: URL) -> URLRoute? {
-    guard url.scheme == "ccctube" else { return nil }
-    guard url.host == "talk" else { return nil }
+    func parseURL(_ url: URL) -> URLRoute? {
+        guard url.scheme == "ccctube" else { return nil }
+        guard url.host == "talk" else { return nil }
 
-    let components = url.pathComponents.filter { $0 != "/" }
-    guard components.count >= 1,
-          let id = components.first,
-          let _ = UUID(uuidString: id)
-    else { return nil }
+        let components = url.pathComponents.filter { $0 != "/" }
+        guard components.count >= 1,
+              let id = components.first,
+              let _ = UUID(uuidString: id)
+        else { return nil }
 
-    if components.last == "play" {
-      return .playTalk(id: id)
-    } else {
-      return .openTalk(id: id)
+        if components.last == "play" {
+            return .playTalk(id: id)
+        } else {
+            return .openTalk(id: id)
+        }
     }
-  }
 }

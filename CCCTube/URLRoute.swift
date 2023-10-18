@@ -8,6 +8,6 @@
 import Foundation
 
 enum URLRoute: Equatable {
-  case playTalk(id: String)
-  case openTalk(id: String)
+    case playTalk(id: String)
+    case openTalk(id: String)
 }

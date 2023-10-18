@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -217,9 +217,9 @@
 				D5A156D5289462B3006989FF /* Products */,
 				D50C6F7428956DFC0003D1D0 /* Frameworks */,
 			);
-			indentWidth = 2;
+			indentWidth = 4;
 			sourceTree = "<group>";
-			tabWidth = 2;
+			tabWidth = 4;
 		};
 		D5A156D5289462B3006989FF /* Products */ = {
 			isa = PBXGroup;
@@ -344,7 +344,7 @@
 				};
 			};
 			buildConfigurationList = D5A156CF289462B3006989FF /* Build configuration list for PBXProject "CCCTube" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (

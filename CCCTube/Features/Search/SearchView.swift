@@ -5,43 +5,43 @@
 //  Created by Mathijs Bernson on 30/07/2022.
 //
 
-import SwiftUI
 import CCCApi
+import SwiftUI
 
 struct SearchView: View {
-  @StateObject var viewModel = SearchViewModel()
-  @State var suggestions: [SearchSuggestion] = SearchSuggestion.defaultSuggestions
+    @StateObject var viewModel = SearchViewModel()
+    @State var suggestions: [SearchSuggestion] = SearchSuggestion.defaultSuggestions
 
-  var body: some View {
-    NavigationView {
-      List {
-        ForEach(viewModel.results) { talk in
-          NavigationLink {
-            TalkView(talk: talk)
-          } label: {
-            TalkListItem(talk: talk)
-          }
+    var body: some View {
+        NavigationView {
+            List {
+                ForEach(viewModel.results) { talk in
+                    NavigationLink {
+                        TalkView(talk: talk)
+                    } label: {
+                        TalkListItem(talk: talk)
+                    }
+                }
+            }
+            #if !os(tvOS)
+            .navigationTitle("Search")
+            #endif
+            .searchable(text: $viewModel.query, prompt: "Search talks...", suggestions: {
+                ForEach(suggestions) { suggest in
+                    Text(suggest.title).searchCompletion(suggest.title)
+                }
+            })
+            .alert(isPresented: $viewModel.isErrorPresented, error: viewModel.error) {
+                Button("OK") {}
+            }
         }
-      }
-      #if !os(tvOS)
-      .navigationTitle("Search")
-      #endif
-      .searchable(text: $viewModel.query, prompt: "Search talks...", suggestions: {
-        ForEach(suggestions) { suggest in
-          Text(suggest.title).searchCompletion(suggest.title)
-        }
-      })
-      .alert(isPresented: $viewModel.isErrorPresented, error: viewModel.error) {
-        Button("OK") {}
-      }
+        .navigationViewStyle(.stack)
     }
-    .navigationViewStyle(.stack)
-  }
 }
 
 struct SearchView_Previews: PreviewProvider {
-  static var previews: some View {
-    SearchView()
-      .environmentObject(ApiService())
-  }
+    static var previews: some View {
+        SearchView()
+            .environmentObject(ApiService())
+    }
 }
