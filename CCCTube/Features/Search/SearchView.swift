@@ -23,6 +23,9 @@ struct SearchView: View {
           }
         }
       }
+      #if !os(tvOS)
+      .navigationTitle("Search")
+      #endif
       .searchable(text: $viewModel.query, prompt: "Search talks...", suggestions: {
         ForEach(suggestions) { suggest in
           Text(suggest.title).searchCompletion(suggest.title)
@@ -32,6 +35,7 @@ struct SearchView: View {
         Button("OK") {}
       }
     }
+    .navigationViewStyle(.stack)
   }
 }
 

@@ -61,7 +61,9 @@ struct TalkView: View {
                 .padding(10)
             }
             .buttonBorderShape(.roundedRectangle)
+#if os(tvOS)
             .buttonStyle(.card)
+#endif
             .font(.body)
             .sheet(item: $talkDescription) { talkDescription in
               Text(talkDescription.text)
@@ -92,26 +94,19 @@ struct TalkView: View {
         }.font(.caption)
       }
       .animation(.default, value: copyright)
+#if os(tvOS)
       .focusSection()
+#endif
       .multilineTextAlignment(.leading)
       .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
 
       VStack(alignment: .leading, spacing: 20) {
         Group {
-          if let hdRecording {
+          if hdRecording != nil || sdRecording != nil {
             Button {
-              self.selectedRecording = hdRecording
+              self.selectedRecording = hdRecording ?? sdRecording
             } label: {
-              Label("Play HD", systemImage: "play")
-                .frame(maxWidth: .infinity)
-            }
-          }
-
-          if let sdRecording {
-            Button {
-              self.selectedRecording = sdRecording
-            } label: {
-              Label("Play SD", systemImage: "play")
+              Label("Play", systemImage: "play")
                 .frame(maxWidth: .infinity)
             }
           }
@@ -123,6 +118,10 @@ struct TalkView: View {
               Label("Play audio", systemImage: "play")
                 .frame(maxWidth: .infinity)
             }
+          }
+
+          if hdRecording == nil && sdRecording == nil && audioRecording == nil {
+            Text("No recording available")
           }
         }
 
@@ -145,7 +144,9 @@ struct TalkView: View {
           Label(talk.persons.joined(separator: ", "), systemImage: "person")
         }
       }
+#if os(tvOS)
       .focusSection()
+#endif
       .frame(maxWidth: 480, maxHeight: .infinity)
     }
     .navigationTitle(Text(talk.title))
@@ -173,7 +174,7 @@ struct TalkView: View {
         debugPrint(error)
       }
     }
-    .sheet(item: $selectedRecording) { recording in
+    .fullScreenCover(item: $selectedRecording) { recording in
       TalkPlayerView(talk: talk, recording: recording)
     }
     .alert(isPresented: $isErrorPresented, error: error) {

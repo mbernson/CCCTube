@@ -21,33 +21,46 @@ struct ConferencesView: View {
       ScrollView {
         ConferencesGrid(conferences: conferences)
       }
+      #if !os(tvOS)
+      .navigationTitle("Conferences")
+      #endif
       .task {
-        do {
-          conferences = try await api.conferences()
-            .filter { conference in
-              conference.eventLastReleasedAt != nil
-            }
-            .sorted { lhs, rhs in
-              let lhsVal = lhs.eventLastReleasedAt ?? lhs.updatedAt
-              let rhsVal = rhs.eventLastReleasedAt ?? rhs.updatedAt
-              return lhsVal > rhsVal
-            }
-        } catch {
-          self.error = NetworkError(errorDescription: NSLocalizedString("Failed to load data from the media.cc.de API", comment: ""), error: error)
-          isErrorPresented = true
-          debugPrint(error)
-        }
+        await refresh()
       }
       .alert(isPresented: $isErrorPresented, error: error) {
         Button("OK") {}
       }
+    }
+    .navigationViewStyle(.stack)
+  }
+
+  func refresh() async {
+    do {
+      conferences = try await api.conferences()
+        .filter { conference in
+          conference.eventLastReleasedAt != nil
+        }
+        .sorted { lhs, rhs in
+          let lhsVal = lhs.eventLastReleasedAt ?? lhs.updatedAt
+          let rhsVal = rhs.eventLastReleasedAt ?? rhs.updatedAt
+          return lhsVal > rhsVal
+        }
+    } catch {
+      self.error = NetworkError(errorDescription: NSLocalizedString("Failed to load data from the media.cc.de API", comment: ""), error: error)
+      isErrorPresented = true
+      debugPrint(error)
     }
   }
 }
 
 struct ConferencesGrid: View {
   let conferences: [Conference]
+
+  #if os(tvOS)
   let columns: [GridItem] = [GridItem(), GridItem(), GridItem(), GridItem()]
+  #else
+  let columns: [GridItem] = [GridItem(.adaptive(minimum: 200))]
+  #endif
 
   var body: some View {
     LazyVGrid(columns: columns) {
@@ -59,7 +72,7 @@ struct ConferencesGrid: View {
             ConferenceThumbnail(conference: conference)
           }
 
-          if #available(tvOS 16, *) {
+          if #available(tvOS 16, iOS 16, *) {
             Text(conference.title)
               .font(.caption)
               .lineLimit(2, reservesSpace: true)
@@ -71,29 +84,10 @@ struct ConferencesGrid: View {
         }
       }
     }
+#if os(tvOS)
     .focusSection()
     .buttonStyle(.card)
-  }
-}
-
-struct ConferenceThumbnail: View {
-  let conference: Conference
-
-  var body: some View {
-    let width: CGFloat = 400
-    AsyncImage(url: conference.logoURL) { phase in
-      if let image = phase.image {
-        image.resizable().scaledToFit()
-      } else if phase.error != nil {
-        Text(conference.acronym)
-          .font(.title3.monospaced())
-          .frame(maxWidth: .infinity, maxHeight: .infinity)
-      } else {
-        ProgressView()
-      }
-    }
-    .padding(10)
-    .frame(width: width, height: width * (9 / 16))
+#endif
   }
 }
 

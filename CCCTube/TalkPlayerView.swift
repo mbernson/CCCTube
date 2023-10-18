@@ -24,7 +24,7 @@ struct TalkPlayerView: View {
   }
 
   var body: some View {
-    VideoPlayer(player: player)
+    VideoPlayerView(player: player)
       .ignoresSafeArea()
       .onAppear {
         player.play()

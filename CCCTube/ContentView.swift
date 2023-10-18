@@ -15,19 +15,43 @@ struct ContentView: View {
   var body: some View {
     TabView {
       BrowseView(query: .recent)
-        .tabItem { Text("Recent") }
+        .tabItem {
+          #if os(tvOS)
+          Text("Recent")
+          #else
+          Label("Recent", systemImage: "clock")
+          #endif
+        }
 
       BrowseView(query: .popular)
-        .tabItem { Text("Popular") }
+        .tabItem {
+          #if os(tvOS)
+          Text("Popular")
+          #else
+          Label("Popular", systemImage: "popcorn")
+          #endif
+        }
 
       ConferencesView()
-        .tabItem { Text("Conferences") }
+        .tabItem {
+          #if os(tvOS)
+          Text("Conferences")
+          #else
+          Label("Conferences", systemImage: "star")
+          #endif
+        }
 
       SearchView()
-        .tabItem { Label("Search", systemImage: "magnifyingglass").labelStyle(.iconOnly) }
+        .tabItem {
+          #if os(tvOS)
+          Label("Search", systemImage: "magnifyingglass").labelStyle(.iconOnly)
+          #else
+          Label("Search", systemImage: "magnifyingglass")
+          #endif
+        }
     }
     .environmentObject(api)
-    .sheet(item: $talk) { talk in
+    .fullScreenCover(item: $talk) { talk in
       NavigationView {
         TalkView(talk: talk.talk, selectedRecording: talk.recordingToPlay)
           .environmentObject(api)

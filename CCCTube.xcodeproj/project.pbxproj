@@ -19,7 +19,7 @@
 		D557E8BD289715CD00342EE2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D557E8BF289715CD00342EE2 /* Localizable.strings */; };
 		D59139412895851300369402 /* TVServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D59139402895851300369402 /* TVServices.framework */; };
 		D59139442895851300369402 /* ContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59139432895851300369402 /* ContentProvider.swift */; };
-		D59139482895851300369402 /* TopShelf.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D591393F2895851300369402 /* TopShelf.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D59139482895851300369402 /* TopShelf.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D591393F2895851300369402 /* TopShelf.appex */; platformFilters = (tvos, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D591394E2895854100369402 /* CCCApi in Frameworks */ = {isa = PBXBuildFile; productRef = D591394D2895854100369402 /* CCCApi */; };
 		D5913950289585AC00369402 /* TopShelfContentFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D591394F289585AC00369402 /* TopShelfContentFactory.swift */; };
 		D591395428958B0100369402 /* URLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D591395328958B0100369402 /* URLParser.swift */; };
@@ -32,7 +32,10 @@
 		D5A156F128946FEB006989FF /* ConferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A156F028946FEB006989FF /* ConferenceView.swift */; };
 		D5A156F328947625006989FF /* TalkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A156F228947625006989FF /* TalkView.swift */; };
 		D5A4618B289561D700F7A038 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5A4618D289561D700F7A038 /* Localizable.strings */; };
+		D5C76ACB2A619BF100B7469C /* TalkThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C76ACA2A619BF100B7469C /* TalkThumbnail.swift */; };
+		D5C76ACD2A61A02700B7469C /* ConferenceThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C76ACC2A61A02700B7469C /* ConferenceThumbnail.swift */; };
 		D5D4DF43289859AB00560E4F /* MediaAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4DF42289859AB00560E4F /* MediaAnalyzer.swift */; };
+		D5F06C5D2A5035A500774C39 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F06C5C2A5035A500774C39 /* VideoPlayerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,7 +103,10 @@
 		D5A1F2F528971751001D20B3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D5A4618E289561D800F7A038 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D5A4618F289561D900F7A038 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D5C76ACA2A619BF100B7469C /* TalkThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkThumbnail.swift; sourceTree = "<group>"; };
+		D5C76ACC2A61A02700B7469C /* ConferenceThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceThumbnail.swift; sourceTree = "<group>"; };
 		D5D4DF42289859AB00560E4F /* MediaAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAnalyzer.swift; sourceTree = "<group>"; };
+		D5F06C5C2A5035A500774C39 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +161,7 @@
 				D550CA252895304A00FD8AB2 /* BrowseView.swift */,
 				D5A156F228947625006989FF /* TalkView.swift */,
 				D501386A2A4B5ADC00ED68C0 /* TalksGrid.swift */,
+				D5C76ACA2A619BF100B7469C /* TalkThumbnail.swift */,
 				D501386C2A4B5AE100ED68C0 /* TalkListItem.swift */,
 			);
 			path = Browse;
@@ -174,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				D557E8B42895C06100342EE2 /* ConferencesView.swift */,
+				D5C76ACC2A61A02700B7469C /* ConferenceThumbnail.swift */,
 				D5A156F028946FEB006989FF /* ConferenceView.swift */,
 			);
 			path = Conferences;
@@ -231,6 +239,7 @@
 				D5A156D9289462B3006989FF /* ContentView.swift */,
 				D5D4DF42289859AB00560E4F /* MediaAnalyzer.swift */,
 				D550CA3028953B4000FD8AB2 /* TalkPlayerView.swift */,
+				D5F06C5C2A5035A500774C39 /* VideoPlayerView.swift */,
 				D5A156DB289462B3006989FF /* Assets.xcassets */,
 				D5A156DD289462B3006989FF /* Preview Content */,
 				D5913952289589A200369402 /* Info.plist */,
@@ -406,7 +415,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5C76ACD2A61A02700B7469C /* ConferenceThumbnail.swift in Sources */,
 				D5A156DA289462B3006989FF /* ContentView.swift in Sources */,
+				D5C76ACB2A619BF100B7469C /* TalkThumbnail.swift in Sources */,
 				D591395428958B0100369402 /* URLParser.swift in Sources */,
 				D5A156D8289462B3006989FF /* CCCTubeApp.swift in Sources */,
 				D591396328958CE500369402 /* URLRoute.swift in Sources */,
@@ -421,6 +432,7 @@
 				D501386D2A4B5AE100ED68C0 /* TalkListItem.swift in Sources */,
 				D550CA3128953B4000FD8AB2 /* TalkPlayerView.swift in Sources */,
 				D5A156F328947625006989FF /* TalkView.swift in Sources */,
+				D5F06C5D2A5035A500774C39 /* VideoPlayerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +441,9 @@
 /* Begin PBXTargetDependency section */
 		D59139472895851300369402 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilters = (
+				tvos,
+			);
 			target = D591393E2895851300369402 /* TopShelf */;
 			targetProxy = D59139462895851300369402 /* PBXContainerItemProxy */;
 		};
@@ -601,6 +616,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arm64;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -657,6 +673,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arm64;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = appletvos;
@@ -670,8 +687,9 @@
 		D5A156E3289462B3006989FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				"ASSETCATALOG_COMPILER_APPICON_NAME[sdk=*]" = AppIcon_iOS;
+				"ASSETCATALOG_COMPILER_APPICON_NAME[sdk=appletvos*]" = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -682,27 +700,34 @@
 				INFOPLIST_FILE = CCCTube/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "CCC Tube";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.video";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arm64;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = nl.bernson.CCCTube;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
+				TARGETED_DEVICE_FAMILY = "1,2,3";
 			};
 			name = Debug;
 		};
 		D5A156E4289462B3006989FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				"ASSETCATALOG_COMPILER_APPICON_NAME[sdk=*]" = AppIcon_iOS;
+				"ASSETCATALOG_COMPILER_APPICON_NAME[sdk=appletvos*]" = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -713,19 +738,25 @@
 				INFOPLIST_FILE = CCCTube/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "CCC Tube";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.video";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arm64;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = nl.bernson.CCCTube;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
+				TARGETED_DEVICE_FAMILY = "1,2,3";
 			};
 			name = Release;
 		};

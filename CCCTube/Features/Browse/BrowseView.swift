@@ -11,6 +11,15 @@ import CCCApi
 enum EventsQuery {
   case recent
   case popular
+
+  var localizedTitle: String {
+    switch self {
+    case .recent:
+      return String(localized: "Recent")
+    case .popular:
+      return String(localized: "Popular")
+    }
+  }
 }
 
 struct BrowseView: View {
@@ -27,23 +36,31 @@ struct BrowseView: View {
       ScrollView {
         TalksGrid(talks: talks)
       }
+      #if !os(tvOS)
+      .navigationTitle(query.localizedTitle)
+      #endif
       .task {
-        do {
-          switch query {
-          case .recent:
-            talks = try await api.recentTalks()
-          case .popular:
-            talks = try await api.popularTalks()
-          }
-        } catch {
-          self.error = NetworkError(errorDescription: NSLocalizedString("Failed to load data from the media.cc.de API", comment: ""), error: error)
-          isErrorPresented = true
-          debugPrint(error)
-        }
+        await refresh()
       }
       .alert(isPresented: $isErrorPresented, error: error) {
         Button("OK") {}
       }
+    }
+    .navigationViewStyle(.stack)
+  }
+
+  func refresh() async {
+    do {
+      switch query {
+      case .recent:
+        talks = try await api.recentTalks()
+      case .popular:
+        talks = try await api.popularTalks()
+      }
+    } catch {
+      self.error = NetworkError(errorDescription: NSLocalizedString("Failed to load data from the media.cc.de API", comment: ""), error: error)
+      isErrorPresented = true
+      debugPrint(error)
     }
   }
 }
