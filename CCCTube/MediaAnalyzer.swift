@@ -10,22 +10,12 @@ import CCCApi
 import Foundation
 
 struct MediaAnalyzer {
-    func copyrightMetadata(for recording: Recording) async -> String? {
+    func copyrightMetadata(for recording: Recording) async throws -> String? {
         let asset = AVAsset(url: recording.recordingURL)
-        let formatsKey = "availableMetadataFormats"
-        _ = await asset.loadValues(forKeys: [formatsKey])
-        var error: NSError?
-        let status = asset.statusOfValue(forKey: formatsKey, error: &error)
-        if status == .loaded {
-            for format in asset.availableMetadataFormats {
-                let metadata = asset.metadata(forFormat: format)
-                // process format-specific metadata collection
-                print(metadata)
-                for meta in metadata {
-                    if meta.identifier == .commonIdentifierCopyrights || meta.identifier == .id3MetadataCopyright || meta.identifier == .iTunesMetadataCopyright {
-                        return meta.stringValue
-                    }
-                }
+        let metadata = try await asset.load(.metadata)
+        for meta in metadata {
+            if meta.identifier == .commonIdentifierCopyrights || meta.identifier == .id3MetadataCopyright || meta.identifier == .iTunesMetadataCopyright {
+                return try await meta.load(.stringValue)
             }
         }
         return nil

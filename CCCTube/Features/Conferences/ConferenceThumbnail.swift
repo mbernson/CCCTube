@@ -12,7 +12,6 @@ struct ConferenceThumbnail: View {
     let conference: Conference
 
     var body: some View {
-        let width: CGFloat = 400
         AsyncImage(url: conference.logoURL) { phase in
             if let image = phase.image {
                 image.resizable().scaledToFit()
