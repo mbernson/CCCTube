@@ -145,7 +145,13 @@ struct TalkExtended: Decodable {
 }
 
 public struct RelatedTalk: Decodable {
-    let event_id: Int
-    let event_guid: String
+    let eventID: Int
+    let eventGUID: String
     let weight: Int
+
+    enum CodingKeys: String, CodingKey {
+        case eventID = "event_id"
+        case eventGUID = "event_guid"
+        case weight = "weight"
+    }
 }

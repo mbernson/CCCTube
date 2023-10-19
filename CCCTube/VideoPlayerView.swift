@@ -13,16 +13,17 @@ import SwiftUI
 struct VideoPlayerView: UIViewControllerRepresentable {
     let player: AVPlayer?
 
-    func makeUIViewController(context _: Context) -> AVPlayerViewController {
+    func makeUIViewController(context: Context) -> AVPlayerViewController {
         let playerViewController = AVPlayerViewController()
         #if os(tvOS)
             playerViewController.appliesPreferredDisplayCriteriaAutomatically = true
             playerViewController.transportBarIncludesTitleView = true
         #endif
+        playerViewController.canStartPictureInPictureAutomaticallyFromInline = true
         return playerViewController
     }
 
-    func updateUIViewController(_ playerViewController: AVPlayerViewController, context _: Context) {
+    func updateUIViewController(_ playerViewController: AVPlayerViewController, context: Context) {
         playerViewController.player = player
     }
 }

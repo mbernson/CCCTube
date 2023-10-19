@@ -106,12 +106,12 @@ public class ApiService: ObservableObject {
             .filter { !$0.mimeType.contains("webm") }
             .filter { !$0.mimeType.starts(with: "application") }
             // Put the HD versions first
-            .sorted(by: { a, b in
-                a.isHighQuality && !b.isHighQuality
+            .sorted(by: { lhs, rhs in
+                lhs.isHighQuality && !rhs.isHighQuality
             })
             // Put the audio versions last
-            .sorted(by: { a, b in
-                !a.isAudio && b.isAudio
+            .sorted(by: { lhs, rhs in
+                !lhs.isAudio && rhs.isAudio
             })
     }
 }

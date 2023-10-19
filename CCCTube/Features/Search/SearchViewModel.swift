@@ -15,7 +15,7 @@ import Foundation
     @Published var query: String = ""
     @Published var results: [Talk] = []
 
-    @Published var error: NetworkError? = nil
+    @Published var error: NetworkError?
     @Published var isErrorPresented = false
 
     private var cancellable: AnyCancellable?

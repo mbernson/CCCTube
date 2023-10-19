@@ -26,7 +26,7 @@ struct BrowseView: View {
     let query: EventsQuery
     @State var talks: [Talk] = []
 
-    @State var error: NetworkError? = nil
+    @State var error: NetworkError?
     @State var isErrorPresented = false
 
     @EnvironmentObject var api: ApiService

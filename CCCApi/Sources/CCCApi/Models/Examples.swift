@@ -7,6 +7,8 @@
 
 import Foundation
 
+// swiftlint:disable force_try
+
 public extension Conference {
     static let example = Conference(
         acronym: "MCH2022",
@@ -84,28 +86,28 @@ public extension Recording {
 public extension Array where Element == RelatedTalk {
     static let example: [RelatedTalk] = [
         RelatedTalk(
-            event_id: 2291,
-            event_guid: "2f68e356-6c3f-4034-9640-c06d717ed96b",
+            eventID: 2291,
+            eventGUID: "2f68e356-6c3f-4034-9640-c06d717ed96b",
             weight: 52
         ),
         RelatedTalk(
-            event_id: 2814,
-            event_guid: "3cb4101c-2042-4883-b6fb-6591994a70c0",
+            eventID: 2814,
+            eventGUID: "3cb4101c-2042-4883-b6fb-6591994a70c0",
             weight: 62
         ),
         RelatedTalk(
-            event_id: 2938,
-            event_guid: "03c8501f-d327-4228-a9fe-2635370d25d2",
+            eventID: 2938,
+            eventGUID: "03c8501f-d327-4228-a9fe-2635370d25d2",
             weight: 40
         ),
         RelatedTalk(
-            event_id: 3596,
-            event_guid: "b8e0eb47-4832-4726-bc9b-9015bd96becf",
+            eventID: 3596,
+            eventGUID: "b8e0eb47-4832-4726-bc9b-9015bd96becf",
             weight: 45
         ),
         RelatedTalk(
-            event_id: 3597,
-            event_guid: "87092ad2-d3fd-4a37-bb58-1fe71217a06b",
+            eventID: 3597,
+            eventGUID: "87092ad2-d3fd-4a37-bb58-1fe71217a06b",
             weight: 90
         ),
     ]
