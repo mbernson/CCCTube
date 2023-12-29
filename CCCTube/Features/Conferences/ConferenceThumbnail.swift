@@ -23,14 +23,9 @@ struct ConferenceThumbnail: View {
                 ProgressView()
             }
         }
-        .padding(10)
-        #if os(tvOS)
-            .frame(width: width, height: width * (9 / 16))
-        #else
-            .aspectRatio(16 / 9, contentMode: .fit)
-        #endif
-            .background(.regularMaterial)
-            .cornerRadius(16)
+        .aspectRatio(16 / 9, contentMode: .fit)
+        .background(.regularMaterial)
+        .cornerRadius(16)
     }
 }
 

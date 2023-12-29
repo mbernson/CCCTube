@@ -18,8 +18,9 @@ struct VideoPlayerView: UIViewControllerRepresentable {
         #if os(tvOS)
             playerViewController.appliesPreferredDisplayCriteriaAutomatically = true
             playerViewController.transportBarIncludesTitleView = true
+        #else
+            playerViewController.canStartPictureInPictureAutomaticallyFromInline = true
         #endif
-        playerViewController.canStartPictureInPictureAutomaticallyFromInline = true
         return playerViewController
     }
 
