@@ -15,7 +15,7 @@ typealias Event = Talk
 
 /// Every talk (alias event, in other systems also called lecture or session) is assigned to exactly one conference (e.g. the congress or lecture series like datengarten or openchaos) and consists of multiple files alias recordings.
 /// These files can be video or audio recordings of the talk in different formats and languages (live-translation), subtitle tracks as srt or slides as pdf.
-public struct Talk: Decodable, Identifiable {
+public struct Talk: Decodable, Identifiable, Equatable {
     public var id: String { guid }
 
     public let guid: String
@@ -144,7 +144,7 @@ struct TalkExtended: Decodable {
     }
 }
 
-public struct RelatedTalk: Decodable {
+public struct RelatedTalk: Decodable, Equatable {
     let eventID: Int
     let eventGUID: String
     let weight: Int
