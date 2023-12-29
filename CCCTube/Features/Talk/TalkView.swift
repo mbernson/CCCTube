@@ -105,6 +105,10 @@ private struct TalkMainView: View {
             }
 
             CopyrightView(talk: talk, viewModel: viewModel)
+
+            if !talk.related.isEmpty {
+                RelatedTalksView(talk: talk)
+            }
         }
         .animation(.default, value: viewModel.copyright)
         #if os(tvOS)

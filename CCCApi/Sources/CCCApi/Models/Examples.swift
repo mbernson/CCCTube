@@ -60,7 +60,13 @@ public extension Talk {
         thumbnailsURL: URL(string: "https://static.media.ccc.de/media/events/MCH2022/110-cf4dc17c-aab4-5868-9b57-100a55a1c2fb.thumbnails.vtt")!,
         frontendLink: URL(string: "https://media.ccc.de/v/mch2022-110--may-contain-hackers-2022-closing")!,
         url: URL(string: "https://api.media.ccc.de/public/events/cf4dc17c-aab4-5868-9b57-100a55a1c2fb")!,
-        related: []
+        related: [
+            RelatedTalk(eventID: 1, eventGUID: "3a1af1ec-416d-54a6-b90f-65f582601c80", weight: 1),
+            RelatedTalk(eventID: 2, eventGUID: "a8ca0e16-c1e4-54bc-b2e4-2e739f977ceb", weight: 2),
+            RelatedTalk(eventID: 3, eventGUID: "e25fe48f-efd5-5c96-9126-af54846c1d36", weight: 3),
+            RelatedTalk(eventID: 4, eventGUID: "900032ea-1a6e-55d7-9ca0-e9e09d6fb86c", weight: 1),
+            RelatedTalk(eventID: 5, eventGUID: "f77cc2ec-df99-5804-a8da-1dabbb7e09fe", weight: 2),
+        ]
     )
 }
 

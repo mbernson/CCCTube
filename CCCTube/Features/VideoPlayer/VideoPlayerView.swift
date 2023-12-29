@@ -23,6 +23,10 @@ struct VideoPlayerView: UIViewControllerRepresentable {
             playerViewController.canStartPictureInPictureAutomaticallyFromInline = true
         #endif
 
+        playerViewController.customInfoViewControllers = [
+            RelatedTalksViewController(talk: .example)
+        ]
+
         return playerViewController
     }
 
