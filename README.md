@@ -1,6 +1,6 @@
 # CCC Tube
 
-This is an Apple TV app for viewing the wide variety of video and audio material distributed by the Chaos Computer Club on [media.ccc.de](https://media.ccc.de/).
+An app for tvOS (Apple TV) and iOS (iPhone, iPad) for viewing the wide variety of video and audio material distributed by the Chaos Computer Club on [media.ccc.de](https://media.ccc.de/).
 
 ![Screenshot](https://github.com/mbernson/CCCTube/assets/477710/6b8438c8-c2e4-4375-af4b-d1e217c9f226)
 
@@ -35,6 +35,14 @@ De "Chaos Computer Club" is Europaʼs grootste hacker gemeenschap en een platfor
 Sinds vele jaren maakt de Chaos Computer Club videos, die de vele gesprekken en activiteiten van de club vastleggen. Deze videoʼs zijn uiteraard voor iedereen toegankelijk gemaakt via verschillende kanalen en platforms. Met de CCC Tube app is de video-inhoud van de Chaos Computer Club nu gemakkelijk op de Apple TV te bekijken en worden de activiteiten van de club aan een breder publiek beschikbaar gesteld.
 
 Gewoon lekker gaan zitten, CCC Tube selecteren, en duik in de wonderbaarlijk diverse wereld van de Chaos Computer Club!
+
+## Development
+
+This app is written in Swift and SwiftUI. It tries to stay close to the native conventions, using native user interface elements in order to fit in on the Apple platforms that the app supports.
+
+It uses the native video player, which supports behaviours such as picture-in-picture out of the box.
+
+The app is localized to English, German and Dutch.
 
 ## License
 
