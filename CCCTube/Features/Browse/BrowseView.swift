@@ -41,6 +41,9 @@ struct BrowseView: View {
             .task {
                 await refresh()
             }
+            .refreshable {
+                await refresh()
+            }
             .alert("Failed to load data from the media.ccc.de API", error: $error)
         }
     }
