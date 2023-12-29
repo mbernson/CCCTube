@@ -9,33 +9,21 @@ import CCCApi
 import Combine
 import Foundation
 
-@MainActor class SearchViewModel: ObservableObject {
-    let api = ApiService()
+@MainActor 
+class SearchViewModel: ObservableObject {
+    private let api = ApiService()
 
     @Published var query: String = ""
     @Published var results: [Talk] = []
 
-    @Published var error: NetworkError?
-    @Published var isErrorPresented = false
+    @Published var error: Error?
 
-    private var cancellable: AnyCancellable?
-
-    init() {
-        cancellable = $query
-            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
-            .sink(receiveValue: { query in
-                self.fetchResults(query: query)
-            })
-    }
-
-    private func fetchResults(query: String) {
+    func search() {
         Task {
             do {
                 results = try await api.searchTalks(query: query)
             } catch {
-                self.error = NetworkError(errorDescription: NSLocalizedString("Failed to load data from the media.cc.de API", comment: ""), error: error)
-                isErrorPresented = true
-                debugPrint(error)
+                self.error = error
             }
         }
     }

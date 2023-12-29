@@ -12,8 +12,7 @@ struct ConferenceView: View {
     let conference: Conference
     @State var talks: [Talk] = []
 
-    @State var error: NetworkError? = nil
-    @State var isErrorPresented = false
+    @State var error: Error? = nil
 
     @EnvironmentObject var api: ApiService
 
@@ -31,14 +30,10 @@ struct ConferenceView: View {
             do {
                 talks = try await api.conference(acronym: conference.acronym).events ?? []
             } catch {
-                self.error = NetworkError(errorDescription: NSLocalizedString("Failed to load data from the media.cc.de API", comment: ""), error: error)
-                isErrorPresented = true
-                debugPrint(error)
+                self.error = error
             }
         }
-        .alert(isPresented: $isErrorPresented, error: error) {
-            Button("OK") {}
-        }
+        .alert("Failed to load data from the media.cc.de API", error: $error)
     }
 }
 

@@ -14,19 +14,42 @@ enum CopyrightState: Equatable {
     case unknown
 }
 
+@MainActor class TalkViewModel: ObservableObject {
+    @Published var hdRecording: Recording?
+    @Published var sdRecording: Recording?
+    @Published var audioRecording: Recording?
+    @Published var copyright: CopyrightState = .loading
+
+    private let mediaAnalyzer = MediaAnalyzer()
+
+    func loadRecordings(for talk: Talk, from api: CCCApi.ApiService) async throws {
+        let recordings = try await api.recordings(for: talk)
+        hdRecording = recordings.first(where: { $0.isHighQuality })
+        sdRecording = recordings.first(where: { !$0.isHighQuality && $0.isVideo })
+        audioRecording = recordings.first(where: { $0.isAudio })
+
+        for recording in recordings {
+            if copyright == .loading {
+                let copyrightString = try? await mediaAnalyzer.copyrightMetadata(for: recording)
+                if let copyrightString {
+                    copyright = .copyright(copyrightString)
+                }
+            }
+        }
+        if copyright == .loading {
+            copyright = .unknown
+        }
+    }
+}
+
 struct TalkView: View {
     let talk: Talk
-    let mediaAnalyzer = MediaAnalyzer()
 
-    @State var hdRecording: Recording?
-    @State var sdRecording: Recording?
-    @State var audioRecording: Recording?
     @State var selectedRecording: Recording?
     @State private var talkDescription: TalkDescription?
-    @State var copyright: CopyrightState = .loading
+    @StateObject private var viewModel = TalkViewModel()
 
-    @State var error: NetworkError?
-    @State var isErrorPresented = false
+    @State private var error: Error?
 
     @EnvironmentObject var api: ApiService
 
@@ -80,7 +103,7 @@ struct TalkView: View {
                     .font(.headline)
 
                 Group {
-                    switch copyright {
+                    switch viewModel.copyright {
                     case .loading:
                         ProgressView()
                     case let .copyright(string):
@@ -94,7 +117,7 @@ struct TalkView: View {
                     }
                 }.font(.caption)
             }
-            .animation(.default, value: copyright)
+            .animation(.default, value: viewModel.copyright)
             #if os(tvOS)
                 .focusSection()
             #endif
@@ -103,15 +126,17 @@ struct TalkView: View {
 
             VStack(alignment: .leading, spacing: 20) {
                 Group {
-                    if hdRecording != nil || sdRecording != nil {
+                    let videoRecording = viewModel.hdRecording ?? viewModel.sdRecording
+                    if videoRecording != nil {
                         Button {
-                            self.selectedRecording = hdRecording ?? sdRecording
+                            self.selectedRecording = videoRecording
                         } label: {
                             Label("Play", systemImage: "play")
                                 .frame(maxWidth: .infinity)
                         }
                     }
 
+                    let audioRecording = viewModel.audioRecording
                     if let audioRecording {
                         Button {
                             self.selectedRecording = audioRecording
@@ -121,7 +146,7 @@ struct TalkView: View {
                         }
                     }
 
-                    if hdRecording == nil && sdRecording == nil && audioRecording == nil {
+                    if videoRecording == nil && audioRecording == nil {
                         Text("No recording available")
                     }
                 }
@@ -153,34 +178,15 @@ struct TalkView: View {
         .navigationTitle(Text(talk.title))
         .task {
             do {
-                let recordings = try await api.recordings(for: talk)
-                hdRecording = recordings.first(where: { $0.isHighQuality })
-                sdRecording = recordings.first(where: { !$0.isHighQuality && $0.isVideo })
-                audioRecording = recordings.first(where: { $0.isAudio })
-
-                for recording in recordings {
-                    if copyright == .loading {
-                        let copyrightString = try? await mediaAnalyzer.copyrightMetadata(for: recording)
-                        if let copyrightString {
-                            copyright = .copyright(copyrightString)
-                        }
-                    }
-                }
-                if copyright == .loading {
-                    copyright = .unknown
-                }
+                try await viewModel.loadRecordings(for: talk, from: api)
             } catch {
-                self.error = NetworkError(errorDescription: NSLocalizedString("Failed to load data from the media.cc.de API", comment: ""), error: error)
-                isErrorPresented = true
-                debugPrint(error)
+                self.error = error
             }
         }
         .fullScreenCover(item: $selectedRecording) { recording in
             TalkPlayerView(talk: talk, recording: recording)
         }
-        .alert(isPresented: $isErrorPresented, error: error) {
-            Button("OK") {}
-        }
+        .alert("Failed to load data from the media.cc.de API", error: $error)
     }
 }
 
@@ -192,7 +198,7 @@ private struct TalkDescription: Identifiable {
 struct TalkView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            TalkView(talk: .example, hdRecording: .example)
+            TalkView(talk: .example)
                 .environmentObject(ApiService())
         }
     }

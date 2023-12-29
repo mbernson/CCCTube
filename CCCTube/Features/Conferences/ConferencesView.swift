@@ -11,8 +11,7 @@ import SwiftUI
 struct ConferencesView: View {
     @State var conferences: [Conference] = []
 
-    @State var error: NetworkError?
-    @State var isErrorPresented = false
+    @State var error: Error?
 
     @EnvironmentObject var api: ApiService
 
@@ -27,9 +26,7 @@ struct ConferencesView: View {
             .task {
                 await refresh()
             }
-            .alert(isPresented: $isErrorPresented, error: error) {
-                Button("OK") {}
-            }
+            .alert("Failed to load data from the media.cc.de API", error: $error)
         }
     }
 
@@ -45,9 +42,7 @@ struct ConferencesView: View {
                     return lhsVal > rhsVal
                 }
         } catch {
-            self.error = NetworkError(errorDescription: NSLocalizedString("Failed to load data from the media.cc.de API", comment: ""), error: error)
-            isErrorPresented = true
-            debugPrint(error)
+            self.error = error
         }
     }
 }

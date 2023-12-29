@@ -101,7 +101,7 @@ public class ApiService: ObservableObject {
             return []
         }
         return recordings
-            // Remove format's Apple doesn't support
+            // Remove formats Apple doesn't support
             .filter { !$0.mimeType.contains("opus") }
             .filter { !$0.mimeType.contains("webm") }
             .filter { !$0.mimeType.starts(with: "application") }

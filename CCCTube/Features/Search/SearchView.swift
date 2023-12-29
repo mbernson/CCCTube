@@ -31,10 +31,14 @@ struct SearchView: View {
                     Text(suggest.title).searchCompletion(suggest.title)
                 }
             })
-            .alert(isPresented: $viewModel.isErrorPresented, error: viewModel.error) {
-                Button("OK") {}
-            }
+            .onAppear(perform: runSearch)
+            .onSubmit(of: .search, runSearch)
+            .alert("Failed to load data from the media.cc.de API", error: $viewModel.error)
         }
+    }
+
+    func runSearch() {
+        viewModel.search()
     }
 }
 

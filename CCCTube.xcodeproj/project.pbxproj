@@ -32,11 +32,13 @@
 		D5A156F328947625006989FF /* TalkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A156F228947625006989FF /* TalkView.swift */; };
 		D5C76ACB2A619BF100B7469C /* TalkThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C76ACA2A619BF100B7469C /* TalkThumbnail.swift */; };
 		D5C76ACD2A61A02700B7469C /* ConferenceThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C76ACC2A61A02700B7469C /* ConferenceThumbnail.swift */; };
+		D5D4B2BC2B3F25E500F33CD3 /* Alert+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4B2BB2B3F25E500F33CD3 /* Alert+Error.swift */; };
 		D5D4DF43289859AB00560E4F /* MediaAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4DF42289859AB00560E4F /* MediaAnalyzer.swift */; };
 		D5E97D4A2B3F11E8005BFF45 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = D5E97D492B3F11E8005BFF45 /* Localizable.xcstrings */; };
 		D5E97D4C2B3F11F0005BFF45 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = D5E97D4B2B3F11F0005BFF45 /* Localizable.xcstrings */; };
 		D5E97D4E2B3F172D005BFF45 /* TalkPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E97D4D2B3F172D005BFF45 /* TalkPlayerViewModel.swift */; };
 		D5E97D502B3F17B1005BFF45 /* TalkMetadataFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E97D4F2B3F17B1005BFF45 /* TalkMetadataFactory.swift */; };
+		D5E97D552B3F2452005BFF45 /* CCCTubeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E97D542B3F2452005BFF45 /* CCCTubeError.swift */; };
 		D5F06C5D2A5035A500774C39 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F06C5C2A5035A500774C39 /* VideoPlayerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -101,11 +103,13 @@
 		D5A156F228947625006989FF /* TalkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkView.swift; sourceTree = "<group>"; };
 		D5C76ACA2A619BF100B7469C /* TalkThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkThumbnail.swift; sourceTree = "<group>"; };
 		D5C76ACC2A61A02700B7469C /* ConferenceThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceThumbnail.swift; sourceTree = "<group>"; };
+		D5D4B2BB2B3F25E500F33CD3 /* Alert+Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alert+Error.swift"; sourceTree = "<group>"; };
 		D5D4DF42289859AB00560E4F /* MediaAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAnalyzer.swift; sourceTree = "<group>"; };
 		D5E97D492B3F11E8005BFF45 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		D5E97D4B2B3F11F0005BFF45 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		D5E97D4D2B3F172D005BFF45 /* TalkPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkPlayerViewModel.swift; sourceTree = "<group>"; };
 		D5E97D4F2B3F17B1005BFF45 /* TalkMetadataFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkMetadataFactory.swift; sourceTree = "<group>"; };
+		D5E97D542B3F2452005BFF45 /* CCCTubeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCCTubeError.swift; sourceTree = "<group>"; };
 		D5F06C5C2A5035A500774C39 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,9 +152,11 @@
 		D550CA2D2895329E00FD8AB2 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				D557E8B32895C05A00342EE2 /* Conferences */,
 				D550CA2E289532A300FD8AB2 /* Browse */,
+				D557E8B32895C05A00342EE2 /* Conferences */,
 				D550CA2F289532A700FD8AB2 /* Search */,
+				D5E97D562B3F247B005BFF45 /* Talk */,
+				D5E97D572B3F24A0005BFF45 /* VideoPlayer */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -159,10 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				D550CA252895304A00FD8AB2 /* BrowseView.swift */,
-				D5A156F228947625006989FF /* TalkView.swift */,
-				D501386A2A4B5ADC00ED68C0 /* TalksGrid.swift */,
-				D5C76ACA2A619BF100B7469C /* TalkThumbnail.swift */,
-				D501386C2A4B5AE100ED68C0 /* TalkListItem.swift */,
 			);
 			path = Browse;
 			sourceTree = "<group>";
@@ -170,9 +172,9 @@
 		D550CA2F289532A700FD8AB2 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				D557E8B62896812C00342EE2 /* SearchSuggestion.swift */,
 				D550CA29289530FC00FD8AB2 /* SearchView.swift */,
 				D557E8B82896815700342EE2 /* SearchViewModel.swift */,
-				D557E8B62896812C00342EE2 /* SearchSuggestion.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -235,13 +237,10 @@
 			isa = PBXGroup;
 			children = (
 				D550CA2D2895329E00FD8AB2 /* Features */,
+				D5D4B2BA2B3F25E500F33CD3 /* Extensions */,
 				D5A156D7289462B3006989FF /* CCCTubeApp.swift */,
+				D5E97D542B3F2452005BFF45 /* CCCTubeError.swift */,
 				D5A156D9289462B3006989FF /* ContentView.swift */,
-				D5D4DF42289859AB00560E4F /* MediaAnalyzer.swift */,
-				D550CA3028953B4000FD8AB2 /* TalkPlayerView.swift */,
-				D5E97D4F2B3F17B1005BFF45 /* TalkMetadataFactory.swift */,
-				D5E97D4D2B3F172D005BFF45 /* TalkPlayerViewModel.swift */,
-				D5F06C5C2A5035A500774C39 /* VideoPlayerView.swift */,
 				D5A156DB289462B3006989FF /* Assets.xcassets */,
 				D5A156DD289462B3006989FF /* Preview Content */,
 				D5913952289589A200369402 /* Info.plist */,
@@ -258,6 +257,37 @@
 				D5A156DE289462B3006989FF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D5D4B2BA2B3F25E500F33CD3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D5D4B2BB2B3F25E500F33CD3 /* Alert+Error.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D5E97D562B3F247B005BFF45 /* Talk */ = {
+			isa = PBXGroup;
+			children = (
+				D5D4DF42289859AB00560E4F /* MediaAnalyzer.swift */,
+				D501386C2A4B5AE100ED68C0 /* TalkListItem.swift */,
+				D5E97D4F2B3F17B1005BFF45 /* TalkMetadataFactory.swift */,
+				D550CA3028953B4000FD8AB2 /* TalkPlayerView.swift */,
+				D5E97D4D2B3F172D005BFF45 /* TalkPlayerViewModel.swift */,
+				D501386A2A4B5ADC00ED68C0 /* TalksGrid.swift */,
+				D5C76ACA2A619BF100B7469C /* TalkThumbnail.swift */,
+				D5A156F228947625006989FF /* TalkView.swift */,
+			);
+			path = Talk;
+			sourceTree = "<group>";
+		};
+		D5E97D572B3F24A0005BFF45 /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				D5F06C5C2A5035A500774C39 /* VideoPlayerView.swift */,
+			);
+			path = VideoPlayer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -428,6 +458,8 @@
 				D5A156F128946FEB006989FF /* ConferenceView.swift in Sources */,
 				D557E8B92896815700342EE2 /* SearchViewModel.swift in Sources */,
 				D550CA262895304A00FD8AB2 /* BrowseView.swift in Sources */,
+				D5D4B2BC2B3F25E500F33CD3 /* Alert+Error.swift in Sources */,
+				D5E97D552B3F2452005BFF45 /* CCCTubeError.swift in Sources */,
 				D557E8B52895C06100342EE2 /* ConferencesView.swift in Sources */,
 				D557E8B72896812C00342EE2 /* SearchSuggestion.swift in Sources */,
 				D550CA2A289530FC00FD8AB2 /* SearchView.swift in Sources */,
