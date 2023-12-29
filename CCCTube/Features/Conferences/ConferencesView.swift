@@ -17,7 +17,7 @@ struct ConferencesView: View {
     @EnvironmentObject var api: ApiService
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 ConferencesGrid(conferences: conferences)
             }
@@ -31,7 +31,6 @@ struct ConferencesView: View {
                 Button("OK") {}
             }
         }
-        .navigationViewStyle(.stack)
     }
 
     func refresh() async {

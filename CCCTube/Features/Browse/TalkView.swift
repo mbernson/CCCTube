@@ -191,7 +191,7 @@ private struct TalkDescription: Identifiable {
 
 struct TalkView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             TalkView(talk: .example, hdRecording: .example)
                 .environmentObject(ApiService())
         }

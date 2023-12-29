@@ -6,12 +6,19 @@
 //
 
 import SwiftUI
+import AVKit
 
 @main
 struct CCCTubeApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onAppear {
+                    do {
+                        try AVAudioSession.sharedInstance().setCategory(.playback)
+                    } catch {
+                    }
+                }
         }
     }
 }

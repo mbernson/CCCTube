@@ -52,7 +52,7 @@ struct ContentView: View {
         }
         .environmentObject(api)
         .fullScreenCover(item: $talk) { talk in
-            NavigationView {
+            NavigationStack {
                 TalkView(talk: talk.talk, selectedRecording: talk.recordingToPlay)
                     .environmentObject(api)
             }

@@ -35,6 +35,8 @@
 		D5D4DF43289859AB00560E4F /* MediaAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4DF42289859AB00560E4F /* MediaAnalyzer.swift */; };
 		D5E97D4A2B3F11E8005BFF45 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = D5E97D492B3F11E8005BFF45 /* Localizable.xcstrings */; };
 		D5E97D4C2B3F11F0005BFF45 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = D5E97D4B2B3F11F0005BFF45 /* Localizable.xcstrings */; };
+		D5E97D4E2B3F172D005BFF45 /* TalkPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E97D4D2B3F172D005BFF45 /* TalkPlayerViewModel.swift */; };
+		D5E97D502B3F17B1005BFF45 /* TalkMetadataFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E97D4F2B3F17B1005BFF45 /* TalkMetadataFactory.swift */; };
 		D5F06C5D2A5035A500774C39 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F06C5C2A5035A500774C39 /* VideoPlayerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -102,6 +104,8 @@
 		D5D4DF42289859AB00560E4F /* MediaAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAnalyzer.swift; sourceTree = "<group>"; };
 		D5E97D492B3F11E8005BFF45 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		D5E97D4B2B3F11F0005BFF45 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		D5E97D4D2B3F172D005BFF45 /* TalkPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkPlayerViewModel.swift; sourceTree = "<group>"; };
+		D5E97D4F2B3F17B1005BFF45 /* TalkMetadataFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkMetadataFactory.swift; sourceTree = "<group>"; };
 		D5F06C5C2A5035A500774C39 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -235,6 +239,8 @@
 				D5A156D9289462B3006989FF /* ContentView.swift */,
 				D5D4DF42289859AB00560E4F /* MediaAnalyzer.swift */,
 				D550CA3028953B4000FD8AB2 /* TalkPlayerView.swift */,
+				D5E97D4F2B3F17B1005BFF45 /* TalkMetadataFactory.swift */,
+				D5E97D4D2B3F172D005BFF45 /* TalkPlayerViewModel.swift */,
 				D5F06C5C2A5035A500774C39 /* VideoPlayerView.swift */,
 				D5A156DB289462B3006989FF /* Assets.xcassets */,
 				D5A156DD289462B3006989FF /* Preview Content */,
@@ -415,6 +421,7 @@
 				D5A156DA289462B3006989FF /* ContentView.swift in Sources */,
 				D5C76ACB2A619BF100B7469C /* TalkThumbnail.swift in Sources */,
 				D591395428958B0100369402 /* URLParser.swift in Sources */,
+				D5E97D4E2B3F172D005BFF45 /* TalkPlayerViewModel.swift in Sources */,
 				D5A156D8289462B3006989FF /* CCCTubeApp.swift in Sources */,
 				D591396328958CE500369402 /* URLRoute.swift in Sources */,
 				D5D4DF43289859AB00560E4F /* MediaAnalyzer.swift in Sources */,
@@ -427,6 +434,7 @@
 				D501386B2A4B5ADC00ED68C0 /* TalksGrid.swift in Sources */,
 				D501386D2A4B5AE100ED68C0 /* TalkListItem.swift in Sources */,
 				D550CA3128953B4000FD8AB2 /* TalkPlayerView.swift in Sources */,
+				D5E97D502B3F17B1005BFF45 /* TalkMetadataFactory.swift in Sources */,
 				D5A156F328947625006989FF /* TalkView.swift in Sources */,
 				D5F06C5D2A5035A500774C39 /* VideoPlayerView.swift in Sources */,
 			);

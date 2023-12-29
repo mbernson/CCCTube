@@ -1,3 +1,3 @@
 # CCCApi
 
-Swift client for the media.ccc.de API.
+Swift client for the [media.ccc.de] API.

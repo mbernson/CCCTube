@@ -29,8 +29,7 @@ struct ConferenceThumbnail: View {
     }
 }
 
-struct ConferenceThumbnail_Previews: PreviewProvider {
-    static var previews: some View {
-        ConferenceThumbnail(conference: .example)
-    }
+#Preview("Conference thumbnail") {
+    ConferenceThumbnail(conference: .example)
+        .border(.blue)
 }

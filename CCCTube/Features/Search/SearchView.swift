@@ -13,7 +13,7 @@ struct SearchView: View {
     @State var suggestions: [SearchSuggestion] = SearchSuggestion.defaultSuggestions
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 ForEach(viewModel.results) { talk in
                     NavigationLink {
@@ -35,7 +35,6 @@ struct SearchView: View {
                 Button("OK") {}
             }
         }
-        .navigationViewStyle(.stack)
     }
 }
 

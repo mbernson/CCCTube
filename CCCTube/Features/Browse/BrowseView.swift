@@ -32,7 +32,7 @@ struct BrowseView: View {
     @EnvironmentObject var api: ApiService
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 TalksGrid(talks: talks)
             }
@@ -46,7 +46,6 @@ struct BrowseView: View {
                 Button("OK") {}
             }
         }
-        .navigationViewStyle(.stack)
     }
 
     func refresh() async {

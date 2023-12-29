@@ -12,17 +12,22 @@ struct TalkThumbnail: View {
     let talk: Talk
 
     var body: some View {
-        AsyncImage(url: talk.thumbURL) { image in
-            image.resizable().scaledToFit()
-        } placeholder: {
-            ProgressView()
+        AsyncImage(url: talk.thumbURL) { phase in
+            if let image = phase.image {
+                image.resizable().scaledToFit()
+            } else if phase.error != nil {
+                Image(systemName: "xmark.circle")
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(.regularMaterial)
+            } else {
+                ProgressView()
+            }
         }
-        .aspectRatio(9 / 16, contentMode: .fill)
+        .aspectRatio(16 / 9, contentMode: .fill)
     }
 }
 
-struct TalkThumbnail_Previews: PreviewProvider {
-    static var previews: some View {
-        TalkThumbnail(talk: .example)
-    }
+#Preview("Talk thumbnail") {
+    TalkThumbnail(talk: .example)
+        .border(.blue)
 }
