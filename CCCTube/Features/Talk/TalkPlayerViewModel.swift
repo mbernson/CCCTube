@@ -10,20 +10,24 @@ import AVKit
 import CCCApi
 import os.log
 
-@MainActor class TalkPlayerViewModel: ObservableObject {
+class TalkPlayerViewModel: ObservableObject {
     var player: AVPlayer?
 
     private let factory = TalkMetadataFactory()
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "TalkPlayerViewModel")
 
-    func play(recording: Recording, ofTalk talk: Talk) async {
+    private var statusObservation: NSKeyValueObservation?
+
+    func prepareForPlayback(recording: Recording, talk: Talk) async {
         let item = AVPlayerItem(url: recording.recordingURL)
         item.externalMetadata = factory.createMetadataItems(for: recording, talk: talk)
+
         let player = AVPlayer(playerItem: item)
         self.player = player
-        objectWillChange.send()
-        player.play()
-        logger.info("Starting playback of recording: \(recording.recordingURL.absoluteString, privacy: .public)")
+        DispatchQueue.main.async {
+            self.objectWillChange.send()
+        }
+        logger.info("Preparing playback of recording: \(recording.recordingURL.absoluteString, privacy: .public)")
 
         // Fetch poster image and append it to the metadata
         if let imageMetadata = await fetchPosterImage(for: talk) {
@@ -31,11 +35,31 @@ import os.log
         }
     }
 
+    func preroll() async {
+        guard let player else { return }
+        await withCheckedContinuation { continuation in
+            statusObservation = player.observe(\.status, options: [.initial, .new]) { player, change in
+                if player.status == .readyToPlay {
+                    continuation.resume(returning: ())
+                    self.statusObservation?.invalidate()
+                }
+            }
+        }
+        if await player.preroll(atRate: 1.0) {
+            logger.debug("Preroll success")
+        } else {
+            logger.warning("Preroll failed")
+        }
+    }
+
+    func play() {
+        player?.play()
+    }
+
     private func fetchPosterImage(for talk: Talk) async -> AVMetadataItem? {
         do {
-            if let posterURL = talk.posterURL, let imageData = try await factory.fetchImageData(forPosterImageURL: posterURL) {
-                let imageMetadata = factory.createMetadataItem(for: .commonIdentifierArtwork, value: imageData as NSData, language: nil)
-                return imageMetadata
+            if let imageURL = talk.posterURL ?? talk.thumbURL {
+                return try await factory.createArtworkMetadataItem(forURL: imageURL)
             } else {
                 return nil
             }

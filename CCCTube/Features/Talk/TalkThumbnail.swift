@@ -12,7 +12,7 @@ struct TalkThumbnail: View {
     let talk: Talk
 
     var body: some View {
-        AsyncImage(url: talk.thumbURL ?? talk.posterURL) { phase in
+        AsyncImage(url: talk.posterURL ?? talk.thumbURL) { phase in
             if let image = phase.image {
                 image.resizable().scaledToFit()
             } else if phase.error != nil {

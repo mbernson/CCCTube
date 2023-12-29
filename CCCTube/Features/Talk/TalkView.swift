@@ -8,39 +8,6 @@
 import CCCApi
 import SwiftUI
 
-enum CopyrightState: Equatable {
-    case loading
-    case copyright(String)
-    case unknown
-}
-
-@MainActor class TalkViewModel: ObservableObject {
-    @Published var hdRecording: Recording?
-    @Published var sdRecording: Recording?
-    @Published var audioRecording: Recording?
-    @Published var copyright: CopyrightState = .loading
-
-    private let mediaAnalyzer = MediaAnalyzer()
-
-    func loadRecordings(for talk: Talk, from api: CCCApi.ApiService) async throws {
-        let recordings = try await api.recordings(for: talk)
-        hdRecording = recordings.first(where: { $0.isHighQuality && $0.isVideo })
-        sdRecording = recordings.first(where: { !$0.isHighQuality && $0.isVideo })
-        audioRecording = recordings.first(where: { $0.isAudio })
-
-        for recording in recordings {
-            if copyright == .loading {
-                let copyrightString = try? await mediaAnalyzer.copyrightMetadata(for: recording)
-                if let copyrightString {
-                    copyright = .copyright(copyrightString)
-                }
-            }
-        }
-        if copyright == .loading {
-            copyright = .unknown
-        }
-    }
-}
 
 struct TalkView: View {
     let talk: Talk
@@ -61,121 +28,182 @@ struct TalkView: View {
         }
         #else
         ScrollView {
-            VStack {
+            VStack(spacing: 20) {
                 TalkMainView(talk: talk, viewModel: viewModel)
 
                 TalkMetaView(talk: talk, selectedRecording: $selectedRecording, viewModel: viewModel)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding(.horizontal)
         }
+        .navigationBarTitleDisplayMode(.inline)
         #endif
         }
         .navigationTitle(Text(talk.title))
-        .task {
+        .task(id: talk) {
             do {
                 try await viewModel.loadRecordings(for: talk, from: api)
             } catch {
                 self.error = error
             }
         }
-        .fullScreenCover(item: $selectedRecording) { recording in
-            TalkPlayerView(talk: talk, recording: recording)
-        }
         .alert("Failed to load data from the media.ccc.de API", error: $error)
+    }
+}
+
+private struct TVPlayerView: View {
+    let talk: Talk
+    let recording: Recording?
+    @State private var selectedRecording: Recording?
+
+    var body: some View {
+        Button {
+            selectedRecording = recording
+        } label: {
+            TalkThumbnail(talk: talk)
+                .overlay {
+                    Image(systemName: "play.fill")
+                        .font(.title)
+                        .foregroundColor(.white)
+                }
+        }
+        .disabled(recording == nil)
+        .fullScreenCover(item: $selectedRecording) { recording in
+            TalkPlayerView(talk: talk, recording: recording, automaticallyStartsPlayback: true)
+        }
     }
 }
 
 private struct TalkMainView: View {
     let talk: Talk
     @ObservedObject var viewModel: TalkViewModel
-    @State private var talkDescription: TalkDescription?
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            if let thumbURL = talk.thumbURL {
-                AsyncImage(url: thumbURL) { image in
-                    image.resizable().scaledToFit()
-                        .cornerRadius(8)
-                } placeholder: {
-                    ProgressView()
+        VStack(alignment: .leading, spacing: 20) {
+            Group {
+            #if os(tvOS)
+                TVPlayerView(talk: talk, recording: viewModel.preferredRecording)
+            #else
+                Group {
+                    if let preferredRecording = viewModel.preferredRecording {
+                        TalkPlayerView(talk: talk, recording: preferredRecording, automaticallyStartsPlayback: true)
+                    } else {
+                        Rectangle()
+                            .fill(.black)
+                    }
                 }
-                .frame(maxWidth: 480)
-                .frame(maxWidth: .infinity, alignment: .center)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .aspectRatio(16 / 9, contentMode: .fit)
+            #endif
             }
+            .frame(maxWidth: 480)
+            .frame(maxWidth: .infinity, alignment: .center)
 
             if let description = talk.description {
-                if let descriptionParts = talk.description?.components(separatedBy: "\n\n")
-                    .map({ $0.trimmingCharacters(in: .whitespacesAndNewlines) }),
-                    let shortDescription = descriptionParts.first, descriptionParts.count > 1
-                {
-                    Button {
-                        talkDescription = TalkDescription(text: description)
-                    } label: {
-                        VStack(alignment: .leading, spacing: 20) {
-                            Text(shortDescription)
-                                .lineLimit(5)
-                                .multilineTextAlignment(.leading)
-
-                            Text("Read more")
-                                .foregroundColor(.accentColor)
-                        }
-                        #if os(tvOS)
-                        .padding()
-                        #endif
-                    }
-                    .foregroundStyle(.primary)
-                    .buttonBorderShape(.roundedRectangle)
-                    #if os(tvOS)
-                    .buttonStyle(.card)
-                    #endif
+                TalkDescriptionView(talk: talk, description: description)
                     .font(.body)
-                    .sheet(item: $talkDescription) { talkDescription in
-                        NavigationStack {
-                            ScrollView {
-                                Text(talkDescription.text)
-                                    .font(.body)
-                                    .multilineTextAlignment(.leading)
-                                    .padding()
-                            }
-                            .navigationTitle("Talk description")
-                            .toolbar {
-                                ToolbarItem(placement: .cancellationAction) {
-                                    Button("Done", role: .cancel) {
-                                        self.talkDescription = nil
-                                    }
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    Text(description)
-                        .font(.body)
-                }
             }
 
-            Text("Copyright")
-                .font(.headline)
-
-            Group {
-                switch viewModel.copyright {
-                case .loading:
-                    ProgressView()
-                case let .copyright(string):
-                    Text(string)
-                case .unknown:
-                    if let link = talk.link {
-                        Text("No copyright information encoded in video. Please refer to the schedule of the organizer of \(talk.conferenceTitle) at: \(link)")
-                    } else {
-                        Text("No copyright information encoded in video. Please refer to the website of the organizer of \(talk.conferenceTitle) at: \(talk.conferenceURL)")
-                    }
-                }
-            }.font(.caption)
+            CopyrightView(talk: talk, viewModel: viewModel)
         }
         .animation(.default, value: viewModel.copyright)
         #if os(tvOS)
-            .focusSection()
+        .focusSection()
         #endif
         .multilineTextAlignment(.leading)
+        #if !os(tvOS)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                ShareLink(item: talk.frontendLink)
+            }
+        }
+        #endif
+    }
+}
+
+private struct CopyrightView: View {
+    let talk: Talk
+    @ObservedObject var viewModel: TalkViewModel
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Copyright")
+                .font(.headline)
+
+            switch viewModel.copyright {
+            case .loading:
+                ProgressView()
+            case let .copyright(string):
+                Text(string)
+            case .unknown:
+                if let link = talk.link {
+                    Text("No copyright information encoded in video. Please refer to the schedule of the organizer of \(talk.conferenceTitle) at: \(link)")
+                } else {
+                    Text("No copyright information encoded in video. Please refer to the website of the organizer of \(talk.conferenceTitle) at: \(talk.conferenceURL)")
+                }
+            }
+        }
+        .font(.caption)
+    }
+}
+
+private struct TalkDescriptionView: View {
+    let talk: Talk
+    let description: String
+
+    @State private var talkDescription: TalkDescription?
+
+    private struct TalkDescription: Identifiable {
+        let id: Int = 1
+        let text: String
+    }
+
+    var body: some View {
+        let paragraphs = description.components(separatedBy: "\n\n")
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+
+        if let shortDescription = paragraphs.first, paragraphs.count > 1 {
+            Button {
+                talkDescription = TalkDescription(text: description)
+            } label: {
+                VStack(alignment: .leading, spacing: 20) {
+                    Text(shortDescription)
+                        .lineLimit(5)
+                        .multilineTextAlignment(.leading)
+
+                    Text("Read more")
+                        .foregroundColor(.accentColor)
+                }
+                #if os(tvOS)
+                .padding()
+                #endif
+            }
+            .foregroundStyle(.primary)
+            .buttonBorderShape(.roundedRectangle)
+            #if os(tvOS)
+            .buttonStyle(.card)
+            #endif
+            .sheet(item: $talkDescription) { talkDescription in
+                NavigationStack {
+                    ScrollView {
+                        Text(talkDescription.text)
+                            .font(.body)
+                            .multilineTextAlignment(.leading)
+                            .padding()
+                    }
+                    .navigationTitle("Talk description")
+                    .toolbar {
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button("Done", role: .cancel) {
+                                self.talkDescription = nil
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            Text(description)
+        }
     }
 }
 
@@ -192,35 +220,6 @@ private struct TalkMetaView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Group {
-                let videoRecording = viewModel.hdRecording ?? viewModel.sdRecording
-                if videoRecording != nil {
-                    Button {
-                        self.selectedRecording = videoRecording
-                    } label: {
-                        Label("Play", systemImage: "play")
-                            .frame(maxWidth: .infinity)
-                    }
-                    #if os(iOS)
-                        .buttonStyle(.borderedProminent)
-                    #endif
-                }
-
-                let audioRecording = viewModel.audioRecording
-                if let audioRecording {
-                    Button {
-                        self.selectedRecording = audioRecording
-                    } label: {
-                        Label("Play audio", systemImage: "play")
-                            .frame(maxWidth: .infinity)
-                    }
-                }
-
-                if videoRecording == nil && audioRecording == nil {
-                    Text("No recording available")
-                }
-            }
-
             Label {
                 let minutes = minutesFormatter.string(from: talk.duration) ?? "0"
                 if talk.duration == 1 {
@@ -248,11 +247,6 @@ private struct TalkMetaView: View {
         .focusSection()
         #endif
     }
-}
-
-private struct TalkDescription: Identifiable {
-    let id: Int = 1
-    let text: String
 }
 
 struct TalkView_Previews: PreviewProvider {

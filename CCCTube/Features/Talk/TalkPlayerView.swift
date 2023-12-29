@@ -11,18 +11,47 @@ import CCCApi
 struct TalkPlayerView: View {
     let talk: Talk
     let recording: Recording
+    let automaticallyStartsPlayback: Bool
 
+    @State private var isLoading = false
     @StateObject private var viewModel = TalkPlayerViewModel()
 
     var body: some View {
         VideoPlayerView(player: viewModel.player)
             .ignoresSafeArea()
-            .task {
-                await viewModel.play(recording: recording, ofTalk: talk)
+            .task(id: recording) {
+                isLoading = true
+                await viewModel.prepareForPlayback(recording: recording, talk: talk)
+                if automaticallyStartsPlayback {
+                    viewModel.play()
+                } else {
+                    await viewModel.preroll()
+                }
+                isLoading = false
             }
+            #if os(iOS)
+            .overlay {
+                if isLoading {
+                    VideoProgressIndicator()
+                }
+            }
+            #endif
     }
 }
 
+#if os(iOS)
+private struct VideoProgressIndicator: View {
+    var body: some View {
+        ProgressView()
+            .progressViewStyle(.circular)
+            .controlSize(.large)
+            .padding(10)
+            .background(.regularMaterial)
+            .clipShape(Circle())
+    }
+}
+#endif
+
 #Preview {
-    TalkPlayerView(talk: .example, recording: .example)
+    TalkPlayerView(talk: .example, recording: .example, automaticallyStartsPlayback: false)
 }

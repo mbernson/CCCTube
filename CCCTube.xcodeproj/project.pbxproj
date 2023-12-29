@@ -33,6 +33,7 @@
 		D5C76ACB2A619BF100B7469C /* TalkThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C76ACA2A619BF100B7469C /* TalkThumbnail.swift */; };
 		D5C76ACD2A61A02700B7469C /* ConferenceThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C76ACC2A61A02700B7469C /* ConferenceThumbnail.swift */; };
 		D5D4B2BC2B3F25E500F33CD3 /* Alert+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4B2BB2B3F25E500F33CD3 /* Alert+Error.swift */; };
+		D5D4B2BE2B3F435C00F33CD3 /* TalkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4B2BD2B3F435C00F33CD3 /* TalkViewModel.swift */; };
 		D5D4DF43289859AB00560E4F /* MediaAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4DF42289859AB00560E4F /* MediaAnalyzer.swift */; };
 		D5E97D4A2B3F11E8005BFF45 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = D5E97D492B3F11E8005BFF45 /* Localizable.xcstrings */; };
 		D5E97D4C2B3F11F0005BFF45 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = D5E97D4B2B3F11F0005BFF45 /* Localizable.xcstrings */; };
@@ -104,6 +105,7 @@
 		D5C76ACA2A619BF100B7469C /* TalkThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkThumbnail.swift; sourceTree = "<group>"; };
 		D5C76ACC2A61A02700B7469C /* ConferenceThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceThumbnail.swift; sourceTree = "<group>"; };
 		D5D4B2BB2B3F25E500F33CD3 /* Alert+Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alert+Error.swift"; sourceTree = "<group>"; };
+		D5D4B2BD2B3F435C00F33CD3 /* TalkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkViewModel.swift; sourceTree = "<group>"; };
 		D5D4DF42289859AB00560E4F /* MediaAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAnalyzer.swift; sourceTree = "<group>"; };
 		D5E97D492B3F11E8005BFF45 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		D5E97D4B2B3F11F0005BFF45 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				D501386A2A4B5ADC00ED68C0 /* TalksGrid.swift */,
 				D5C76ACA2A619BF100B7469C /* TalkThumbnail.swift */,
 				D5A156F228947625006989FF /* TalkView.swift */,
+				D5D4B2BD2B3F435C00F33CD3 /* TalkViewModel.swift */,
 			);
 			path = Talk;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				D501386B2A4B5ADC00ED68C0 /* TalksGrid.swift in Sources */,
 				D501386D2A4B5AE100ED68C0 /* TalkListItem.swift in Sources */,
 				D550CA3128953B4000FD8AB2 /* TalkPlayerView.swift in Sources */,
+				D5D4B2BE2B3F435C00F33CD3 /* TalkViewModel.swift in Sources */,
 				D5E97D502B3F17B1005BFF45 /* TalkMetadataFactory.swift in Sources */,
 				D5A156F328947625006989FF /* TalkView.swift in Sources */,
 				D5F06C5D2A5035A500774C39 /* VideoPlayerView.swift in Sources */,

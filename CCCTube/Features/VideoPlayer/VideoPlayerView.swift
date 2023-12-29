@@ -9,8 +9,6 @@ import AVKit
 import SwiftUI
 import os.log
 
-/// A view that wraps `AVPlayerViewController`
-/// It is needed in order to support picture-in-picture.
 struct VideoPlayerView: UIViewControllerRepresentable {
     let player: AVPlayer?
 

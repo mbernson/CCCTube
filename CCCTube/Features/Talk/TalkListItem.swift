@@ -20,8 +20,8 @@ struct TalkListItem: View {
     var body: some View {
         HStack(alignment: .top, spacing: 20) {
             let width: CGFloat = 320
-            if let thumbURL = talk.thumbURL {
-                AsyncImage(url: thumbURL) { image in
+            if let imageURL = talk.posterURL ?? talk.thumbURL {
+                AsyncImage(url: imageURL) { image in
                     image.resizable().scaledToFit()
                 } placeholder: {
                     ProgressView()
