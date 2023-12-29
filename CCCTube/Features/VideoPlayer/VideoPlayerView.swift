@@ -9,13 +9,13 @@ import AVKit
 import SwiftUI
 import os.log
 
-/// A view that wraps `AVPlayerViewController`
-/// It is needed in order to support picture-in-picture.
 struct VideoPlayerView: UIViewControllerRepresentable {
     let player: AVPlayer?
 
     func makeUIViewController(context: Context) -> AVPlayerViewController {
         let playerViewController = AVPlayerViewController()
+
+        playerViewController.modalPresentationStyle = .fullScreen
 
         playerViewController.allowsPictureInPicturePlayback = true
         #if os(tvOS)
@@ -38,6 +38,7 @@ struct VideoPlayerView: UIViewControllerRepresentable {
     }
 
     static func dismantleUIViewController(_ playerViewController: AVPlayerViewController, coordinator: Coordinator) {
+        playerViewController.player?.cancelPendingPrerolls()
         playerViewController.player?.pause()
         playerViewController.player = nil
     }
