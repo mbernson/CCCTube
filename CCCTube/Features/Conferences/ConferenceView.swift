@@ -34,13 +34,20 @@ struct ConferenceView: View {
         .navigationTitle(conference.title)
         #endif
         .task {
-            do {
-                talks = try await api.conference(acronym: conference.acronym).events ?? []
-            } catch {
-                self.error = error
-            }
+            await refresh()
+        }
+        .refreshable {
+            await refresh()
         }
         .alert("Failed to load data from the media.ccc.de API", error: $error)
+    }
+
+    func refresh() async {
+        do {
+            talks = try await api.conference(acronym: conference.acronym).events ?? []
+        } catch {
+            self.error = error
+        }
     }
 }
 
