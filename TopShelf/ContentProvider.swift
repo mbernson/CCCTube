@@ -14,8 +14,9 @@ class ContentProvider: TVTopShelfContentProvider {
 
     override func loadTopShelfContent() async -> TVTopShelfContent? {
         do {
-            let recentTalks = try await api.recentTalks().prefix(10)
-            let sections = factory.makeTopShelfSections(recentTalks: Array(recentTalks))
+            async let recentTalks = api.recentTalks()
+            async let popularTalks = api.popularTalks()
+            let sections = factory.makeTopShelfSections(recentTalks: try await recentTalks, popularTalks: try await popularTalks)
             return TVTopShelfSectionedContent(sections: sections)
         } catch {
             return nil

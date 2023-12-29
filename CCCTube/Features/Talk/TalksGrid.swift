@@ -30,15 +30,9 @@ struct TalksGrid: View {
                         #endif
                     }
 
-                    if #available(tvOS 16, iOS 16, *) {
-                        Text(talk.title)
-                            .font(.subheadline)
-                            .lineLimit(2, reservesSpace: true)
-                    } else {
-                        Text(talk.title)
-                            .font(.subheadline)
-                            .lineLimit(2)
-                    }
+                    Text(talk.title)
+                        .font(.subheadline)
+                        .lineLimit(2, reservesSpace: true)
                 }
             }
         }

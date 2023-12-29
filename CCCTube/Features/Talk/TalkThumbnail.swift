@@ -12,17 +12,19 @@ struct TalkThumbnail: View {
     let talk: Talk
 
     var body: some View {
-        AsyncImage(url: talk.thumbURL) { phase in
+        AsyncImage(url: talk.thumbURL ?? talk.posterURL) { phase in
             if let image = phase.image {
                 image.resizable().scaledToFit()
             } else if phase.error != nil {
                 Image(systemName: "xmark.circle")
+                    .foregroundStyle(.red)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(.regularMaterial)
             } else {
                 ProgressView()
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .aspectRatio(16 / 9, contentMode: .fill)
     }
 }

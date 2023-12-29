@@ -8,13 +8,14 @@
 import CCCApi
 import SwiftUI
 
+private let minutesFormatter: DateComponentsFormatter = {
+    let f = DateComponentsFormatter()
+    f.allowedUnits = .minute
+    return f
+}()
+
 struct TalkListItem: View {
     let talk: Talk
-    static let minutesFormatter: DateComponentsFormatter = {
-        let f = DateComponentsFormatter()
-        f.allowedUnits = .minute
-        return f
-    }()
 
     var body: some View {
         HStack(alignment: .top, spacing: 20) {
@@ -43,7 +44,7 @@ struct TalkListItem: View {
                     .font(.body)
 
                 HStack(alignment: .center, spacing: 20) {
-                    Label("\(Self.minutesFormatter.string(from: talk.duration) ?? "0") min", systemImage: "clock")
+                    Label("\(minutesFormatter.string(from: talk.duration) ?? "0") min", systemImage: "clock")
 
                     Label("Date \(talk.releaseDate, style: .date)", systemImage: "calendar")
 

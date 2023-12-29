@@ -18,6 +18,7 @@ struct ConferenceView: View {
 
     var body: some View {
         ScrollView {
+            #if os(tvOS)
             VStack {
                 Text(conference.title)
                     .font(.largeTitle.bold())
@@ -25,7 +26,13 @@ struct ConferenceView: View {
 
                 TalksGrid(talks: talks)
             }
+            #else
+            TalksGrid(talks: talks)
+            #endif
         }
+        #if !os(tvOS)
+        .navigationTitle(conference.title)
+        #endif
         .task {
             do {
                 talks = try await api.conference(acronym: conference.acronym).events ?? []

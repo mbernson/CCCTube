@@ -111,7 +111,7 @@ private struct TalkMainView: View {
                     Button {
                         talkDescription = TalkDescription(text: description)
                     } label: {
-                        VStack(alignment: .leading) {
+                        VStack(alignment: .leading, spacing: 20) {
                             Text(shortDescription)
                                 .lineLimit(5)
                                 .multilineTextAlignment(.leading)
@@ -119,6 +119,9 @@ private struct TalkMainView: View {
                             Text("Read more")
                                 .foregroundColor(.accentColor)
                         }
+                        #if os(tvOS)
+                        .padding()
+                        #endif
                     }
                     .foregroundStyle(.primary)
                     .buttonBorderShape(.roundedRectangle)

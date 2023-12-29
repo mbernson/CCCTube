@@ -66,15 +66,9 @@ struct ConferencesGrid: View {
                         ConferenceThumbnail(conference: conference)
                     }
 
-                    if #available(tvOS 16, iOS 16, *) {
-                        Text(conference.title)
-                            .font(.caption)
-                            .lineLimit(2, reservesSpace: true)
-                    } else {
-                        Text(conference.title)
-                            .font(.caption)
-                            .lineLimit(2)
-                    }
+                    Text(conference.title)
+                        .font(.caption)
+                        .lineLimit(2, reservesSpace: true)
                 }
             }
         }

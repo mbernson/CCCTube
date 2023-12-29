@@ -9,7 +9,7 @@ import CCCApi
 import Combine
 import Foundation
 
-@MainActor 
+@MainActor
 class SearchViewModel: ObservableObject {
     private let api = ApiService()
 
@@ -17,6 +17,16 @@ class SearchViewModel: ObservableObject {
     @Published var results: [Talk] = []
 
     @Published var error: Error?
+
+    private var cancellable: AnyCancellable?
+
+    init() {
+        cancellable = $query
+            .debounce(for: .seconds(1.0), scheduler: DispatchQueue.main)
+            .sink(receiveValue: { query in
+                self.search()
+            })
+    }
 
     func search() {
         Task {

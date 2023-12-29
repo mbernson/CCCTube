@@ -74,10 +74,24 @@ public class ApiService: ObservableObject {
         return response.events
     }
 
-    public func popularTalks(year: Int) async throws -> [Talk] {
+    public enum PopularTalksYear {
+        case currentYear
+        case year(Int)
+
+        var yearValue: Int {
+            switch self {
+            case .currentYear:
+                Calendar.current.component(.year, from: Date.now)
+            case .year(let value):
+                value
+            }
+        }
+    }
+
+    public func popularTalks(in year: PopularTalksYear) async throws -> [Talk] {
         let url = baseURL.appendingPathComponent("events").appendingPathComponent("popular")
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
-        components.queryItems = [URLQueryItem(name: "year", value: String(year))]
+        components.queryItems = [URLQueryItem(name: "year", value: String(year.yearValue))]
         let (data, _) = try await session.data(from: components.url!)
         let response = try decoder.decode(EventsResponse.self, from: data)
         return response.events

@@ -39,8 +39,7 @@ Gewoon lekker gaan zitten, CCC Tube selecteren, en duik in de wonderbaarlijk div
 ## Development
 
 This app is written in Swift and SwiftUI. It tries to stay close to the native conventions, using native user interface elements in order to fit in on the Apple platforms that the app supports.
-
-It uses the native video player, which supports behaviours such as picture-in-picture out of the box.
+It uses the native video player, which supports behaviours such as picture-in-picture out of the box. On tvOS, it supports a top shelf extension. Etcetera.
 
 The app is localized to English, German and Dutch.
 

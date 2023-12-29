@@ -10,11 +10,14 @@ import Foundation
 import TVServices
 
 struct TopShelfContentFactory {
-    func makeTopShelfSections(recentTalks: [Talk]) -> [TVTopShelfItemCollection<TVTopShelfSectionedItem>] {
+    func makeTopShelfSections(recentTalks: [Talk], popularTalks: [Talk]) -> [TVTopShelfItemCollection<TVTopShelfSectionedItem>] {
         let recents = TVTopShelfItemCollection(items: makeTopShelfItems(talks: recentTalks))
-        recents.title = NSLocalizedString("Recent talks", comment: "Top shelf title")
+        recents.title = String(localized: "Recent talks", comment: "Top shelf title")
 
-        return [recents]
+        let popular = TVTopShelfItemCollection(items: makeTopShelfItems(talks: popularTalks))
+        popular.title = String(localized: "Popular talks", comment: "Top shelf title")
+
+        return [recents, popular]
     }
 
     private func makeTopShelfItems(talks: [Talk]) -> [TVTopShelfSectionedItem] {

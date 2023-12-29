@@ -14,23 +14,47 @@ struct SearchView: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(viewModel.results) { talk in
-                    NavigationLink {
-                        TalkView(talk: talk)
-                    } label: {
-                        TalkListItem(talk: talk)
+            Group {
+            #if os(tvOS)
+                List {
+                    ForEach(viewModel.results) { talk in
+                        NavigationLink {
+                            TalkView(talk: talk)
+                        } label: {
+                            TalkListItem(talk: talk)
+                        }
                     }
                 }
+            #else
+                if viewModel.results.isEmpty {
+                    List {
+                        ForEach(suggestions) { suggestion in
+                            Button(suggestion.title) {
+                                viewModel.query = suggestion.title
+                                runSearch()
+                            }
+                            .foregroundColor(.accentColor)
+                        }
+                    }
+                    .listStyle(.plain)
+                } else {
+                    ScrollView {
+                        TalksGrid(talks: viewModel.results)
+                    }
+                }
+            #endif
             }
             #if !os(tvOS)
             .navigationTitle("Search")
             #endif
-            .searchable(text: $viewModel.query, prompt: "Search talks...", suggestions: {
+            .searchable(text: $viewModel.query, prompt: "Search talks...")
+            #if os(tvOS)
+            .searchSuggestions {
                 ForEach(suggestions) { suggest in
                     Text(suggest.title).searchCompletion(suggest.title)
                 }
-            })
+            }
+            #endif
             .onAppear(perform: runSearch)
             .onSubmit(of: .search, runSearch)
             .alert("Failed to load data from the media.ccc.de API", error: $viewModel.error)
