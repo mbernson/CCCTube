@@ -11,7 +11,7 @@ import SwiftUI
 struct ConferencesView: View {
     @State var conferences: [Conference] = []
 
-    @State var error: NetworkError? = nil
+    @State var error: NetworkError?
     @State var isErrorPresented = false
 
     @EnvironmentObject var api: ApiService

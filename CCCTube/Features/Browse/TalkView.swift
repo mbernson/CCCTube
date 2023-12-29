@@ -25,15 +25,15 @@ struct TalkView: View {
     @State private var talkDescription: TalkDescription?
     @State var copyright: CopyrightState = .loading
 
-    @State var error: NetworkError? = nil
+    @State var error: NetworkError?
     @State var isErrorPresented = false
 
     @EnvironmentObject var api: ApiService
 
     static let minutesFormatter: DateComponentsFormatter = {
-        let f = DateComponentsFormatter()
-        f.allowedUnits = .minute
-        return f
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = .minute
+        return formatter
     }()
 
     var body: some View {
