@@ -33,7 +33,7 @@ struct SearchView: View {
             })
             .onAppear(perform: runSearch)
             .onSubmit(of: .search, runSearch)
-            .alert("Failed to load data from the media.cc.de API", error: $viewModel.error)
+            .alert("Failed to load data from the media.ccc.de API", error: $viewModel.error)
         }
     }
 

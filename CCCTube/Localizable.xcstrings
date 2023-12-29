@@ -17,6 +17,22 @@
         }
       }
     },
+    "%@ minute" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Minute"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ minuut"
+          }
+        }
+      }
+    },
     "%@ minutes" : {
       "localizations" : {
         "de" : {
@@ -34,6 +50,7 @@
       }
     },
     "%@... **MORE**" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -56,8 +73,8 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld Aufrufe"
+                  "state" : "translated",
+                  "value" : "%lld Ansicht"
                 }
               },
               "other" : {
@@ -92,8 +109,8 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld weergaven"
+                  "state" : "translated",
+                  "value" : "%lld weergave"
                 }
               },
               "other" : {
@@ -155,12 +172,28 @@
         }
       }
     },
-    "Failed to load data from the media.cc.de API" : {
+    "Done" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Daten konnten nicht von der media.cc.de-API geladen werden"
+            "value" : "Fertig"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gereed"
+          }
+        }
+      }
+    },
+    "Failed to load data from the media.ccc.de API" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daten konnten nicht von der media.ccc.de-API geladen werden"
           }
         },
         "nl" : {
@@ -335,7 +368,36 @@
       }
     },
     "Preview error title" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preview error title"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preview error title"
+          }
+        }
+      }
+    },
+    "Read more" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weiterlesen"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lees meer"
+          }
+        }
+      }
     },
     "Recent" : {
       "localizations" : {
@@ -381,6 +443,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Doorzoek talks..."
+          }
+        }
+      }
+    },
+    "Talk description" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vortragsbeschreibung"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Talk omschrijving"
           }
         }
       }
