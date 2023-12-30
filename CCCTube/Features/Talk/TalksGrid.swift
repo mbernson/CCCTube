@@ -42,6 +42,8 @@ struct TalksGrid: View {
             .focusSection()
             .buttonStyle(.card)
         #endif
+            .accessibilityIdentifier("TalksGrid")
+            .accessibilityElement(children: .contain)
     }
 }
 

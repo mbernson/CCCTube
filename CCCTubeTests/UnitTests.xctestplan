@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "28B4137C-796A-4333-88DB-1D78C65D4251",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:CCCTube.xcodeproj",
+        "identifier" : "D591395828958B2600369402",
+        "name" : "CCCTubeTests"
+      }
+    }
+  ],
+  "version" : 1
+}

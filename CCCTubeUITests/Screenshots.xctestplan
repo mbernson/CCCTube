@@ -1,0 +1,44 @@
+{
+  "configurations" : [
+    {
+      "id" : "5F64D8EB-84F8-4F41-935B-C660E7907F5F",
+      "name" : "English",
+      "options" : {
+        "language" : "en",
+        "region" : "US"
+      }
+    },
+    {
+      "id" : "7A838377-F05E-4BDC-9257-D723B91FEE33",
+      "name" : "Dutch",
+      "options" : {
+        "language" : "nl",
+        "region" : "NL"
+      }
+    },
+    {
+      "id" : "F9F3D1F9-6C1B-480F-A7B9-9B77D342889F",
+      "name" : "German",
+      "options" : {
+        "language" : "de",
+        "region" : "DE"
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "preferredScreenCaptureFormat" : "screenshot",
+    "testRepetitionMode" : "fixedIterations",
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:CCCTube.xcodeproj",
+        "identifier" : "D5EFB19B2B407683008CFE82",
+        "name" : "CCCTubeUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
