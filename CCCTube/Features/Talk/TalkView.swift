@@ -17,25 +17,21 @@ struct TalkView: View {
     @EnvironmentObject var api: ApiService
 
     var body: some View {
-        Group {
-        #if os(tvOS)
         ScrollView {
-            HStack(alignment: .top) {
-                TalkMainView(talk: talk, viewModel: viewModel)
+        #if os(tvOS)
+        HStack(alignment: .top) {
+            TalkMainView(talk: talk, viewModel: viewModel)
 
-                TalkMetaView(talk: talk, selectedRecording: $selectedRecording, viewModel: viewModel)
-                    .frame(maxWidth: 480, maxHeight: .infinity)
-            }
+            TalkMetaView(talk: talk, selectedRecording: $selectedRecording, viewModel: viewModel)
+                .frame(maxWidth: 480, maxHeight: .infinity)
         }
         #else
-        ScrollView {
-            VStack(spacing: 20) {
-                TalkMainView(talk: talk, viewModel: viewModel)
+        VStack(spacing: 20) {
+            TalkMainView(talk: talk, viewModel: viewModel)
 
-                TalkMetaView(talk: talk, selectedRecording: $selectedRecording, viewModel: viewModel)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            .padding(.horizontal)
+            TalkMetaView(talk: talk, selectedRecording: $selectedRecording, viewModel: viewModel)
+                .padding(.horizontal)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
         .navigationBarTitleDisplayMode(.inline)
         #endif
@@ -99,15 +95,17 @@ private struct TalkMainView: View {
                 .aspectRatio(16 / 9, contentMode: .fit)
             #endif
             }
-            .frame(maxWidth: 800)
+            .frame(maxWidth: 1024)
             .frame(maxWidth: .infinity, alignment: .center)
 
             if let description = talk.description {
                 TalkDescriptionView(talk: talk, description: description)
                     .font(.body)
+                    .padding(.horizontal)
             }
 
             CopyrightView(talk: talk, viewModel: viewModel)
+                .padding(.horizontal)
         }
         .animation(.default, value: viewModel.copyright)
         #if os(tvOS)
@@ -168,13 +166,25 @@ private struct TalkDescriptionView: View {
 
         if let shortDescription = paragraphs.first, paragraphs.count > 1 {
             VStack(alignment: .leading, spacing: 20) {
+                #if os(tvOS)
+                Button {
+                    presentTalkDescription()
+                } label: {
+                    Text(shortDescription)
+                        .lineLimit(5)
+                        .multilineTextAlignment(.leading)
+                        .padding()
+                }
+                .padding()
+                #else
                 Text(shortDescription)
                     .lineLimit(5)
                     .multilineTextAlignment(.leading)
 
                 Button("Read more") {
-                    talkDescription = TalkDescription(text: description)
+                    presentTalkDescription()
                 }
+                #endif
             }
             .sheet(item: $talkDescription) { talkDescription in
                 NavigationStack {
@@ -198,6 +208,10 @@ private struct TalkDescriptionView: View {
             Text(description)
                 .multilineTextAlignment(.leading)
         }
+    }
+
+    func presentTalkDescription() {
+        talkDescription = TalkDescription(text: description)
     }
 }
 
