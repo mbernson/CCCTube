@@ -68,12 +68,6 @@ public class ApiService: ObservableObject {
         return response.events
     }
 
-    public func popularTalks() async throws -> [Talk] {
-        let (data, _) = try await session.data(from: baseURL.appendingPathComponent("events").appendingPathComponent("popular"))
-        let response = try decoder.decode(EventsResponse.self, from: data)
-        return response.events
-    }
-
     public enum PopularTalksYear {
         case currentYear
         case year(Int)
@@ -81,9 +75,15 @@ public class ApiService: ObservableObject {
         var yearValue: Int {
             switch self {
             case .currentYear:
-                Calendar.current.component(.year, from: Date.now)
+                let calendar = Calendar.current
+                // The 'popular' API call returns talks that were popular by year.
+                // Right after the beginning of a new year, it doesn't return anything
+                // presumably because there aren't enough views on talk for that year yet.
+                // So here, we use the year that it was one week ago.
+                let date = calendar.date(byAdding: .weekOfYear, value: -1, to: Date.now) ?? Date.now
+                return calendar.component(.year, from: date)
             case .year(let value):
-                value
+                return value
             }
         }
     }

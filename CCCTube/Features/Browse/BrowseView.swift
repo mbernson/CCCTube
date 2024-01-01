@@ -54,7 +54,7 @@ struct BrowseView: View {
             case .recent:
                 talks = try await api.recentTalks()
             case .popular:
-                talks = try await api.popularTalks()
+                talks = try await api.popularTalks(in: .currentYear)
             }
         } catch {
             self.error = error
