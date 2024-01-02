@@ -86,6 +86,8 @@ struct ConferencesGrid: View {
         .focusSection()
         .buttonStyle(.card)
         #endif
+        .accessibilityIdentifier("ConferencesGrid")
+        .accessibilityElement(children: .contain)
     }
 }
 

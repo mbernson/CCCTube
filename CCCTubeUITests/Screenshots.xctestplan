@@ -9,6 +9,7 @@
       }
     },
     {
+      "enabled" : false,
       "id" : "7A838377-F05E-4BDC-9257-D723B91FEE33",
       "name" : "Dutch",
       "options" : {
@@ -17,6 +18,7 @@
       }
     },
     {
+      "enabled" : false,
       "id" : "F9F3D1F9-6C1B-480F-A7B9-9B77D342889F",
       "name" : "German",
       "options" : {
@@ -26,13 +28,17 @@
     }
   ],
   "defaultOptions" : {
+    "codeCoverage" : false,
+    "mainThreadCheckerEnabled" : false,
+    "maximumTestRepetitions" : 3,
     "preferredScreenCaptureFormat" : "screenshot",
-    "testRepetitionMode" : "fixedIterations",
-    "testTimeoutsEnabled" : true
+    "testRepetitionMode" : "retryOnFailure",
+    "testTimeoutsEnabled" : true,
+    "uiTestingScreenshotsLifetime" : "keepNever",
+    "userAttachmentLifetime" : "keepAlways"
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:CCCTube.xcodeproj",
         "identifier" : "D5EFB19B2B407683008CFE82",
