@@ -11,7 +11,6 @@ import SwiftUI
 struct ConferencesView: View {
     @State var conferences: [Conference] = []
     @State var filterQuery = ""
-
     @State var error: Error?
 
     @EnvironmentObject var api: ApiService
@@ -24,8 +23,8 @@ struct ConferencesView: View {
                     conference.title.lowercased().contains(filterQuery)
                 })
             }
-            .searchable(text: $filterQuery)
             #if !os(tvOS)
+            .searchable(text: $filterQuery)
             .navigationTitle("Conferences")
             #endif
             .task {

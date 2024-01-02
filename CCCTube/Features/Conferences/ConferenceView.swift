@@ -11,7 +11,7 @@ import SwiftUI
 struct ConferenceView: View {
     let conference: Conference
     @State var talks: [Talk] = []
-
+    @State var filterQuery = ""
     @State var error: Error? = nil
 
     @EnvironmentObject var api: ApiService
@@ -27,10 +27,14 @@ struct ConferenceView: View {
                 TalksGrid(talks: talks)
             }
             #else
-            TalksGrid(talks: talks)
+            let filterQuery = filterQuery.lowercased()
+            TalksGrid(talks: filterQuery.isEmpty ? talks : talks.filter { talk in
+                talk.title.lowercased().contains(filterQuery)
+            })
             #endif
         }
         #if !os(tvOS)
+        .searchable(text: $filterQuery)
         .navigationTitle(conference.title)
         #endif
         .task {
