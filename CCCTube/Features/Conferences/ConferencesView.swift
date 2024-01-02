@@ -54,9 +54,9 @@ struct ConferencesGrid: View {
     let conferences: [Conference]
 
     #if os(tvOS)
-        let columns: [GridItem] = [GridItem(), GridItem(), GridItem(), GridItem()]
+    let columns: [GridItem] = Array(repeating: GridItem(), count: 4)
     #else
-        let columns: [GridItem] = [GridItem(.adaptive(minimum: 200))]
+    let columns: [GridItem] = [GridItem(.adaptive(minimum: 200, maximum: 400))]
     #endif
 
     var body: some View {
@@ -75,6 +75,7 @@ struct ConferencesGrid: View {
                 }
             }
         }
+        .padding()
         #if os(tvOS)
         .focusSection()
         .buttonStyle(.card)
