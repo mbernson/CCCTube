@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SearchView: View {
     @StateObject var viewModel = SearchViewModel()
-    @State var suggestions: [SearchSuggestion] = SearchSuggestion.defaultSuggestions
+    @State var suggestions: [SearchSuggestion] = SearchSuggestion.defaultSuggestions.shuffled()
 
     var body: some View {
         NavigationStack {

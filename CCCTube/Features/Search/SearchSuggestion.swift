@@ -14,7 +14,15 @@ struct SearchSuggestion: Identifiable {
 
 extension SearchSuggestion {
     static let defaultSuggestions: [SearchSuggestion] = [
-        "Freedom", "Linux", "ethics", "IoT",
-        "security", "lightning talks", "climate", "cryptography",
+        "Freedom", "Linux", "Ethics", "Internet of Things",
+        "Security", "Lightning talks", "Climate", "Cryptography",
+        "Internet", "Software", "Hardware", "Cloud", "Networking",
+        "Privacy", "Mental health", "Accessibility",
+        "AI", "Machine learning", "Neural networks", "Language models",
+        "Electronics", "Robotics", "Quantum computing", "Microcontroller",
+        "Python", "Rust",
+        "Science", "Chemistry", "Math", "Physics", "Biology", "DNA",
+        "Information theory", "Communication", "GPS",
+        "The ultimate talk", "Radio communications", "Badge",
     ].map(SearchSuggestion.init)
 }
