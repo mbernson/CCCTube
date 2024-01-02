@@ -61,7 +61,8 @@ struct ConferencesGrid: View {
     #if os(tvOS)
     let columns: [GridItem] = Array(repeating: GridItem(), count: 4)
     #else
-    let columns: [GridItem] = [GridItem(.adaptive(minimum: 200, maximum: 400))]
+    let columns: [GridItem] = Array(repeating: GridItem(.adaptive(minimum: 200, maximum: 400)),
+                                    count: 2)
     #endif
 
     var body: some View {
