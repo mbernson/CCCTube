@@ -48,6 +48,7 @@ struct ConferencesView: View {
                     let rhsVal = rhs.eventLastReleasedAt ?? rhs.updatedAt
                     return lhsVal > rhsVal
                 }
+        } catch is CancellationError {
         } catch {
             self.error = error
         }

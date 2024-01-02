@@ -49,6 +49,7 @@ struct ConferenceView: View {
     func refresh() async {
         do {
             talks = try await api.conference(acronym: conference.acronym).events ?? []
+        } catch is CancellationError {
         } catch {
             self.error = error
         }

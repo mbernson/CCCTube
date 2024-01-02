@@ -32,6 +32,7 @@ class SearchViewModel: ObservableObject {
         Task {
             do {
                 results = try await api.searchTalks(query: query)
+            } catch is CancellationError {
             } catch {
                 self.error = error
             }

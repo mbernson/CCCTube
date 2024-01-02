@@ -41,6 +41,7 @@ struct TalkView: View {
             guard talk != viewModel.currentTalk else { return }
             do {
                 try await viewModel.loadRecordings(for: talk, from: api)
+            } catch is CancellationError {
             } catch {
                 self.error = error
             }

@@ -56,6 +56,7 @@ struct BrowseView: View {
             case .popular:
                 talks = try await api.popularTalks(in: .currentYear)
             }
+        } catch is CancellationError {
         } catch {
             self.error = error
         }
