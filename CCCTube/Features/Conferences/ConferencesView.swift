@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ConferencesView: View {
     @State var conferences: [Conference] = []
+    @State var filterQuery = ""
 
     @State var error: Error?
 
@@ -18,8 +19,12 @@ struct ConferencesView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                ConferencesGrid(conferences: conferences)
+                let filterQuery = filterQuery.lowercased()
+                ConferencesGrid(conferences: filterQuery.isEmpty ? conferences : conferences.filter { conference in
+                    conference.title.lowercased().contains(filterQuery)
+                })
             }
+            .searchable(text: $filterQuery)
             #if !os(tvOS)
             .navigationTitle("Conferences")
             #endif
