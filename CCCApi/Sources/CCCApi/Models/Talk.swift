@@ -30,7 +30,7 @@ public struct Talk: Decodable, Identifiable, Equatable {
     public let viewCount: Int
     public let isPromoted: Bool
     public let date: Date?
-    public let releaseDate: Date
+    public let releaseDate: Date?
     public let updatedAt: Date
     public let length: TimeInterval
     public let duration: TimeInterval
@@ -115,7 +115,7 @@ public struct Talk: Decodable, Identifiable, Equatable {
         viewCount = try container.decode(Int.self, forKey: .viewCount)
         isPromoted = try container.decode(Bool.self, forKey: .isPromoted)
         date = try container.decode(Date?.self, forKey: .date)
-        releaseDate = try container.decode(Date.self, forKey: .releaseDate)
+        releaseDate = try container.decode(Date?.self, forKey: .releaseDate)
         updatedAt = try container.decode(Date.self, forKey: .updatedAt)
         length = try container.decode(TimeInterval.self, forKey: .length)
         duration = try container.decode(TimeInterval.self, forKey: .duration)

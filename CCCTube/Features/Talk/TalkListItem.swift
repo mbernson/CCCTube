@@ -46,7 +46,9 @@ struct TalkListItem: View {
                 HStack(alignment: .center, spacing: 20) {
                     Label("\(minutesFormatter.string(from: talk.duration) ?? "0") min", systemImage: "clock")
 
-                    Label("Date \(talk.releaseDate, style: .date)", systemImage: "calendar")
+                    if let releaseDate = talk.releaseDate {
+                        Label("Date \(releaseDate, style: .date)", systemImage: "calendar")
+                    }
 
                     Label(String(talk.viewCount), systemImage: "eye")
 

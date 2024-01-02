@@ -239,10 +239,12 @@ private struct TalkMetaView: View {
                 Image(systemName: "clock")
             }
 
-            Label {
-                Text(talk.releaseDate, style: .date)
-            } icon: {
-                Image(systemName: "calendar")
+            if let releaseDate = talk.releaseDate {
+                Label {
+                    Text(releaseDate, style: .date)
+                } icon: {
+                    Image(systemName: "calendar")
+                }
             }
 
             Label("\(talk.viewCount) views", systemImage: "eye")

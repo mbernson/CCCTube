@@ -13,9 +13,12 @@ struct TalkMetadataFactory {
     func createMetadataItems(for recording: Recording, talk: Talk) -> [AVMetadataItem] {
         var mapping: [AVMetadataIdentifier: AVMetadataValue] = [
             .commonIdentifierTitle: talk.title as NSString,
-            .commonIdentifierCreationDate: talk.releaseDate as NSDate,
             .commonIdentifierLanguage: recording.language as NSString,
         ]
+
+        if let releaseDate = talk.releaseDate {
+            mapping[.commonIdentifierCreationDate] = releaseDate as NSDate
+        }
 
         if let subtitle = talk.subtitle {
             mapping[.iTunesMetadataTrackSubTitle] = subtitle as NSString
