@@ -2,7 +2,21 @@
 
 An app for tvOS (Apple TV) and iOS (iPhone, iPad) for viewing the wide variety of video and audio material distributed by the Chaos Computer Club on [media.ccc.de](https://media.ccc.de/).
 
-![Screenshot](https://github.com/mbernson/CCCTube/assets/477710/6b8438c8-c2e4-4375-af4b-d1e217c9f226)
+## Screenshots
+
+### Apple TV
+
+<img width="640" alt="Screenshot 2024-01-05 at 13 55 36 Large" src="https://github.com/mbernson/CCCTube/assets/477710/a966967b-69d6-4fda-8bc6-9e20f6650166">
+
+
+### iPhone
+
+<img width="335" alt="Screenshot 2024-01-05 at 13 55 51 Large" src="https://github.com/mbernson/CCCTube/assets/477710/75763340-48f4-4044-97b0-1abfb6f46a02">
+
+
+### iPad
+
+<img width="640" alt="Screenshot 2024-01-05 at 13 56 45 Large" src="https://github.com/mbernson/CCCTube/assets/477710/84c9ffeb-aad5-46ec-af60-0f39cdf07a6d">
 
 ## About
 
