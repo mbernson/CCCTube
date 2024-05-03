@@ -1,71 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%@ min" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ Minuten"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ min."
-          }
-        }
-      }
-    },
-    "%@ minute" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ Minute"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ minuut"
-          }
-        }
-      }
-    },
-    "%@ minutes" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ Minuten"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ minuten"
-          }
-        }
-      }
-    },
-    "%@... **MORE**" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@... **Weiterlesen**"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@... **MEER**"
-          }
-        }
-      }
-    },
     "%lld views" : {
       "localizations" : {
         "de" : {
@@ -236,23 +171,6 @@
         }
       }
     },
-    "No recording available" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Keine Aufnahme verfügbar"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Geen opname beschikbaar"
-          }
-        }
-      }
-    },
     "Ok" : {
       "localizations" : {
         "de" : {
@@ -265,57 +183,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ok"
-          }
-        }
-      }
-    },
-    "OK" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OK"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OK"
-          }
-        }
-      }
-    },
-    "Play" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spielen"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Afspelen"
-          }
-        }
-      }
-    },
-    "Play audio" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Audio abspielen"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Speel audio af"
           }
         }
       }
