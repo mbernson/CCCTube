@@ -36,12 +36,9 @@ enum CopyrightState: Equatable {
     }
 
     private func loadCopyright(for recordings: [Recording]) async {
-        for recording in recordings {
-            if copyright == .loading {
-                let copyrightString = try? await mediaAnalyzer.copyrightMetadata(for: recording)
-                if let copyrightString {
-                    copyright = .copyright(copyrightString)
-                }
+        for recording in recordings where copyright == .loading {
+            if let copyrightString = try? await mediaAnalyzer.copyrightMetadata(for: recording) {
+                copyright = .copyright(copyrightString)
             }
         }
         if copyright == .loading {

@@ -12,7 +12,7 @@ struct ConferenceView: View {
     let conference: Conference
     @State var talks: [Talk] = []
     @State var filterQuery = ""
-    @State var error: Error? = nil
+    @State var error: Error?
 
     @EnvironmentObject var api: ApiService
 

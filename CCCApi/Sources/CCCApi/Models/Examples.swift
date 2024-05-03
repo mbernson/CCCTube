@@ -168,3 +168,5 @@ public extension Array where Element == Recording {
         ),
     ]
 }
+
+// swiftlint:enable force_try
