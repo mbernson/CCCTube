@@ -217,12 +217,6 @@ private struct TalkDescriptionView: View {
     }
 }
 
-private let minutesFormatter: DateComponentsFormatter = {
-    let formatter = DateComponentsFormatter()
-    formatter.allowedUnits = .minute
-    return formatter
-}()
-
 private struct TalkMetaView: View {
     let talk: Talk
     @Binding var selectedRecording: Recording?
@@ -231,12 +225,7 @@ private struct TalkMetaView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             Label {
-                let minutes = minutesFormatter.string(from: talk.duration) ?? "0"
-                if talk.duration == 1 {
-                    Text("\(minutes) minute")
-                } else {
-                    Text("\(minutes) minutes")
-                }
+                Text(Duration.seconds(talk.duration), format: .time(pattern: .hourMinute))
             } icon: {
                 Image(systemName: "clock")
             }
