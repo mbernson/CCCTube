@@ -47,7 +47,7 @@ struct TalkMetadataFactory {
         item.identifier = identifier
         item.value = value
         item.extendedLanguageTag = language ?? undefinedLanguageTag
-        return item.copy() as! AVMetadataItem
+        return item
     }
 
     func createArtworkMetadataItem(forURL url: URL) async throws -> AVMetadataItem? {
@@ -59,7 +59,7 @@ struct TalkMetadataFactory {
         thumbnailMetadata.value = imageData as NSData
         // Specify "und" to indicate an undefined language.
         thumbnailMetadata.extendedLanguageTag = "und" as String
-        return thumbnailMetadata.copy() as? AVMetadataItem
+        return thumbnailMetadata
     }
 
     private func fetchImagePngData(forURL url: URL) async throws -> Data? {
