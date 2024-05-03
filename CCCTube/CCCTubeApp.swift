@@ -5,8 +5,8 @@
 //  Created by Mathijs Bernson on 29/07/2022.
 //
 
-import SwiftUI
 import AVKit
+import SwiftUI
 
 @main
 struct CCCTubeApp: App {
@@ -16,8 +16,7 @@ struct CCCTubeApp: App {
                 .onAppear {
                     do {
                         try AVAudioSession.sharedInstance().setCategory(.playback)
-                    } catch {
-                    }
+                    } catch {}
                 }
         }
     }

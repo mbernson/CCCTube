@@ -19,18 +19,18 @@ struct ConferenceView: View {
     var body: some View {
         ScrollView {
             #if os(tvOS)
-            VStack {
-                Text(conference.title)
-                    .font(.largeTitle.bold())
-                    .foregroundColor(.secondary)
+                VStack {
+                    Text(conference.title)
+                        .font(.largeTitle.bold())
+                        .foregroundColor(.secondary)
 
-                TalksGrid(talks: talks)
-            }
+                    TalksGrid(talks: talks)
+                }
             #else
-            let filterQuery = filterQuery.lowercased()
-            TalksGrid(talks: filterQuery.isEmpty ? talks : talks.filter { talk in
-                talk.title.lowercased().contains(filterQuery)
-            })
+                let filterQuery = filterQuery.lowercased()
+                TalksGrid(talks: filterQuery.isEmpty ? talks : talks.filter { talk in
+                    talk.title.lowercased().contains(filterQuery)
+                })
             #endif
         }
         #if !os(tvOS)

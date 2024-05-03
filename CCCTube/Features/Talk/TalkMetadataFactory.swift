@@ -5,9 +5,9 @@
 //  Created by Mathijs Bernson on 29/12/2023.
 //
 
-import Foundation
 import AVKit
 import CCCApi
+import Foundation
 
 struct TalkMetadataFactory {
     func createMetadataItems(for recording: Recording, talk: Talk) -> [AVMetadataItem] {

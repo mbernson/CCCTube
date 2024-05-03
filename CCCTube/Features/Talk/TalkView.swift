@@ -8,7 +8,6 @@
 import CCCApi
 import SwiftUI
 
-
 struct TalkView: View {
     let talk: Talk
     @State var selectedRecording: Recording?
@@ -18,23 +17,23 @@ struct TalkView: View {
 
     var body: some View {
         ScrollView {
-        #if os(tvOS)
-        HStack(alignment: .top) {
-            TalkMainView(talk: talk, viewModel: viewModel)
+            #if os(tvOS)
+                HStack(alignment: .top) {
+                    TalkMainView(talk: talk, viewModel: viewModel)
 
-            TalkMetaView(talk: talk, selectedRecording: $selectedRecording, viewModel: viewModel)
-                .frame(maxWidth: 480, maxHeight: .infinity)
-        }
-        #else
-        VStack(spacing: 20) {
-            TalkMainView(talk: talk, viewModel: viewModel)
+                    TalkMetaView(talk: talk, selectedRecording: $selectedRecording, viewModel: viewModel)
+                        .frame(maxWidth: 480, maxHeight: .infinity)
+                }
+            #else
+                VStack(spacing: 20) {
+                    TalkMainView(talk: talk, viewModel: viewModel)
 
-            TalkMetaView(talk: talk, selectedRecording: $selectedRecording, viewModel: viewModel)
-                .padding(.horizontal)
-                .frame(maxWidth: .infinity, alignment: .leading)
-        }
-        .navigationBarTitleDisplayMode(.inline)
-        #endif
+                    TalkMetaView(talk: talk, selectedRecording: $selectedRecording, viewModel: viewModel)
+                        .padding(.horizontal)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .navigationBarTitleDisplayMode(.inline)
+            #endif
         }
         .navigationTitle(talk.title)
         .task(id: talk) {
@@ -83,20 +82,20 @@ private struct TalkMainView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             Group {
-            #if os(tvOS)
-                TVPlayerView(talk: talk, recording: viewModel.preferredRecording)
-            #else
-                Group {
-                    if let preferredRecording = viewModel.preferredRecording {
-                        TalkPlayerView(talk: talk, recording: preferredRecording, automaticallyStartsPlayback: true)
-                    } else {
-                        Rectangle()
-                            .fill(.black)
+                #if os(tvOS)
+                    TVPlayerView(talk: talk, recording: viewModel.preferredRecording)
+                #else
+                    Group {
+                        if let preferredRecording = viewModel.preferredRecording {
+                            TalkPlayerView(talk: talk, recording: preferredRecording, automaticallyStartsPlayback: true)
+                        } else {
+                            Rectangle()
+                                .fill(.black)
+                        }
                     }
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .aspectRatio(16 / 9, contentMode: .fit)
-            #endif
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .aspectRatio(16 / 9, contentMode: .fit)
+                #endif
             }
             .frame(maxWidth: 1024)
             .frame(maxWidth: .infinity, alignment: .center)
@@ -112,16 +111,16 @@ private struct TalkMainView: View {
         }
         .animation(.default, value: viewModel.copyright)
         #if os(tvOS)
-        .focusSection()
-        .buttonStyle(.card)
+            .focusSection()
+            .buttonStyle(.card)
         #endif
-        .multilineTextAlignment(.leading)
+            .multilineTextAlignment(.leading)
         #if !os(tvOS)
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                ShareLink(item: talk.frontendLink)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    ShareLink(item: talk.frontendLink)
+                }
             }
-        }
         #endif
     }
 }
@@ -170,23 +169,23 @@ private struct TalkDescriptionView: View {
         if let shortDescription = paragraphs.first, paragraphs.count > 1 {
             VStack(alignment: .leading, spacing: 20) {
                 #if os(tvOS)
-                Button {
-                    presentTalkDescription()
-                } label: {
+                    Button {
+                        presentTalkDescription()
+                    } label: {
+                        Text(shortDescription)
+                            .lineLimit(5)
+                            .multilineTextAlignment(.leading)
+                            .padding()
+                    }
+                    .padding()
+                #else
                     Text(shortDescription)
                         .lineLimit(5)
                         .multilineTextAlignment(.leading)
-                        .padding()
-                }
-                .padding()
-                #else
-                Text(shortDescription)
-                    .lineLimit(5)
-                    .multilineTextAlignment(.leading)
 
-                Button("Read more") {
-                    presentTalkDescription()
-                }
+                    Button("Read more") {
+                        presentTalkDescription()
+                    }
                 #endif
             }
             .sheet(item: $talkDescription) { talkDescription in

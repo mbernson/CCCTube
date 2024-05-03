@@ -82,7 +82,7 @@ public class ApiService: ObservableObject {
                 // So here, we use the year that it was one week ago.
                 let date = calendar.date(byAdding: .weekOfYear, value: -1, to: Date.now) ?? Date.now
                 return calendar.component(.year, from: date)
-            case .year(let value):
+            case let .year(value):
                 return value
             }
         }

@@ -59,10 +59,10 @@ struct ConferencesGrid: View {
     let conferences: [Conference]
 
     #if os(tvOS)
-    let columns: [GridItem] = Array(repeating: GridItem(), count: 4)
+        let columns: [GridItem] = Array(repeating: GridItem(), count: 4)
     #else
-    let columns: [GridItem] = Array(repeating: GridItem(.adaptive(minimum: 200, maximum: 400)),
-                                    count: 2)
+        let columns: [GridItem] = Array(repeating: GridItem(.adaptive(minimum: 200, maximum: 400)),
+                                        count: 2)
     #endif
 
     var body: some View {
@@ -83,11 +83,11 @@ struct ConferencesGrid: View {
         }
         .padding()
         #if os(tvOS)
-        .focusSection()
-        .buttonStyle(.card)
+            .focusSection()
+            .buttonStyle(.card)
         #endif
-        .accessibilityIdentifier("ConferencesGrid")
-        .accessibilityElement(children: .contain)
+            .accessibilityIdentifier("ConferencesGrid")
+            .accessibilityElement(children: .contain)
     }
 }
 

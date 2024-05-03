@@ -5,9 +5,9 @@
 //  Created by Mathijs Bernson on 29/12/2023.
 //
 
-import Foundation
 import AVKit
 import CCCApi
+import Foundation
 
 enum CopyrightState: Equatable {
     case loading
@@ -30,7 +30,7 @@ enum CopyrightState: Equatable {
         let hdRecording = recordings.first(where: { $0.isHighQuality && $0.isVideo })
         let sdRecording = recordings.first(where: { !$0.isHighQuality && $0.isVideo })
         let audioRecording = recordings.first(where: { $0.isAudio })
-        self.preferredRecording = hdRecording ?? sdRecording ?? audioRecording
+        preferredRecording = hdRecording ?? sdRecording ?? audioRecording
 
         await loadCopyright(for: recordings)
     }

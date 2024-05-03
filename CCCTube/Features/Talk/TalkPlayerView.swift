@@ -5,8 +5,8 @@
 //  Created by Mathijs Bernson on 30/07/2022.
 //
 
-import SwiftUI
 import CCCApi
+import SwiftUI
 
 struct TalkPlayerView: View {
     let talk: Talk
@@ -21,7 +21,7 @@ struct TalkPlayerView: View {
             .ignoresSafeArea()
             .task(id: recording) {
                 guard recording != viewModel.currentRecording else { return }
-                
+
                 isLoading = true
                 await viewModel.prepareForPlayback(recording: recording, talk: talk)
                 if automaticallyStartsPlayback {
@@ -31,27 +31,27 @@ struct TalkPlayerView: View {
                 }
                 isLoading = false
             }
-            #if os(iOS)
+        #if os(iOS)
             .overlay {
                 if isLoading {
                     VideoProgressIndicator()
                 }
             }
-            #endif
+        #endif
     }
 }
 
 #if os(iOS)
-private struct VideoProgressIndicator: View {
-    var body: some View {
-        ProgressView()
-            .progressViewStyle(.circular)
-            .controlSize(.large)
-            .padding(10)
-            .background(.regularMaterial)
-            .clipShape(Circle())
+    private struct VideoProgressIndicator: View {
+        var body: some View {
+            ProgressView()
+                .progressViewStyle(.circular)
+                .controlSize(.large)
+                .padding(10)
+                .background(.regularMaterial)
+                .clipShape(Circle())
+        }
     }
-}
 #endif
 
 #Preview {

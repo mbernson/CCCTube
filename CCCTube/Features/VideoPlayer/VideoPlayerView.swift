@@ -6,8 +6,8 @@
 //
 
 import AVKit
-import SwiftUI
 import os.log
+import SwiftUI
 
 struct VideoPlayerView: UIViewControllerRepresentable {
     let player: AVPlayer?
