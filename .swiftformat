@@ -1,2 +1,3 @@
---disable unusedArguments redundantRawValues
+--disable unusedArguments
+--disable redundantRawValues
 --indent 4
