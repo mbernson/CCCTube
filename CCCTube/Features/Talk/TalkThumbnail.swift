@@ -33,7 +33,7 @@ struct TalkThumbnail: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .aspectRatio(16 / 9, contentMode: .fill)
+        .aspectRatio(16 / 9, contentMode: .fit)
         .id(id)
     }
 }
