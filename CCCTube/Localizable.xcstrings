@@ -316,22 +316,6 @@
           }
         }
       }
-    },
-    "Talk description" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vortragsbeschreibung"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Talk omschrijving"
-          }
-        }
-      }
     }
   },
   "version" : "1.0"

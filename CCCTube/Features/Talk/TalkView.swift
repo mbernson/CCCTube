@@ -196,7 +196,7 @@ private struct TalkDescriptionView: View {
                             .multilineTextAlignment(.leading)
                             .padding()
                     }
-                    .navigationTitle("Talk description")
+                    .navigationTitle(talk.title)
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
                             Button("Done", role: .cancel) {
