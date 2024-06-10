@@ -10,42 +10,66 @@ import SwiftUI
 
 struct TalksGrid: View {
     let talks: [Talk]
+    var body: some View {
+        #if os(tvOS)
+        TalksGridTV(talks: talks)
+        #else
+        TalksGridRegular(talks: talks)
+        #endif
+    }
+}
 
-    #if os(tvOS)
-        let columns: [GridItem] = Array(repeating: GridItem(), count: 4)
-    #else
-        let columns: [GridItem] = [GridItem(.adaptive(minimum: 200, maximum: 400))]
-    #endif
+private struct TalksGridRegular: View {
+    let talks: [Talk]
+    let columns: [GridItem] = [GridItem(.adaptive(minimum: 200, maximum: 400))]
 
     var body: some View {
         LazyVGrid(columns: columns, spacing: 24) {
             ForEach(talks) { talk in
-                VStack {
+                NavigationLink {
+                    TalkView(talk: talk)
+                } label: {
+                    TalkCell(talk: talk)
+                }
+            }
+        }
+        .padding()
+        .multilineTextAlignment(.center)
+        .accessibilityIdentifier("TalksGrid")
+        .accessibilityElement(children: .contain)
+    }
+}
+
+#if os(tvOS)
+private struct TalksGridTV: View {
+    let talks: [Talk]
+    let columns: [GridItem] = Array(repeating: GridItem(), count: 4)
+
+    var body: some View {
+        LazyVGrid(columns: columns, spacing: 64) {
+            ForEach(talks) { talk in
+                VStack(alignment: .leading) {
                     NavigationLink {
                         TalkView(talk: talk)
                     } label: {
                         TalkThumbnail(talk: talk)
-                        #if os(tvOS)
-                            .frame(width: 400, height: 225)
-                        #endif
                     }
 
                     Text(talk.title)
-                        .font(.subheadline)
+                        .font(.headline)
                         .lineLimit(2, reservesSpace: true)
                 }
             }
         }
         .padding()
         .multilineTextAlignment(.center)
-        #if os(tvOS)
-            .focusSection()
-            .buttonStyle(.card)
-        #endif
-            .accessibilityIdentifier("TalksGrid")
-            .accessibilityElement(children: .contain)
+        .focusSection()
+        .buttonStyle(.card)
+        .accessibilityIdentifier("TalksGrid")
+        .accessibilityElement(children: .contain)
     }
 }
+#endif
 
 struct TalksGrid_Previews: PreviewProvider {
     static var previews: some View {

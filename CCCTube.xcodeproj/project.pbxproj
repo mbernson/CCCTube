@@ -16,6 +16,7 @@
 		D557E8B52895C06100342EE2 /* ConferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D557E8B42895C06100342EE2 /* ConferencesView.swift */; };
 		D557E8B72896812C00342EE2 /* SearchSuggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D557E8B62896812C00342EE2 /* SearchSuggestion.swift */; };
 		D557E8B92896815700342EE2 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D557E8B82896815700342EE2 /* SearchViewModel.swift */; };
+		D56DD9662C0DAEEF00161B66 /* TalkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56DD9652C0DAEEF00161B66 /* TalkCell.swift */; };
 		D59139412895851300369402 /* TVServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D59139402895851300369402 /* TVServices.framework */; };
 		D59139442895851300369402 /* ContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59139432895851300369402 /* ContentProvider.swift */; };
 		D59139482895851300369402 /* TopShelf.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D591393F2895851300369402 /* TopShelf.appex */; platformFilters = (tvos, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -93,6 +94,7 @@
 		D557E8B62896812C00342EE2 /* SearchSuggestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSuggestion.swift; sourceTree = "<group>"; };
 		D557E8B82896815700342EE2 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		D557E8BA2896F70400342EE2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D56DD9652C0DAEEF00161B66 /* TalkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkCell.swift; sourceTree = "<group>"; };
 		D591393F2895851300369402 /* TopShelf.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TopShelf.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D59139402895851300369402 /* TVServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TVServices.framework; path = System/Library/Frameworks/TVServices.framework; sourceTree = SDKROOT; };
 		D59139432895851300369402 /* ContentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentProvider.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 			children = (
 				D5D4DF42289859AB00560E4F /* MediaAnalyzer.swift */,
 				D501386C2A4B5AE100ED68C0 /* TalkListItem.swift */,
+				D56DD9652C0DAEEF00161B66 /* TalkCell.swift */,
 				D5E97D4F2B3F17B1005BFF45 /* TalkMetadataFactory.swift */,
 				D550CA3028953B4000FD8AB2 /* TalkPlayerView.swift */,
 				D5E97D4D2B3F172D005BFF45 /* TalkPlayerViewModel.swift */,
@@ -532,6 +535,7 @@
 				D550CA3128953B4000FD8AB2 /* TalkPlayerView.swift in Sources */,
 				D5D4B2BE2B3F435C00F33CD3 /* TalkViewModel.swift in Sources */,
 				D5E97D502B3F17B1005BFF45 /* TalkMetadataFactory.swift in Sources */,
+				D56DD9662C0DAEEF00161B66 /* TalkCell.swift in Sources */,
 				D5A156F328947625006989FF /* TalkView.swift in Sources */,
 				D5F06C5D2A5035A500774C39 /* VideoPlayerView.swift in Sources */,
 			);
