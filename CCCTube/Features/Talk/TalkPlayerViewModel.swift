@@ -5,22 +5,23 @@
 //  Created by Mathijs Bernson on 29/12/2023.
 //
 
-import AVKit
+@preconcurrency import AVKit
 import CCCApi
 import Foundation
 import os.log
 
+@MainActor
 class TalkPlayerViewModel: ObservableObject {
     var player: AVPlayer?
 
     @Published var currentRecording: Recording?
 
-    private let factory = TalkMetadataFactory()
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "TalkPlayerViewModel")
 
     private var statusObservation: NSKeyValueObservation?
 
     func prepareForPlayback(recording: Recording, talk: Talk) async {
+        let factory = TalkMetadataFactory()
         let item = AVPlayerItem(url: recording.recordingURL)
         item.externalMetadata = factory.createMetadataItems(for: recording, talk: talk)
 
@@ -40,14 +41,14 @@ class TalkPlayerViewModel: ObservableObject {
 
     func preroll() async {
         guard let player else { return }
-        await withCheckedContinuation { continuation in
-            statusObservation = player.observe(\.status, options: [.initial, .new]) { player, change in
-                if player.status == .readyToPlay {
-                    continuation.resume(returning: ())
-                    self.statusObservation?.invalidate()
-                }
-            }
-        }
+//        await withCheckedContinuation { continuation in
+//            statusObservation = player.observe(\.status, options: [.initial, .new]) { player, change in
+//                if player.status == .readyToPlay {
+//                    continuation.resume(returning: ())
+//                    self.statusObservation?.invalidate()
+//                }
+//            }
+//        }
         if await player.preroll(atRate: 1.0) {
             logger.debug("Preroll success")
         } else {
@@ -65,6 +66,7 @@ class TalkPlayerViewModel: ObservableObject {
 
     private func fetchPosterImage(for talk: Talk) async -> AVMetadataItem? {
         do {
+            let factory = TalkMetadataFactory()
             if let imageURL = talk.posterURL ?? talk.thumbURL {
                 return try await factory.createArtworkMetadataItem(forURL: imageURL)
             } else {
