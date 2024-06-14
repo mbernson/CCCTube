@@ -237,22 +237,6 @@
         }
       }
     },
-    "Preview error title" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Preview error title"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Preview error title"
-          }
-        }
-      }
-    },
     "Read more" : {
       "localizations" : {
         "de" : {
