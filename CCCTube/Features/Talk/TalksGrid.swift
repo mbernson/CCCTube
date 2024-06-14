@@ -30,7 +30,13 @@ private struct TalksGridRegular: View {
                     TalkView(talk: talk)
                 } label: {
                     TalkCell(talk: talk)
+                        #if os(visionOS)
+                        .padding()
+                        .contentShape(RoundedRectangle(cornerRadius: 16))
+                        .hoverEffect(.lift)
+                        #endif
                 }
+                .buttonStyle(.plain)
             }
         }
         .padding()

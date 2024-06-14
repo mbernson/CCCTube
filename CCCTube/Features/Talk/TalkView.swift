@@ -67,7 +67,13 @@ private struct TVPlayerView: View {
                         .foregroundColor(.white)
                         .shadow(color: .black, radius: 20)
                 }
+                .clipShape(RoundedRectangle(cornerRadius: 24))
+                .contentShape(RoundedRectangle(cornerRadius: 24))
+                .hoverEffect()
         }
+        #if !os(tvOS)
+        .buttonStyle(.plain)
+        #endif
         .disabled(recording == nil)
         .fullScreenCover(item: $selectedRecording) { recording in
             TalkPlayerView(talk: talk, recording: recording, automaticallyStartsPlayback: true)
@@ -82,7 +88,7 @@ private struct TalkMainView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             Group {
-                #if os(tvOS)
+                #if os(tvOS) || os(visionOS)
                     TVPlayerView(talk: talk, recording: viewModel.preferredRecording)
                 #else
                     Group {
@@ -178,6 +184,7 @@ private struct TalkDescriptionView: View {
                             .padding()
                     }
                     .padding()
+                    .buttonStyle(.plain)
                 #else
                     Text(shortDescription)
                         .lineLimit(5)

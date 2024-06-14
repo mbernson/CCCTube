@@ -15,28 +15,34 @@ struct TalkPlayerView: View {
 
     @State private var isLoading = false
     @StateObject private var viewModel = TalkPlayerViewModel()
+    @Environment(\.dismiss) var dismiss
 
     var body: some View {
-        VideoPlayerView(player: viewModel.player)
-            .ignoresSafeArea()
-            .task(id: recording) {
-                guard recording != viewModel.currentRecording else { return }
+        VideoPlayerView(player: viewModel.player) {
+            dismiss()
+        }
+        .ignoresSafeArea()
+        .task(id: recording) {
+            guard recording != viewModel.currentRecording else { return }
 
-                isLoading = true
-                await viewModel.prepareForPlayback(recording: recording, talk: talk)
-                if automaticallyStartsPlayback {
-                    viewModel.play()
-                } else {
-                    await viewModel.preroll()
-                }
-                isLoading = false
+            isLoading = true
+            await viewModel.prepareForPlayback(recording: recording, talk: talk)
+            if automaticallyStartsPlayback {
+                viewModel.play()
+            } else {
+                await viewModel.preroll()
             }
+            isLoading = false
+        }
+        .onDisappear {
+            viewModel.pause()
+        }
         #if os(iOS)
-            .overlay {
-                if isLoading {
-                    VideoProgressIndicator()
-                }
+        .overlay {
+            if isLoading {
+                VideoProgressIndicator()
             }
+        }
         #endif
     }
 }

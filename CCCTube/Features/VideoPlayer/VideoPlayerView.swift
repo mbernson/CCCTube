@@ -9,12 +9,14 @@ import AVKit
 import os.log
 import SwiftUI
 
+@MainActor
 struct VideoPlayerView: UIViewControllerRepresentable {
     let player: AVPlayer?
+    let dismiss: () -> Void
 
     func makeUIViewController(context: Context) -> AVPlayerViewController {
         let playerViewController = AVPlayerViewController()
-
+        playerViewController.delegate = context.coordinator
         playerViewController.modalPresentationStyle = .fullScreen
 
         playerViewController.allowsPictureInPicturePlayback = true
@@ -30,24 +32,34 @@ struct VideoPlayerView: UIViewControllerRepresentable {
 
     func updateUIViewController(_ playerViewController: AVPlayerViewController, context: Context) {
         playerViewController.player = player
-        playerViewController.delegate = context.coordinator
     }
 
     func makeCoordinator() -> VideoPlayerCoordinator {
-        VideoPlayerCoordinator()
+        VideoPlayerCoordinator(dismiss: dismiss)
     }
 
     static func dismantleUIViewController(_ playerViewController: AVPlayerViewController, coordinator: Coordinator) {
         playerViewController.player?.cancelPendingPrerolls()
         playerViewController.player?.pause()
-        playerViewController.player = nil
     }
 }
 
 class VideoPlayerCoordinator: NSObject, AVPlayerViewControllerDelegate {
     let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "VideoPlayerCoordinator")
+    let dismiss: () -> Void
+
+    init(dismiss: @escaping () -> Void) {
+        self.dismiss = dismiss
+        super.init()
+    }
 
     func playerViewController(_ playerViewController: AVPlayerViewController, failedToStartPictureInPictureWithError error: Error) {
         logger.error("Failed to start picture in picture: \(error)")
     }
+
+    #if !os(tvOS)
+    func playerViewController(_ playerViewController: AVPlayerViewController, willEndFullScreenPresentationWithAnimationCoordinator coordinator: any UIViewControllerTransitionCoordinator) {
+        dismiss()
+    }
+    #endif
 }
