@@ -13,35 +13,30 @@ final class CCCTubeUIScreenshotTests: XCTestCase {
     override func setUp() {
         continueAfterFailure = false
         app = XCUIApplication()
+        app.launch()
     }
 
     func testRecentTalks() {
-        app.launch()
         XCTAssertTrue(app.otherElements["TalksGrid"].buttons.firstMatch.waitForExistence(timeout: 3.0))
-        Thread.sleep(forTimeInterval: 2.0)
+        wait(forTimeInterval: 2.0) // Give the app some time to load
         takeScreenshot("RecentTalks")
     }
 
     func testConferences() {
-        app.launch()
         app.tabBars.buttons["Conferences"].firstMatch.tap()
         XCTAssertTrue(app.otherElements["ConferencesGrid"].buttons.firstMatch.waitForExistence(timeout: 3.0))
-        Thread.sleep(forTimeInterval: 2.0)
+        wait(forTimeInterval: 2.0) // Give the app some time to load
         takeScreenshot("Conferences")
     }
 
     func testVideo() {
-        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
-        springboard.launch()
-
-        // "How do GPS/Galileo really work & how the galmon.eu monitors all navigation satellites"
-        let talkID = "dc0fe8c9-443d-5873-91ee-cca74db67c80"
-        DispatchQueue.main.async {
-            XCUIDevice.shared.system.open(URL(string: "ccctube://talk/\(talkID)")!)
-        }
-        if springboard.buttons["Open"].waitForExistence(timeout: 5) {
-            springboard.buttons["Open"].tap()
-        }
+        let firstTalk = app.otherElements["TalksGrid"].buttons.firstMatch
+        XCTAssertTrue(firstTalk.waitForExistence(timeout: 5.0))
+        firstTalk.tap()
+        XCTAssertTrue(app.otherElements["Video"].waitForExistence(timeout: 5))
+        app.otherElements["Video"].firstMatch.tap()
+        app.buttons["Play/Pause"].firstMatch.tap()
+        wait(forTimeInterval: 2.0)
         takeScreenshot("Video")
     }
 
@@ -50,5 +45,13 @@ final class CCCTubeUIScreenshotTests: XCTestCase {
         attachment.name = name
         attachment.lifetime = .keepAlways
         add(attachment)
+    }
+
+    private func wait(forTimeInterval timeout: TimeInterval) {
+        let exp = expectation(description: "Wait for \(timeout) seconds")
+        let result = XCTWaiter.wait(for: [exp], timeout: timeout)
+        if result != .timedOut {
+            XCTFail("Delay interrupted")
+        }
     }
 }
