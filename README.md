@@ -1,6 +1,10 @@
 # CCC Tube
 
+<img width="128" height="128" align="right" alt="CCC Tube icon" src="https://github.com/user-attachments/assets/9415d24b-9554-4045-b60a-ed86e6c79cd2" />
+
 An app for tvOS (Apple TV) and iOS (iPhone, iPad) for viewing the wide variety of video and audio material distributed by the Chaos Computer Club on [media.ccc.de](https://media.ccc.de/).
+
+<br>
 
 ## Screenshots
 
