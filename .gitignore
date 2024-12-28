@@ -1,3 +1,5 @@
 xcuserdata
 *.xcresult
 screenshots
+build
+.swiftpm
