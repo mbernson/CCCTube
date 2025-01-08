@@ -25,10 +25,8 @@ enum EventsQuery {
 struct BrowseView: View {
     let query: EventsQuery
     @State var talks: [Talk] = []
-
     @State var error: Error?
-
-    @EnvironmentObject var api: ApiService
+    @State var api: ApiService = .shared
 
     var body: some View {
         NavigationStack {
@@ -66,6 +64,5 @@ struct BrowseView: View {
 struct BrowseView_Previews: PreviewProvider {
     static var previews: some View {
         BrowseView(query: .popular, talks: [.example])
-            .environmentObject(ApiService())
     }
 }

@@ -7,14 +7,16 @@
 
 import Foundation
 
-public class ApiService: ObservableObject {
+public class ApiService {
     private let session: URLSession
     private let baseURL = URL(string: "https://api.media.ccc.de/public")!
     private let decoder = JSONDecoder()
     private let iso8601Formatter = ISO8601DateFormatter()
 
+    public static let shared = ApiService()
+
     public init() {
-        session = .shared
+        session = URLSession(configuration: .default)
 
         // Format should be: yyyy-MM-dd'T'HH:mm:ss.mmm+hh:mm
         iso8601Formatter.formatOptions = [

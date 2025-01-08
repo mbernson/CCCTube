@@ -9,7 +9,7 @@ import CCCApi
 import TVServices
 
 class ContentProvider: TVTopShelfContentProvider {
-    let api = ApiService()
+    let api: ApiService = .shared
     let factory = TopShelfContentFactory()
 
     override func loadTopShelfContent() async -> TVTopShelfContent? {

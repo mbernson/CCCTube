@@ -11,9 +11,9 @@ import SwiftUI
 struct TalkView: View {
     let talk: Talk
     @State var selectedRecording: Recording?
-    @StateObject private var viewModel = TalkViewModel()
+    @State private var viewModel = TalkViewModel()
     @State private var error: Error?
-    @EnvironmentObject var api: ApiService
+    @State var api: ApiService = .shared
 
     var body: some View {
         ScrollView {
@@ -83,7 +83,7 @@ private struct TVPlayerView: View {
 
 private struct TalkMainView: View {
     let talk: Talk
-    @ObservedObject var viewModel: TalkViewModel
+    var viewModel: TalkViewModel
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -133,7 +133,7 @@ private struct TalkMainView: View {
 
 private struct CopyrightView: View {
     let talk: Talk
-    @ObservedObject var viewModel: TalkViewModel
+    var viewModel: TalkViewModel
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -227,7 +227,7 @@ private struct TalkDescriptionView: View {
 private struct TalkMetaView: View {
     let talk: Talk
     @Binding var selectedRecording: Recording?
-    @ObservedObject var viewModel: TalkViewModel
+    var viewModel: TalkViewModel
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -258,7 +258,6 @@ struct TalkView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             TalkView(talk: .example)
-                .environmentObject(ApiService())
         }
     }
 }

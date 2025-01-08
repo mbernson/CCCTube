@@ -9,7 +9,7 @@ import CCCApi
 import SwiftUI
 
 struct ContentView: View {
-    let api = ApiService()
+    @State var api: ApiService = .shared
     @State private var talk: TalkToPlay?
 
     var body: some View {
@@ -50,11 +50,9 @@ struct ContentView: View {
                     #endif
                 }
         }
-        .environmentObject(api)
         .fullScreenCover(item: $talk) { talk in
             NavigationStack {
                 TalkView(talk: talk.talk, selectedRecording: talk.recordingToPlay)
-                    .environmentObject(api)
             }
         }
         .onOpenURL { url in

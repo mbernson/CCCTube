@@ -10,10 +10,11 @@ import CCCApi
 import Foundation
 import os.log
 
-class TalkPlayerViewModel: ObservableObject {
+@Observable
+class TalkPlayerViewModel {
     var player: AVPlayer?
 
-    @Published var currentRecording: Recording?
+    var currentRecording: Recording?
 
     private let factory = TalkMetadataFactory()
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "TalkPlayerViewModel")
@@ -26,10 +27,7 @@ class TalkPlayerViewModel: ObservableObject {
 
         let player = AVPlayer(playerItem: item)
         self.player = player
-        DispatchQueue.main.async {
-            self.currentRecording = recording
-            self.objectWillChange.send()
-        }
+        self.currentRecording = recording
         logger.info("Preparing playback of recording: \(recording.recordingURL.absoluteString, privacy: .public)")
 
         // Fetch poster image and append it to the metadata

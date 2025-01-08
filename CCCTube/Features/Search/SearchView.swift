@@ -9,7 +9,8 @@ import CCCApi
 import SwiftUI
 
 struct SearchView: View {
-    @StateObject var viewModel = SearchViewModel()
+    @State var viewModel = SearchViewModel()
+    @State var query = ""
     @State var suggestions: [SearchSuggestion] = SearchSuggestion.defaultSuggestions.shuffled()
 
     var body: some View {
@@ -30,7 +31,7 @@ struct SearchView: View {
                         List {
                             ForEach(suggestions) { suggestion in
                                 Button(suggestion.title) {
-                                    viewModel.query = suggestion.title
+                                    query = suggestion.title
                                     runSearch()
                                 }
                                 .foregroundColor(.accentColor)
@@ -47,28 +48,30 @@ struct SearchView: View {
             #if !os(tvOS)
             .navigationTitle("Search")
             #endif
-            .searchable(text: $viewModel.query, prompt: "Search talks...")
+            .searchable(text: $query, prompt: "Search talks...")
+            .onChange(of: query) { _, query in
+                viewModel.updateSearchQuery(query)
+            }
             #if os(tvOS)
-                .searchSuggestions {
-                    ForEach(suggestions) { suggest in
-                        Text(suggest.title).searchCompletion(suggest.title)
-                    }
+            .searchSuggestions {
+                ForEach(suggestions) { suggest in
+                    Text(suggest.title).searchCompletion(suggest.title)
                 }
+            }
             #endif
-                .onAppear(perform: runSearch)
-                .onSubmit(of: .search, runSearch)
-                .alert("Failed to load data from the media.ccc.de API", error: $viewModel.error)
+            .onAppear(perform: runSearch)
+            .onSubmit(of: .search, runSearch)
+            .alert("Failed to load data from the media.ccc.de API", error: $viewModel.error)
         }
     }
 
     func runSearch() {
-        viewModel.search()
+        viewModel.search(query: query)
     }
 }
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
         SearchView()
-            .environmentObject(ApiService())
     }
 }

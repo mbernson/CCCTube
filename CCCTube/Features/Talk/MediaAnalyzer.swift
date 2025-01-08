@@ -11,7 +11,7 @@ import Foundation
 
 struct MediaAnalyzer {
     func copyrightMetadata(for recording: Recording) async throws -> String? {
-        let asset = AVAsset(url: recording.recordingURL)
+        let asset = AVURLAsset(url: recording.recordingURL)
         let metadata = try await asset.load(.metadata)
         for meta in metadata {
             if meta.identifier == .commonIdentifierCopyrights || meta.identifier == .id3MetadataCopyright || meta.identifier == .iTunesMetadataCopyright {

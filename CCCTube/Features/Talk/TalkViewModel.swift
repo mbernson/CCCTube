@@ -15,15 +15,16 @@ enum CopyrightState: Equatable {
     case unknown
 }
 
-@MainActor class TalkViewModel: ObservableObject {
-    @Published var currentTalk: Talk?
-    @Published var recordings: [Recording] = []
-    @Published var preferredRecording: Recording?
-    @Published var copyright: CopyrightState = .loading
+@Observable
+class TalkViewModel {
+    var currentTalk: Talk?
+    var recordings: [Recording] = []
+    var preferredRecording: Recording?
+    var copyright: CopyrightState = .loading
 
     private let mediaAnalyzer = MediaAnalyzer()
 
-    func loadRecordings(for talk: Talk, from api: CCCApi.ApiService) async throws {
+    func loadRecordings(for talk: Talk, from api: ApiService) async throws {
         let recordings = try await api.recordings(for: talk)
         currentTalk = talk
         self.recordings = recordings

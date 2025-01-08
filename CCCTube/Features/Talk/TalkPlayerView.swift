@@ -14,7 +14,7 @@ struct TalkPlayerView: View {
     let automaticallyStartsPlayback: Bool
 
     @State private var isLoading = false
-    @StateObject private var viewModel = TalkPlayerViewModel()
+    @State private var viewModel = TalkPlayerViewModel()
 
     var body: some View {
         VideoPlayerView(player: viewModel.player)

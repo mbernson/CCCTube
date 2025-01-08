@@ -13,7 +13,7 @@ struct ConferencesView: View {
     @State var filterQuery = ""
     @State var error: Error?
 
-    @EnvironmentObject var api: ApiService
+    @State var api: ApiService = .shared
 
     var body: some View {
         NavigationStack {
