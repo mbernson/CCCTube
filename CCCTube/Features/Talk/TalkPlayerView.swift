@@ -15,12 +15,9 @@ struct TalkPlayerView: View {
 
     @State private var isLoading = false
     @StateObject private var viewModel = TalkPlayerViewModel()
-    @Environment(\.dismiss) var dismiss
 
     var body: some View {
-        VideoPlayerView(player: viewModel.player) {
-            dismiss()
-        }
+        VideoPlayerView(player: viewModel.player)
         .accessibilityIdentifier("Video")
         .ignoresSafeArea()
         .task(id: recording) {
