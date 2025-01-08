@@ -81,8 +81,8 @@ public class ApiService {
                 // The 'popular' API call returns talks that were popular by year.
                 // Right after the beginning of a new year, it doesn't return anything
                 // presumably because there aren't enough views on talk for that year yet.
-                // So here, we use the year that it was one week ago.
-                let date = calendar.date(byAdding: .weekOfYear, value: -1, to: Date.now) ?? Date.now
+                // So here, we use the year that it was two weeks ago.
+                let date = calendar.date(byAdding: .weekOfYear, value: -2, to: Date.now) ?? Date.now
                 return calendar.component(.year, from: date)
             case let .year(value):
                 return value
