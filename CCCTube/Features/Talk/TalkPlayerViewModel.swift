@@ -10,7 +10,8 @@ import CCCApi
 import Foundation
 import os.log
 
-@Observable @MainActor
+@Observable
+@MainActor
 final class TalkPlayerViewModel {
     var player: AVPlayer?
 
