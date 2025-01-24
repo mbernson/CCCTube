@@ -9,8 +9,10 @@ import CCCApi
 import SwiftUI
 
 struct SearchView: View {
-    @State var viewModel = SearchViewModel()
+    @State var searchContext = SearchContext()
+    @State var results: [Talk] = []
     @State var query = ""
+    @State var error: Error?
     @State var suggestions: [SearchSuggestion] = SearchSuggestion.defaultSuggestions.shuffled()
 
     var body: some View {
@@ -18,7 +20,7 @@ struct SearchView: View {
             Group {
                 #if os(tvOS)
                     List {
-                        ForEach(viewModel.results) { talk in
+                        ForEach(results) { talk in
                             NavigationLink {
                                 TalkView(talk: talk)
                             } label: {
@@ -27,12 +29,12 @@ struct SearchView: View {
                         }
                     }
                 #else
-                    if viewModel.results.isEmpty {
+                    if results.isEmpty {
                         List {
                             ForEach(suggestions) { suggestion in
                                 Button(suggestion.title) {
                                     query = suggestion.title
-                                    runSearch()
+                                    Task { await search(query) }
                                 }
                                 .foregroundColor(.accentColor)
                             }
@@ -40,7 +42,7 @@ struct SearchView: View {
                         .listStyle(.plain)
                     } else {
                         ScrollView {
-                            TalksGrid(talks: viewModel.results)
+                            TalksGrid(talks: results)
                         }
                     }
                 #endif
@@ -50,7 +52,10 @@ struct SearchView: View {
             #endif
             .searchable(text: $query, prompt: "Search talks...")
             .onChange(of: query) { _, query in
-                viewModel.updateSearchQuery(query)
+                searchContext.send(query: query)
+            }
+            .onReceive(searchContext.searchQueryPublisher) { query in
+                runSearch(query)
             }
             #if os(tvOS)
             .searchSuggestions {
@@ -61,12 +66,30 @@ struct SearchView: View {
             #endif
             .onAppear(perform: runSearch)
             .onSubmit(of: .search, runSearch)
-            .alert("Failed to load data from the media.ccc.de API", error: $viewModel.error)
+            .alert("Failed to load data from the media.ccc.de API", error: $error)
         }
     }
 
     func runSearch() {
-        viewModel.search(query: query)
+        runSearch(query)
+    }
+
+    func runSearch(_ query: String) {
+        if query.isEmpty {
+            results.removeAll()
+        } else {
+            Task {
+                await search(query)
+            }
+        }
+    }
+
+    func search(_ query: String) async {
+        do {
+            results = try await ApiService.shared.searchTalks(query: query)
+        } catch {
+            self.error = error
+        }
     }
 }
 

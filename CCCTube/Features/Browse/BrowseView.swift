@@ -26,7 +26,6 @@ struct BrowseView: View {
     let query: EventsQuery
     @State var talks: [Talk] = []
     @State var error: Error?
-    @State var api: ApiService = .shared
 
     var body: some View {
         NavigationStack {
@@ -48,6 +47,7 @@ struct BrowseView: View {
 
     func refresh() async {
         do {
+            let api = ApiService.shared
             switch query {
             case .recent:
                 talks = try await api.recentTalks()

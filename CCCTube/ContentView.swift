@@ -9,8 +9,8 @@ import CCCApi
 import SwiftUI
 
 struct ContentView: View {
-    @State var api: ApiService = .shared
     @State private var talk: TalkToPlay?
+    @State var error: Error?
 
     var body: some View {
         TabView {
@@ -50,6 +50,7 @@ struct ContentView: View {
                     #endif
                 }
         }
+        .alert("Failed to load data from the media.ccc.de API", error: $error)
         .fullScreenCover(item: $talk) { talk in
             NavigationStack {
                 TalkView(talk: talk.talk, selectedRecording: talk.recordingToPlay)
@@ -59,17 +60,26 @@ struct ContentView: View {
             let factory = URLParser()
             guard let route = factory.parseURL(url) else { return }
             Task {
-                switch route {
-                case let .openTalk(id):
-                    let talk = try await api.talk(id: id)
-                    self.talk = TalkToPlay(talk: talk, recordingToPlay: nil)
-                case let .playTalk(id):
-                    let talk = try await api.talk(id: id)
-                    let recordings = try await api.recordings(for: talk)
-                    let recording = recordings.first(where: { $0.isHighQuality }) ?? recordings.first(where: { $0.isVideo })
-                    self.talk = TalkToPlay(talk: talk, recordingToPlay: recording)
-                }
+                await openRoute(route: route)
             }
+        }
+    }
+
+    func openRoute(route: URLRoute) async {
+        let api = ApiService.shared
+        do {
+            switch route {
+            case let .openTalk(id):
+                let talk = try await api.talk(id: id)
+                self.talk = TalkToPlay(talk: talk, recordingToPlay: nil)
+            case let .playTalk(id):
+                let talk = try await api.talk(id: id)
+                let recordings = try await api.recordings(for: talk)
+                let recording = recordings.first(where: { $0.isHighQuality }) ?? recordings.first(where: { $0.isVideo })
+                self.talk = TalkToPlay(talk: talk, recordingToPlay: recording)
+            }
+        } catch {
+            self.error = error
         }
     }
 }

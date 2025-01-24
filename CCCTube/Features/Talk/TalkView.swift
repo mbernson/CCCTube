@@ -13,7 +13,6 @@ struct TalkView: View {
     @State var selectedRecording: Recording?
     @State private var viewModel = TalkViewModel()
     @State private var error: Error?
-    @State var api: ApiService = .shared
 
     var body: some View {
         ScrollView {
@@ -39,7 +38,7 @@ struct TalkView: View {
         .task(id: talk) {
             guard talk != viewModel.currentTalk else { return }
             do {
-                try await viewModel.loadRecordings(for: talk, from: api)
+                try await viewModel.loadRecordings(for: talk)
             } catch is CancellationError {
             } catch {
                 self.error = error

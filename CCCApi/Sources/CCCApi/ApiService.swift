@@ -15,7 +15,7 @@ public class ApiService {
 
     public static let shared = ApiService()
 
-    public init() {
+    private init() {
         session = URLSession(configuration: .default)
 
         // Format should be: yyyy-MM-dd'T'HH:mm:ss.mmm+hh:mm

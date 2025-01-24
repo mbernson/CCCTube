@@ -12,7 +12,7 @@ struct ConferencesResponse: Decodable {
 }
 
 /// e.g. the congress or lecture series like datengarten or openchaos
-public struct Conference: Decodable, Identifiable {
+public struct Conference: Decodable, Identifiable, Sendable {
     public let acronym: String
     public let slug: String
     public let title: String
@@ -84,7 +84,7 @@ public struct Conference: Decodable, Identifiable {
     }
 }
 
-public struct AspectRatio: Decodable {
+public struct AspectRatio: Decodable, Sendable {
     public let width: Double
     public let height: Double
 
