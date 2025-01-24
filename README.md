@@ -2,9 +2,12 @@
 
 <img width="128" height="128" align="right" alt="CCC Tube icon" src="https://github.com/user-attachments/assets/9415d24b-9554-4045-b60a-ed86e6c79cd2" />
 
-An app for tvOS (Apple TV) and iOS (iPhone, iPad) for viewing the wide variety of video and audio material distributed by the Chaos Computer Club on [media.ccc.de](https://media.ccc.de/).
+CCC Tube is an app for watching the talks and activities of the Chaos Computer Club and related conferences on tvOS (Apple TV), iOS and macOS. It is a client that uses the public REST API of [media.ccc.de](https://media.ccc.de/). It is free software (GPL licensed) and is not officially affiliated with the CCC.
 
 <br>
+
+* 🍏 [Download on the App Store](https://apps.apple.com/us/app/ccc-tube/id1637341762)
+* ✈️ [Join the public beta on TestFlight](https://testflight.apple.com/join/44XL86pK)
 
 ## Screenshots
 
