@@ -12,8 +12,8 @@ import SwiftUI
 struct VideoPlayerView: UIViewControllerRepresentable {
     let player: AVPlayer?
 
-    func makeUIViewController(context: Context) -> AVPlayerViewController {
-        let playerViewController = AVPlayerViewController()
+    func makeUIViewController(context: Context) -> VideoPlayerViewController {
+        let playerViewController = VideoPlayerViewController()
         playerViewController.delegate = context.coordinator
         playerViewController.modalPresentationStyle = .fullScreen
 
@@ -28,7 +28,7 @@ struct VideoPlayerView: UIViewControllerRepresentable {
         return playerViewController
     }
 
-    func updateUIViewController(_ playerViewController: AVPlayerViewController, context: Context) {
+    func updateUIViewController(_ playerViewController: VideoPlayerViewController, context: Context) {
         playerViewController.player = player
     }
 
@@ -36,7 +36,7 @@ struct VideoPlayerView: UIViewControllerRepresentable {
         VideoPlayerCoordinator()
     }
 
-    static func dismantleUIViewController(_ playerViewController: AVPlayerViewController, coordinator: Coordinator) {
+    static func dismantleUIViewController(_ playerViewController: VideoPlayerViewController, coordinator: Coordinator) {
         playerViewController.player?.cancelPendingPrerolls()
         playerViewController.player?.pause()
     }
@@ -47,5 +47,19 @@ class VideoPlayerCoordinator: NSObject, AVPlayerViewControllerDelegate {
 
     func playerViewController(_ playerViewController: AVPlayerViewController, failedToStartPictureInPictureWithError error: Error) {
         logger.error("Failed to start picture in picture: \(error)")
+    }
+}
+
+class VideoPlayerViewController: AVPlayerViewController {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        UIApplication.shared.isIdleTimerDisabled = true
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        UIApplication.shared.isIdleTimerDisabled = false
     }
 }
