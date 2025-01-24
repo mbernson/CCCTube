@@ -29,11 +29,11 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:CCCTubeTests/UnitTests.xctestplan"
-            default = "YES">
+            reference = "container:Screenshots.xctestplan">
          </TestPlanReference>
          <TestPlanReference
-            reference = "container:CCCTubeUITests/Screenshots.xctestplan">
+            reference = "container:UnitTests.xctestplan"
+            default = "YES">
          </TestPlanReference>
       </TestPlans>
       <Testables>

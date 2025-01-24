@@ -58,9 +58,9 @@
 		D59139402895851300369402 /* TVServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TVServices.framework; path = System/Library/Frameworks/TVServices.framework; sourceTree = SDKROOT; };
 		D591395928958B2600369402 /* CCCTubeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CCCTubeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5A156D4289462B3006989FF /* CCCTube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCCTube.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5D2CB292D43EBB300E08E44 /* Screenshots.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Screenshots.xctestplan; sourceTree = "<group>"; };
+		D5D2CB2A2D43EBB300E08E44 /* UnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnitTests.xctestplan; sourceTree = "<group>"; };
 		D5EFB19C2B407683008CFE82 /* CCCTubeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CCCTubeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D5EFB1A72B407792008CFE82 /* UnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnitTests.xctestplan; sourceTree = SOURCE_ROOT; };
-		D5EFB1A82B4077A3008CFE82 /* Screenshots.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Screenshots.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -156,8 +156,8 @@
 			isa = PBXGroup;
 			children = (
 				D557E8BA2896F70400342EE2 /* README.md */,
-				D5EFB1A72B407792008CFE82 /* UnitTests.xctestplan */,
-				D5EFB1A82B4077A3008CFE82 /* Screenshots.xctestplan */,
+				D5D2CB292D43EBB300E08E44 /* Screenshots.xctestplan */,
+				D5D2CB2A2D43EBB300E08E44 /* UnitTests.xctestplan */,
 				D5AFD6D92C9BFCF700BF89F5 /* CCCTube */,
 				D50C6F7328956D770003D1D0 /* CCCApi */,
 				D5AFD6FB2C9BFCFB00BF89F5 /* TopShelf */,
