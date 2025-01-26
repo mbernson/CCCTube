@@ -13,8 +13,6 @@ struct ConferencesView: View {
     @State var filterQuery = ""
     @State var error: Error?
 
-    @State var api: ApiService = .shared
-
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -39,7 +37,7 @@ struct ConferencesView: View {
 
     func refresh() async {
         do {
-            conferences = try await api.conferences()
+            conferences = try await ApiService.shared.conferences()
                 .filter { conference in
                     conference.eventLastReleasedAt != nil
                 }

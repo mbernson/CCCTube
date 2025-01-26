@@ -16,7 +16,8 @@ enum CopyrightState: Equatable {
 }
 
 @Observable
-class TalkViewModel {
+@MainActor
+final class TalkViewModel {
     var currentTalk: Talk?
     var recordings: [Recording] = []
     var preferredRecording: Recording?
@@ -24,8 +25,8 @@ class TalkViewModel {
 
     private let mediaAnalyzer = MediaAnalyzer()
 
-    func loadRecordings(for talk: Talk, from api: ApiService) async throws {
-        let recordings = try await api.recordings(for: talk)
+    func loadRecordings(for talk: Talk) async throws {
+        let recordings = try await ApiService.shared.recordings(for: talk)
         currentTalk = talk
         self.recordings = recordings
         let hdRecording = recordings.first(where: { $0.isHighQuality && $0.isVideo })

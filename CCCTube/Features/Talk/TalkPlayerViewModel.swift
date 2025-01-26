@@ -11,15 +11,14 @@ import Foundation
 import os.log
 
 @Observable
-class TalkPlayerViewModel {
+@MainActor
+final class TalkPlayerViewModel {
     var player: AVPlayer?
 
     var currentRecording: Recording?
 
     private let factory = TalkMetadataFactory()
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "TalkPlayerViewModel")
-
-    private var statusObservation: NSKeyValueObservation?
 
     func prepareForPlayback(recording: Recording, talk: Talk) async {
         let item = AVPlayerItem(url: recording.recordingURL)
@@ -30,19 +29,19 @@ class TalkPlayerViewModel {
         self.currentRecording = recording
         logger.info("Preparing playback of recording: \(recording.recordingURL.absoluteString, privacy: .public)")
 
-        // Fetch poster image and append it to the metadata
-        if let imageMetadata = await fetchPosterImage(for: talk) {
-            item.externalMetadata.append(imageMetadata)
+        if let imageURL = talk.posterURL ?? talk.thumbURL,
+           let posterImageData = try? await factory.fetchImageData(forURL: imageURL),
+           let posterImageMetadata = factory.createArtworkMetadataItem(imageData: posterImageData) {
+            item.externalMetadata.append(posterImageMetadata)
         }
     }
 
     func preroll() async {
         guard let player else { return }
         await withCheckedContinuation { continuation in
-            statusObservation = player.observe(\.status, options: [.initial, .new]) { player, change in
+            _ = player.observe(\.status, options: [.initial, .new]) { player, change in
                 if player.status == .readyToPlay {
                     continuation.resume(returning: ())
-                    self.statusObservation?.invalidate()
                 }
             }
         }
@@ -59,18 +58,5 @@ class TalkPlayerViewModel {
 
     func pause() {
         player?.pause()
-    }
-
-    private func fetchPosterImage(for talk: Talk) async -> AVMetadataItem? {
-        do {
-            if let imageURL = talk.posterURL ?? talk.thumbURL {
-                return try await factory.createArtworkMetadataItem(forURL: imageURL)
-            } else {
-                return nil
-            }
-        } catch {
-            logger.error("Failed to fetch poster image for talk at URL \(talk.posterURL?.absoluteString ?? "(nil)")")
-            return nil
-        }
     }
 }

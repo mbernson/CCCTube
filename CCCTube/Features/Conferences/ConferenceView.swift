@@ -15,8 +15,6 @@ struct ConferenceView: View {
     @State var isLoading = true
     @State var error: Error?
 
-    @State var api: ApiService = .shared
-
     var body: some View {
         ScrollView {
             #if os(tvOS)
@@ -58,7 +56,7 @@ struct ConferenceView: View {
         isLoading = true
         defer { isLoading = false }
         do {
-            talks = try await api.conference(acronym: conference.acronym).events ?? []
+            talks = try await ApiService.shared.conference(acronym: conference.acronym).events ?? []
         } catch is CancellationError {
         } catch {
             self.error = error

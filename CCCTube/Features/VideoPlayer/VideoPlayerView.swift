@@ -9,7 +9,6 @@ import AVKit
 import os.log
 import SwiftUI
 
-@MainActor
 struct VideoPlayerView: UIViewControllerRepresentable {
     let player: AVPlayer?
 

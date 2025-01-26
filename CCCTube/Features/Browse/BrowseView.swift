@@ -28,7 +28,6 @@ struct BrowseView: View {
     @State var talks: [Talk] = []
     @State var isLoading = true
     @State var error: Error?
-    @State var api: ApiService = .shared
 
     var body: some View {
         NavigationStack {
@@ -74,6 +73,7 @@ struct BrowseView: View {
         isLoading = true
         defer { isLoading = false }
         do {
+            let api = ApiService.shared
             switch query {
             case .recent:
                 talks = try await api.recentTalks()

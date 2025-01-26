@@ -50,9 +50,7 @@ struct TalkMetadataFactory {
         return item
     }
 
-    func createArtworkMetadataItem(forURL url: URL) async throws -> AVMetadataItem? {
-        let imageData = try await fetchImagePngData(forURL: url)
-        guard let imageData else { return nil }
+    func createArtworkMetadataItem(imageData: Data) -> AVMetadataItem? {
         let thumbnailMetadata = AVMutableMetadataItem()
         thumbnailMetadata.identifier = .commonIdentifierArtwork
         thumbnailMetadata.dataType = kCMMetadataBaseDataType_PNG as String
@@ -62,9 +60,8 @@ struct TalkMetadataFactory {
         return thumbnailMetadata
     }
 
-    private func fetchImagePngData(forURL url: URL) async throws -> Data? {
+    func fetchImageData(forURL url: URL) async throws -> Data? {
         let (imageData, _) = try await URLSession.shared.data(from: url)
-        let image = UIImage(data: imageData)
-        return image?.pngData()
+        return imageData
     }
 }
