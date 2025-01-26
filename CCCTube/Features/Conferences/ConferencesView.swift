@@ -68,17 +68,17 @@ struct ConferencesGrid: View {
     var body: some View {
         LazyVGrid(columns: columns) {
             ForEach(conferences) { conference in
-                VStack {
-                    NavigationLink {
-                        ConferenceView(conference: conference)
-                    } label: {
-                        ConferenceThumbnail(conference: conference)
-                    }
-
-                    Text(conference.title)
-                        .font(.caption)
-                        .lineLimit(2, reservesSpace: true)
+                NavigationLink {
+                    ConferenceView(conference: conference)
+                } label: {
+                    ConferenceCell(conference: conference)
+                        #if os(visionOS)
+                        .padding()
+                        .contentShape(RoundedRectangle(cornerRadius: 16))
+                        .hoverEffect(.lift)
+                        #endif
                 }
+                .buttonStyle(.plain)
             }
         }
         .padding()
