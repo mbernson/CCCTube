@@ -70,30 +70,10 @@ public class ApiService {
         return response.events
     }
 
-    public enum PopularTalksYear {
-        case currentYear
-        case year(Int)
-
-        var yearValue: Int {
-            switch self {
-            case .currentYear:
-                let calendar = Calendar.current
-                // The 'popular' API call returns talks that were popular by year.
-                // Right after the beginning of a new year, it doesn't return anything
-                // presumably because there aren't enough views on talk for that year yet.
-                // So here, we use the year that it was two weeks ago.
-                let date = calendar.date(byAdding: .weekOfYear, value: -2, to: Date.now) ?? Date.now
-                return calendar.component(.year, from: date)
-            case let .year(value):
-                return value
-            }
-        }
-    }
-
-    public func popularTalks(in year: PopularTalksYear) async throws -> [Talk] {
+    public func popularTalks(in year: Int) async throws -> [Talk] {
         let url = baseURL.appendingPathComponent("events").appendingPathComponent("popular")
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
-        components.queryItems = [URLQueryItem(name: "year", value: String(year.yearValue))]
+        components.queryItems = [URLQueryItem(name: "year", value: String(year))]
         let (data, _) = try await session.data(from: components.url!)
         let response = try decoder.decode(EventsResponse.self, from: data)
         return response.events

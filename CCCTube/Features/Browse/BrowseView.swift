@@ -8,7 +8,7 @@
 import CCCApi
 import SwiftUI
 
-enum EventsQuery {
+enum EventsQuery: Equatable {
     case recent
     case popular
 
@@ -24,6 +24,7 @@ enum EventsQuery {
 
 struct BrowseView: View {
     let query: EventsQuery
+    @State var year: Int = Calendar.current.component(.year, from: .now)
     @State var talks: [Talk] = []
     @State var isLoading = true
     @State var error: Error?
@@ -32,7 +33,22 @@ struct BrowseView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
+                #if os(tvOS)
+                if query == .popular {
+                    YearPicker(year: $year)
+                }
+                #endif
+
                 TalksGrid(talks: talks)
+            }
+            .toolbar {
+                #if !os(tvOS)
+                if query == .popular {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        YearPicker(year: $year)
+                    }
+                }
+                #endif
             }
             .overlay {
                 if isLoading {
@@ -44,7 +60,7 @@ struct BrowseView: View {
             #if !os(tvOS)
             .navigationTitle(query.localizedTitle)
             #endif
-            .task {
+            .task(id: year) {
                 await refresh()
             }
             .refreshable {
@@ -62,12 +78,29 @@ struct BrowseView: View {
             case .recent:
                 talks = try await api.recentTalks()
             case .popular:
-                talks = try await api.popularTalks(in: .currentYear)
+                talks = try await api.popularTalks(in: year)
             }
         } catch is CancellationError {
         } catch {
             self.error = error
         }
+    }
+}
+
+struct YearPicker: View {
+    @Binding var year: Int
+    let firstYear: Int = 2000
+    let currentYear = Calendar.current.component(.year, from: .now)
+    var body: some View {
+        Picker(selection: $year) {
+            ForEach(Array(firstYear...currentYear).reversed(), id: \.self) { year in
+                Text(String(year))
+                    .tag(year)
+            }
+        } label: {
+            Label("Year", systemImage: "calendar")
+        }
+        .pickerStyle(.menu)
     }
 }
 

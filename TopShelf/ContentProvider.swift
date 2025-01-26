@@ -15,8 +15,12 @@ class ContentProvider: TVTopShelfContentProvider {
     override func loadTopShelfContent() async -> TVTopShelfContent? {
         do {
             async let recentTalks = api.recentTalks()
-            async let popularTalks = api.popularTalks(in: .currentYear)
-            let sections = try factory.makeTopShelfSections(recentTalks: await recentTalks, popularTalks: await popularTalks)
+            let currentYear = Calendar.current.component(.year, from: .now)
+            async let popularTalks = api.popularTalks(in: currentYear)
+            let sections = try factory.makeTopShelfSections(
+                recentTalks: await recentTalks,
+                popularTalks: await popularTalks
+            )
             return TVTopShelfSectionedContent(sections: sections)
         } catch {
             return nil
