@@ -15,6 +15,7 @@ class SearchViewModel {
     private var searchQuerySubject = PassthroughSubject<String, Never>()
     private var cancellable: AnyCancellable?
 
+    var isLoading = false
     var results: [Talk] = []
     var error: Error?
 
@@ -32,6 +33,8 @@ class SearchViewModel {
 
     func search(query: String) {
         Task {
+            isLoading = true
+            defer { isLoading = false }
             do {
                 results = try await api.searchTalks(query: query)
             } catch is CancellationError {

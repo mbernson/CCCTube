@@ -171,6 +171,9 @@
         }
       }
     },
+    "No talks found" : {
+
+    },
     "Ok" : {
       "localizations" : {
         "de" : {

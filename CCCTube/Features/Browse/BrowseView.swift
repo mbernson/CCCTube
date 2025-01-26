@@ -25,6 +25,7 @@ enum EventsQuery {
 struct BrowseView: View {
     let query: EventsQuery
     @State var talks: [Talk] = []
+    @State var isLoading = true
     @State var error: Error?
     @State var api: ApiService = .shared
 
@@ -32,6 +33,13 @@ struct BrowseView: View {
         NavigationStack {
             ScrollView {
                 TalksGrid(talks: talks)
+            }
+            .overlay {
+                if isLoading {
+                    ProgressView()
+                } else if talks.isEmpty {
+                    Text("No talks found")
+                }
             }
             #if !os(tvOS)
             .navigationTitle(query.localizedTitle)
@@ -47,6 +55,8 @@ struct BrowseView: View {
     }
 
     func refresh() async {
+        isLoading = true
+        defer { isLoading = false }
         do {
             switch query {
             case .recent:

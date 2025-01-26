@@ -12,6 +12,7 @@ struct ConferenceView: View {
     let conference: Conference
     @State var talks: [Talk] = []
     @State var filterQuery = ""
+    @State var isLoading = true
     @State var error: Error?
 
     @State var api: ApiService = .shared
@@ -33,6 +34,13 @@ struct ConferenceView: View {
                 })
             #endif
         }
+        .overlay {
+            if isLoading {
+                ProgressView()
+            } else if talks.isEmpty {
+                Text("No talks found")
+            }
+        }
         #if !os(tvOS)
         .searchable(text: $filterQuery)
         .navigationTitle(conference.title)
@@ -47,6 +55,8 @@ struct ConferenceView: View {
     }
 
     func refresh() async {
+        isLoading = true
+        defer { isLoading = false }
         do {
             talks = try await api.conference(acronym: conference.acronym).events ?? []
         } catch is CancellationError {

@@ -17,32 +17,36 @@ struct SearchView: View {
         NavigationStack {
             Group {
                 #if os(tvOS)
-                    List {
-                        ForEach(viewModel.results) { talk in
-                            NavigationLink {
-                                TalkView(talk: talk)
-                            } label: {
-                                TalkListItem(talk: talk)
-                            }
+                List {
+                    ForEach(viewModel.results) { talk in
+                        NavigationLink {
+                            TalkView(talk: talk)
+                        } label: {
+                            TalkListItem(talk: talk)
                         }
                     }
+                }
                 #else
-                    if viewModel.results.isEmpty {
-                        List {
-                            ForEach(suggestions) { suggestion in
-                                Button(suggestion.title) {
-                                    query = suggestion.title
-                                    runSearch()
-                                }
-                                .foregroundColor(.accentColor)
+                if viewModel.isLoading {
+                    ProgressView()
+                } else if viewModel.results.isEmpty && !query.isEmpty {
+                    Text("No talks found")
+                } else if viewModel.results.isEmpty {
+                    List {
+                        ForEach(suggestions) { suggestion in
+                            Button(suggestion.title) {
+                                query = suggestion.title
+                                runSearch()
                             }
-                        }
-                        .listStyle(.plain)
-                    } else {
-                        ScrollView {
-                            TalksGrid(talks: viewModel.results)
+                            .foregroundColor(.accentColor)
                         }
                     }
+                    .listStyle(.plain)
+                } else {
+                    ScrollView {
+                        TalksGrid(talks: viewModel.results)
+                    }
+                }
                 #endif
             }
             #if !os(tvOS)
