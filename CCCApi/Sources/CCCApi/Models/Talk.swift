@@ -44,7 +44,14 @@ public struct Talk: Decodable, Identifiable, Equatable, Sendable {
     public let url: URL
     public let related: [RelatedTalk]
 
-    init(guid: String, title: String, subtitle: String?, slug: String, link: URL?, description: String?, originalLanguage: String?, persons: [String], tags: [String], viewCount: Int, isPromoted: Bool, date: Date?, releaseDate: Date, updatedAt: Date, length: TimeInterval, duration: TimeInterval, conferenceTitle: String, conferenceURL: URL, thumbURL: URL?, posterURL: URL, timelineURL: URL, thumbnailsURL: URL, frontendLink: URL, url: URL, related: [RelatedTalk]) {
+    init(
+        guid: String, title: String, subtitle: String?, slug: String, link: URL?,
+        description: String?, originalLanguage: String?, persons: [String], tags: [String],
+        viewCount: Int, isPromoted: Bool, date: Date?, releaseDate: Date, updatedAt: Date,
+        length: TimeInterval, duration: TimeInterval, conferenceTitle: String, conferenceURL: URL,
+        thumbURL: URL?, posterURL: URL, timelineURL: URL, thumbnailsURL: URL, frontendLink: URL,
+        url: URL, related: [RelatedTalk]
+    ) {
         self.guid = guid
         self.title = title
         self.subtitle = subtitle
@@ -139,7 +146,8 @@ struct TalkExtended: Decodable {
             return []
         }
 
-        return recordings
+        return
+            recordings
             .filter { $0.mimeType == "video/mp4" }
     }
 }

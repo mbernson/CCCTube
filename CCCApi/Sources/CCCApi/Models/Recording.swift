@@ -38,7 +38,11 @@ public struct Recording: Decodable, Identifiable, Equatable, Sendable {
         mimeType.starts(with: "video")
     }
 
-    init(size: Int?, length: TimeInterval?, mimeType: String, language: String, filename: String, state: String, folder: String, isHighQuality: Bool, width: Int?, height: Int?, updatedAt: Date, recordingURL: URL, url: URL, eventURL: URL, conferenceURL: URL) {
+    init(
+        size: Int?, length: TimeInterval?, mimeType: String, language: String, filename: String,
+        state: String, folder: String, isHighQuality: Bool, width: Int?, height: Int?,
+        updatedAt: Date, recordingURL: URL, url: URL, eventURL: URL, conferenceURL: URL
+    ) {
         self.size = size
         self.length = length
         self.mimeType = mimeType

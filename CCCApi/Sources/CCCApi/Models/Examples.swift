@@ -9,15 +9,16 @@ import Foundation
 
 // swiftlint:disable force_try
 
-public extension Conference {
-    static let example = Conference(
+extension Conference {
+    public static let example = Conference(
         acronym: "MCH2022",
         slug: "conferences/camp-NL/mch2022",
         title: "May Contain Hackers 2022",
         updatedAt: try! Date("2022-07-29T20:45:05Z", strategy: .iso8601),
         eventLastReleasedAt: try! Date("2022-07-26T00:00:00Z", strategy: .iso8601),
         link: URL(string: "https://mch2022.org/")!,
-        description: "MCH2022 was a nonprofit outdoor hacker camp taking place in Zeewolde, the Netherlands, July 22 to 26 2022. The event is organized for and by volunteers from and around all facets of the worldwide hacker community.\r\n\r\nKnowledge sharing, technological advancement, experimentation, connecting with your hacker peers and hacking are some of the core values of this event.\r\n\r\nMCH2022 is the successor of a string of similar events happening every four years since 1989. These are GHP, HEU, HIP, HAL, WTH, HAR, OHM and SHA.",
+        description:
+            "MCH2022 was a nonprofit outdoor hacker camp taking place in Zeewolde, the Netherlands, July 22 to 26 2022. The event is organized for and by volunteers from and around all facets of the worldwide hacker community.\r\n\r\nKnowledge sharing, technological advancement, experimentation, connecting with your hacker peers and hacking are some of the core values of this event.\r\n\r\nMCH2022 is the successor of a string of similar events happening every four years since 1989. These are GHP, HEU, HIP, HAL, WTH, HAR, OHM and SHA.",
         aspectRatio: AspectRatio(width: 16, height: 9),
         webgenLocation: "conferences/camp-NL/mch2022",
         url: URL(string: "https://static.media.ccc.de/media/events/MCH2022/logo.png")!,
@@ -27,8 +28,8 @@ public extension Conference {
     )
 }
 
-public extension Talk {
-    static let example = Talk(
+extension Talk {
+    public static let example = Talk(
         guid: "cf4dc17c-aab4-5868-9b57-100a55a1c2fb",
         title: "⚠️ May Contain Hackers 2022 Closing",
         subtitle: nil,
@@ -37,7 +38,7 @@ public extension Talk {
         description: "It's over before you know it...",
         originalLanguage: "eng",
         persons: [
-            "Elger \"Stitch\" Jonker",
+            "Elger \"Stitch\" Jonker"
         ],
         tags: [
             "mch2022",
@@ -54,18 +55,32 @@ public extension Talk {
         duration: 1066,
         conferenceTitle: "May Contain Hackers 2022",
         conferenceURL: URL(string: "https://api.media.ccc.de/public/conferences/MCH2022")!,
-        thumbURL: URL(string: "https://static.media.ccc.de/media/events/MCH2022/110-cf4dc17c-aab4-5868-9b57-100a55a1c2fb.jpg")!,
-        posterURL: URL(string: "https://static.media.ccc.de/media/events/MCH2022/110-cf4dc17c-aab4-5868-9b57-100a55a1c2fb_preview.jpg")!,
-        timelineURL: URL(string: "https://static.media.ccc.de/media/events/MCH2022/110-cf4dc17c-aab4-5868-9b57-100a55a1c2fb.timeline.jpg")!,
-        thumbnailsURL: URL(string: "https://static.media.ccc.de/media/events/MCH2022/110-cf4dc17c-aab4-5868-9b57-100a55a1c2fb.thumbnails.vtt")!,
-        frontendLink: URL(string: "https://media.ccc.de/v/mch2022-110--may-contain-hackers-2022-closing")!,
-        url: URL(string: "https://api.media.ccc.de/public/events/cf4dc17c-aab4-5868-9b57-100a55a1c2fb")!,
+        thumbURL: URL(
+            string:
+                "https://static.media.ccc.de/media/events/MCH2022/110-cf4dc17c-aab4-5868-9b57-100a55a1c2fb.jpg"
+        )!,
+        posterURL: URL(
+            string:
+                "https://static.media.ccc.de/media/events/MCH2022/110-cf4dc17c-aab4-5868-9b57-100a55a1c2fb_preview.jpg"
+        )!,
+        timelineURL: URL(
+            string:
+                "https://static.media.ccc.de/media/events/MCH2022/110-cf4dc17c-aab4-5868-9b57-100a55a1c2fb.timeline.jpg"
+        )!,
+        thumbnailsURL: URL(
+            string:
+                "https://static.media.ccc.de/media/events/MCH2022/110-cf4dc17c-aab4-5868-9b57-100a55a1c2fb.thumbnails.vtt"
+        )!,
+        frontendLink: URL(
+            string: "https://media.ccc.de/v/mch2022-110--may-contain-hackers-2022-closing")!,
+        url: URL(
+            string: "https://api.media.ccc.de/public/events/cf4dc17c-aab4-5868-9b57-100a55a1c2fb")!,
         related: []
     )
 }
 
-public extension Recording {
-    static let example = Recording(
+extension Recording {
+    public static let example = Recording(
         size: 461,
         length: 1066,
         mimeType: "video/mp4",
@@ -77,14 +92,18 @@ public extension Recording {
         width: 1920,
         height: 1080,
         updatedAt: try! Date("2022-07-26T17:41:57Z", strategy: .iso8601),
-        recordingURL: URL(string: "https://cdn.media.ccc.de/events/MCH2022/h264-hd/mch2022-110-eng-May_Contain_Hackers_2022_Closing_hd.mp4")!, url: URL(string: "https://api.media.ccc.de/public/recordings/60586")!,
-        eventURL: URL(string: "https://api.media.ccc.de/public/events/cf4dc17c-aab4-5868-9b57-100a55a1c2fb")!,
+        recordingURL: URL(
+            string:
+                "https://cdn.media.ccc.de/events/MCH2022/h264-hd/mch2022-110-eng-May_Contain_Hackers_2022_Closing_hd.mp4"
+        )!, url: URL(string: "https://api.media.ccc.de/public/recordings/60586")!,
+        eventURL: URL(
+            string: "https://api.media.ccc.de/public/events/cf4dc17c-aab4-5868-9b57-100a55a1c2fb")!,
         conferenceURL: URL(string: "https://api.media.ccc.de/public/conferences/MCH2022")!
     )
 }
 
-public extension Array where Element == RelatedTalk {
-    static let example: [RelatedTalk] = [
+extension Array where Element == RelatedTalk {
+    public static let example: [RelatedTalk] = [
         RelatedTalk(
             eventID: 2291,
             eventGUID: "2f68e356-6c3f-4034-9640-c06d717ed96b",
@@ -113,8 +132,8 @@ public extension Array where Element == RelatedTalk {
     ]
 }
 
-public extension Array where Element == Recording {
-    static let example: [Recording] = [
+extension Array where Element == Recording {
+    public static let example: [Recording] = [
         Recording(
             size: 16,
             length: 1066,
@@ -127,9 +146,14 @@ public extension Array where Element == Recording {
             width: 0,
             height: 0,
             updatedAt: try! Date("2022-07-26T23:32:01Z", strategy: .iso8601),
-            recordingURL: URL(string: "https://cdn.media.ccc.de/events/MCH2022/mp3/mch2022-110-eng-May_Contain_Hackers_2022_Closing_mp3.mp3")!,
+            recordingURL: URL(
+                string:
+                    "https://cdn.media.ccc.de/events/MCH2022/mp3/mch2022-110-eng-May_Contain_Hackers_2022_Closing_mp3.mp3"
+            )!,
             url: URL(string: "https://api.media.ccc.de/public/recordings/60723")!,
-            eventURL: URL(string: "https://api.media.ccc.de/public/events/cf4dc17c-aab4-5868-9b57-100a55a1c2fb")!,
+            eventURL: URL(
+                string:
+                    "https://api.media.ccc.de/public/events/cf4dc17c-aab4-5868-9b57-100a55a1c2fb")!,
             conferenceURL: URL(string: "https://api.media.ccc.de/public/conferences/MCH2022")!
         ),
         Recording(
@@ -144,9 +168,14 @@ public extension Array where Element == Recording {
             width: 720,
             height: 576,
             updatedAt: try! Date("2022-07-26T23:30:43Z", strategy: .iso8601),
-            recordingURL: URL(string: "https://cdn.media.ccc.de/events/MCH2022/h264-sd/mch2022-110-eng-May_Contain_Hackers_2022_Closing_sd.mp4")!,
+            recordingURL: URL(
+                string:
+                    "https://cdn.media.ccc.de/events/MCH2022/h264-sd/mch2022-110-eng-May_Contain_Hackers_2022_Closing_sd.mp4"
+            )!,
             url: URL(string: "https://api.media.ccc.de/public/recordings/60722")!,
-            eventURL: URL(string: "https://api.media.ccc.de/public/events/cf4dc17c-aab4-5868-9b57-100a55a1c2fb")!,
+            eventURL: URL(
+                string:
+                    "https://api.media.ccc.de/public/events/cf4dc17c-aab4-5868-9b57-100a55a1c2fb")!,
             conferenceURL: URL(string: "https://api.media.ccc.de/public/conferences/MCH2022")!
         ),
         Recording(
@@ -161,9 +190,14 @@ public extension Array where Element == Recording {
             width: 1920,
             height: 1080,
             updatedAt: try! Date("2022-07-26T17:41:57Z", strategy: .iso8601),
-            recordingURL: URL(string: "https://cdn.media.ccc.de/events/MCH2022/h264-hd/mch2022-110-eng-May_Contain_Hackers_2022_Closing_hd.mp4")!,
+            recordingURL: URL(
+                string:
+                    "https://cdn.media.ccc.de/events/MCH2022/h264-hd/mch2022-110-eng-May_Contain_Hackers_2022_Closing_hd.mp4"
+            )!,
             url: URL(string: "https://api.media.ccc.de/public/recordings/60586")!,
-            eventURL: URL(string: "https://api.media.ccc.de/public/events/cf4dc17c-aab4-5868-9b57-100a55a1c2fb")!,
+            eventURL: URL(
+                string:
+                    "https://api.media.ccc.de/public/events/cf4dc17c-aab4-5868-9b57-100a55a1c2fb")!,
             conferenceURL: URL(string: "https://api.media.ccc.de/public/conferences/MCH2022")!
         ),
     ]

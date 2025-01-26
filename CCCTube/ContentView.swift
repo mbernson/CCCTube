@@ -75,7 +75,9 @@ struct ContentView: View {
             case let .playTalk(id):
                 let talk = try await api.talk(id: id)
                 let recordings = try await api.recordings(for: talk)
-                let recording = recordings.first(where: { $0.isHighQuality }) ?? recordings.first(where: { $0.isVideo })
+                let recording =
+                    recordings.first(where: { $0.isHighQuality })
+                    ?? recordings.first(where: { $0.isVideo })
                 self.talk = TalkToPlay(talk: talk, recordingToPlay: recording)
             }
         } catch {

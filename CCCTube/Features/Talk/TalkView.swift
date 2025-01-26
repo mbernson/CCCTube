@@ -20,16 +20,20 @@ struct TalkView: View {
                 HStack(alignment: .top) {
                     TalkMainView(talk: talk, viewModel: viewModel)
 
-                    TalkMetaView(talk: talk, selectedRecording: $selectedRecording, viewModel: viewModel)
-                        .frame(maxWidth: 480, maxHeight: .infinity)
+                    TalkMetaView(
+                        talk: talk, selectedRecording: $selectedRecording, viewModel: viewModel
+                    )
+                    .frame(maxWidth: 480, maxHeight: .infinity)
                 }
             #else
                 VStack(spacing: 20) {
                     TalkMainView(talk: talk, viewModel: viewModel)
 
-                    TalkMetaView(talk: talk, selectedRecording: $selectedRecording, viewModel: viewModel)
-                        .padding(.horizontal)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    TalkMetaView(
+                        talk: talk, selectedRecording: $selectedRecording, viewModel: viewModel
+                    )
+                    .padding(.horizontal)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .navigationBarTitleDisplayMode(.inline)
             #endif
@@ -71,7 +75,7 @@ private struct TVPlayerView: View {
                 .hoverEffect()
         }
         #if !os(tvOS)
-        .buttonStyle(.plain)
+            .buttonStyle(.plain)
         #endif
         .disabled(recording == nil)
         .fullScreenCover(item: $selectedRecording) { recording in
@@ -92,7 +96,9 @@ private struct TalkMainView: View {
                 #else
                     Group {
                         if let preferredRecording = viewModel.preferredRecording {
-                            TalkPlayerView(talk: talk, recording: preferredRecording, automaticallyStartsPlayback: true)
+                            TalkPlayerView(
+                                talk: talk, recording: preferredRecording,
+                                automaticallyStartsPlayback: true)
                         } else {
                             Rectangle()
                                 .fill(.black)
@@ -119,7 +125,7 @@ private struct TalkMainView: View {
             .focusSection()
             .buttonStyle(.card)
         #endif
-            .multilineTextAlignment(.leading)
+        .multilineTextAlignment(.leading)
         #if !os(tvOS)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -146,9 +152,13 @@ private struct CopyrightView: View {
                 Text(string)
             case .unknown:
                 if let link = talk.link {
-                    Text("No copyright information encoded in video. Please refer to the schedule of the organizer of \(talk.conferenceTitle) at: \(link)")
+                    Text(
+                        "No copyright information encoded in video. Please refer to the schedule of the organizer of \(talk.conferenceTitle) at: \(link)"
+                    )
                 } else {
-                    Text("No copyright information encoded in video. Please refer to the website of the organizer of \(talk.conferenceTitle) at: \(talk.conferenceURL)")
+                    Text(
+                        "No copyright information encoded in video. Please refer to the website of the organizer of \(talk.conferenceTitle) at: \(talk.conferenceURL)"
+                    )
                 }
             }
         }

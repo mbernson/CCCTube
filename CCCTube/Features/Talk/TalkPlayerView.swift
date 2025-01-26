@@ -18,30 +18,30 @@ struct TalkPlayerView: View {
 
     var body: some View {
         VideoPlayerView(player: viewModel.player)
-        .accessibilityIdentifier("Video")
-        .ignoresSafeArea()
-        .task(id: recording) {
-            guard recording != viewModel.currentRecording else { return }
+            .accessibilityIdentifier("Video")
+            .ignoresSafeArea()
+            .task(id: recording) {
+                guard recording != viewModel.currentRecording else { return }
 
-            isLoading = true
-            await viewModel.prepareForPlayback(recording: recording, talk: talk)
-            if automaticallyStartsPlayback {
-                viewModel.play()
-            } else {
-                await viewModel.preroll()
+                isLoading = true
+                await viewModel.prepareForPlayback(recording: recording, talk: talk)
+                if automaticallyStartsPlayback {
+                    viewModel.play()
+                } else {
+                    await viewModel.preroll()
+                }
+                isLoading = false
             }
-            isLoading = false
-        }
-        .onDisappear {
-            viewModel.pause()
-        }
-        #if os(iOS)
-        .overlay {
-            if isLoading {
-                VideoProgressIndicator()
+            .onDisappear {
+                viewModel.pause()
             }
-        }
-        #endif
+            #if os(iOS)
+                .overlay {
+                    if isLoading {
+                        VideoProgressIndicator()
+                    }
+                }
+            #endif
     }
 }
 

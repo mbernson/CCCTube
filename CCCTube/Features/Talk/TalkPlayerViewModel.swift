@@ -18,7 +18,8 @@ final class TalkPlayerViewModel {
     var currentRecording: Recording?
 
     private let factory = TalkMetadataFactory()
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "TalkPlayerViewModel")
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier!, category: "TalkPlayerViewModel")
 
     func prepareForPlayback(recording: Recording, talk: Talk) async {
         let item = AVPlayerItem(url: recording.recordingURL)
@@ -27,11 +28,14 @@ final class TalkPlayerViewModel {
         let player = AVPlayer(playerItem: item)
         self.player = player
         self.currentRecording = recording
-        logger.info("Preparing playback of recording: \(recording.recordingURL.absoluteString, privacy: .public)")
+        logger.info(
+            "Preparing playback of recording: \(recording.recordingURL.absoluteString, privacy: .public)"
+        )
 
         if let imageURL = talk.posterURL ?? talk.thumbURL,
-           let posterImageData = try? await factory.fetchImageData(forURL: imageURL),
-           let posterImageMetadata = factory.createArtworkMetadataItem(imageData: posterImageData) {
+            let posterImageData = try? await factory.fetchImageData(forURL: imageURL),
+            let posterImageMetadata = factory.createArtworkMetadataItem(imageData: posterImageData)
+        {
             item.externalMetadata.append(posterImageMetadata)
         }
     }

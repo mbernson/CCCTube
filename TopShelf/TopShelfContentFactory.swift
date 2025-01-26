@@ -10,7 +10,9 @@ import Foundation
 import TVServices
 
 struct TopShelfContentFactory {
-    func makeTopShelfSections(recentTalks: [Talk], popularTalks: [Talk]) -> [TVTopShelfItemCollection<TVTopShelfSectionedItem>] {
+    func makeTopShelfSections(recentTalks: [Talk], popularTalks: [Talk])
+        -> [TVTopShelfItemCollection<TVTopShelfSectionedItem>]
+    {
         let recents = TVTopShelfItemCollection(items: makeTopShelfItems(talks: recentTalks))
         recents.title = String(localized: "Recent talks", comment: "Top shelf title")
 

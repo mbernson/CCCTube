@@ -5,8 +5,9 @@
 //  Created by Mathijs Bernson on 30/07/2022.
 //
 
-@testable import CCCTube
 import XCTest
+
+@testable import CCCTube
 
 class URLParserTests: XCTestCase {
     let parser = URLParser()

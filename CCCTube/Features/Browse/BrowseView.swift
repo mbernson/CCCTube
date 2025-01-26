@@ -33,20 +33,20 @@ struct BrowseView: View {
         NavigationStack {
             ScrollView {
                 #if os(tvOS)
-                if query == .popular {
-                    YearPicker(year: $year)
-                }
+                    if query == .popular {
+                        YearPicker(year: $year)
+                    }
                 #endif
 
                 TalksGrid(talks: talks)
             }
             .toolbar {
                 #if !os(tvOS)
-                if query == .popular {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        YearPicker(year: $year)
+                    if query == .popular {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            YearPicker(year: $year)
+                        }
                     }
-                }
                 #endif
             }
             .overlay {
@@ -57,7 +57,7 @@ struct BrowseView: View {
                 }
             }
             #if !os(tvOS)
-            .navigationTitle(query.localizedTitle)
+                .navigationTitle(query.localizedTitle)
             #endif
             .task(id: year) {
                 await refresh()

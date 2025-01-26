@@ -17,15 +17,17 @@ final class CCCTubeUIScreenshotTests: XCTestCase {
     }
 
     func testRecentTalks() {
-        XCTAssertTrue(app.otherElements["TalksGrid"].buttons.firstMatch.waitForExistence(timeout: 3.0))
-        wait(forTimeInterval: 2.0) // Give the app some time to load
+        XCTAssertTrue(
+            app.otherElements["TalksGrid"].buttons.firstMatch.waitForExistence(timeout: 3.0))
+        wait(forTimeInterval: 2.0)  // Give the app some time to load
         takeScreenshot("RecentTalks")
     }
 
     func testConferences() {
         app.buttons["Conferences"].firstMatch.tap()
-        XCTAssertTrue(app.otherElements["ConferencesGrid"].buttons.firstMatch.waitForExistence(timeout: 3.0))
-        wait(forTimeInterval: 2.0) // Give the app some time to load
+        XCTAssertTrue(
+            app.otherElements["ConferencesGrid"].buttons.firstMatch.waitForExistence(timeout: 3.0))
+        wait(forTimeInterval: 2.0)  // Give the app some time to load
         takeScreenshot("Conferences")
     }
 

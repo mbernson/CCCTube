@@ -17,13 +17,16 @@ struct ConferencesView: View {
         NavigationStack {
             ScrollView {
                 let filterQuery = filterQuery.lowercased()
-                ConferencesGrid(conferences: filterQuery.isEmpty ? conferences : conferences.filter { conference in
-                    conference.title.lowercased().contains(filterQuery)
-                })
+                ConferencesGrid(
+                    conferences: filterQuery.isEmpty
+                        ? conferences
+                        : conferences.filter { conference in
+                            conference.title.lowercased().contains(filterQuery)
+                        })
             }
             #if !os(tvOS)
-            .searchable(text: $filterQuery)
-            .navigationTitle("Conferences")
+                .searchable(text: $filterQuery)
+                .navigationTitle("Conferences")
             #endif
             .task {
                 await refresh()
@@ -59,8 +62,9 @@ struct ConferencesGrid: View {
     #if os(tvOS)
         let columns: [GridItem] = Array(repeating: GridItem(), count: 4)
     #else
-        let columns: [GridItem] = Array(repeating: GridItem(.adaptive(minimum: 200, maximum: 400)),
-                                        count: 2)
+        let columns: [GridItem] = Array(
+            repeating: GridItem(.adaptive(minimum: 200, maximum: 400)),
+            count: 2)
     #endif
 
     var body: some View {
@@ -71,9 +75,9 @@ struct ConferencesGrid: View {
                 } label: {
                     ConferenceCell(conference: conference)
                         #if os(visionOS)
-                        .padding()
-                        .contentShape(RoundedRectangle(cornerRadius: 16))
-                        .hoverEffect(.lift)
+                            .padding()
+                            .contentShape(RoundedRectangle(cornerRadius: 16))
+                            .hoverEffect(.lift)
                         #endif
                 }
                 .buttonStyle(.plain)
@@ -84,8 +88,8 @@ struct ConferencesGrid: View {
             .focusSection()
             .buttonStyle(.card)
         #endif
-            .accessibilityIdentifier("ConferencesGrid")
-            .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("ConferencesGrid")
+        .accessibilityElement(children: .contain)
     }
 }
 
