@@ -148,7 +148,7 @@ private struct CopyrightView: View {
             switch viewModel.copyright {
             case .loading:
                 ProgressView()
-            case let .copyright(string):
+            case .copyright(let string):
                 Text(string)
             case .unknown:
                 if let link = talk.link {

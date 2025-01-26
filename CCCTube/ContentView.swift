@@ -69,10 +69,10 @@ struct ContentView: View {
         let api = ApiService.shared
         do {
             switch route {
-            case let .openTalk(id):
+            case .openTalk(let id):
                 let talk = try await api.talk(id: id)
                 self.talk = TalkToPlay(talk: talk, recordingToPlay: nil)
-            case let .playTalk(id):
+            case .playTalk(let id):
                 let talk = try await api.talk(id: id)
                 let recordings = try await api.recordings(for: talk)
                 let recording =
