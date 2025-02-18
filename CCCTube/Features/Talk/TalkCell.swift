@@ -5,8 +5,8 @@
 //  Created by Mathijs Bernson on 03/06/2024.
 //
 
-import SwiftUI
 import CCCApi
+import SwiftUI
 
 struct TalkCell: View {
     let talk: Talk
@@ -20,16 +20,13 @@ struct TalkCell: View {
                     .font(.headline)
                     .lineLimit(1)
 
-                (
-                    Text(talk.conferenceTitle) +
-                    Text(verbatim: " • ") +
-                    Text("\(talk.viewCount) views") +
-                    Text(verbatim: " • ") +
-                    Text(talk.releaseDate ?? talk.updatedAt, format: .relative(presentation: .named))
-                )
-                .font(.caption)
-                .foregroundStyle(.secondary)
-                .lineLimit(1)
+                (Text(talk.conferenceTitle) + Text(verbatim: " • ")
+                    + Text("\(talk.viewCount) views") + Text(verbatim: " • ")
+                    + Text(
+                        talk.releaseDate ?? talk.updatedAt, format: .relative(presentation: .named)))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }

@@ -14,7 +14,7 @@ struct URLParser {
 
         let components = url.pathComponents.filter { $0 != "/" }
         guard components.count >= 1,
-              let id = components.first
+            let id = components.first
         else { return nil }
 
         if components.last == "play" {

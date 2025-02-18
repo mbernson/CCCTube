@@ -5,8 +5,8 @@
 //  Created by Mathijs Bernson on 26/01/2025.
 //
 
-import SwiftUI
 import CCCApi
+import SwiftUI
 
 struct ConferenceCell: View {
     let conference: Conference

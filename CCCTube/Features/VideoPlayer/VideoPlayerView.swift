@@ -6,8 +6,8 @@
 //
 
 import AVKit
-import os.log
 import SwiftUI
+import os.log
 
 struct VideoPlayerView: UIViewControllerRepresentable {
     let player: AVPlayer?
@@ -28,7 +28,8 @@ struct VideoPlayerView: UIViewControllerRepresentable {
         return playerViewController
     }
 
-    func updateUIViewController(_ playerViewController: VideoPlayerViewController, context: Context) {
+    func updateUIViewController(_ playerViewController: VideoPlayerViewController, context: Context)
+    {
         playerViewController.player = player
     }
 
@@ -36,16 +37,22 @@ struct VideoPlayerView: UIViewControllerRepresentable {
         VideoPlayerCoordinator()
     }
 
-    static func dismantleUIViewController(_ playerViewController: VideoPlayerViewController, coordinator: Coordinator) {
+    static func dismantleUIViewController(
+        _ playerViewController: VideoPlayerViewController, coordinator: Coordinator
+    ) {
         playerViewController.player?.cancelPendingPrerolls()
         playerViewController.player?.pause()
     }
 }
 
 class VideoPlayerCoordinator: NSObject, AVPlayerViewControllerDelegate {
-    let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "VideoPlayerCoordinator")
+    let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier!, category: "VideoPlayerCoordinator")
 
-    func playerViewController(_ playerViewController: AVPlayerViewController, failedToStartPictureInPictureWithError error: Error) {
+    func playerViewController(
+        _ playerViewController: AVPlayerViewController,
+        failedToStartPictureInPictureWithError error: Error
+    ) {
         logger.error("Failed to start picture in picture: \(error)")
     }
 }

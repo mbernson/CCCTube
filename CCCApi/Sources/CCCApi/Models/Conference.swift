@@ -30,7 +30,12 @@ public struct Conference: Decodable, Identifiable, Sendable {
 
     public var id: String { slug }
 
-    init(acronym: String, slug: String, title: String, updatedAt: Date, eventLastReleasedAt: Date? = nil, events: [Talk]? = nil, link: URL? = nil, description: String? = nil, aspectRatio: AspectRatio? = nil, webgenLocation: String, url: URL, logoURL: URL, imagesURL: URL? = nil, recordingsURL: URL? = nil) {
+    init(
+        acronym: String, slug: String, title: String, updatedAt: Date,
+        eventLastReleasedAt: Date? = nil, events: [Talk]? = nil, link: URL? = nil,
+        description: String? = nil, aspectRatio: AspectRatio? = nil, webgenLocation: String,
+        url: URL, logoURL: URL, imagesURL: URL? = nil, recordingsURL: URL? = nil
+    ) {
         self.acronym = acronym
         self.slug = slug
         self.title = title
@@ -101,7 +106,8 @@ public struct AspectRatio: Decodable, Sendable {
         let parts = string.components(separatedBy: ":")
             .compactMap(Double.init)
         if parts.count != 2 {
-            throw DecodingError.dataCorruptedError(in: container, debugDescription: "Invalid aspect ratio")
+            throw DecodingError.dataCorruptedError(
+                in: container, debugDescription: "Invalid aspect ratio")
         } else {
             width = parts[0]
             height = parts[1]

@@ -12,9 +12,9 @@ struct TalksGrid: View {
     let talks: [Talk]
     var body: some View {
         #if os(tvOS)
-        TalksGridTV(talks: talks)
+            TalksGridTV(talks: talks)
         #else
-        TalksGridRegular(talks: talks)
+            TalksGridRegular(talks: talks)
         #endif
     }
 }
@@ -31,9 +31,9 @@ private struct TalksGridRegular: View {
                 } label: {
                     TalkCell(talk: talk)
                         #if os(visionOS)
-                        .padding()
-                        .contentShape(RoundedRectangle(cornerRadius: 16))
-                        .hoverEffect(.lift)
+                            .padding()
+                            .contentShape(RoundedRectangle(cornerRadius: 16))
+                            .hoverEffect(.lift)
                         #endif
                 }
                 .buttonStyle(.plain)
@@ -47,34 +47,34 @@ private struct TalksGridRegular: View {
 }
 
 #if os(tvOS)
-private struct TalksGridTV: View {
-    let talks: [Talk]
-    let columns: [GridItem] = Array(repeating: GridItem(), count: 4)
+    private struct TalksGridTV: View {
+        let talks: [Talk]
+        let columns: [GridItem] = Array(repeating: GridItem(), count: 4)
 
-    var body: some View {
-        LazyVGrid(columns: columns, spacing: 64) {
-            ForEach(talks) { talk in
-                VStack(alignment: .leading) {
-                    NavigationLink {
-                        TalkView(talk: talk)
-                    } label: {
-                        TalkThumbnail(talk: talk)
+        var body: some View {
+            LazyVGrid(columns: columns, spacing: 64) {
+                ForEach(talks) { talk in
+                    VStack(alignment: .leading) {
+                        NavigationLink {
+                            TalkView(talk: talk)
+                        } label: {
+                            TalkThumbnail(talk: talk)
+                        }
+
+                        Text(talk.title)
+                            .font(.headline)
+                            .lineLimit(2, reservesSpace: true)
                     }
-
-                    Text(talk.title)
-                        .font(.headline)
-                        .lineLimit(2, reservesSpace: true)
                 }
             }
+            .padding()
+            .multilineTextAlignment(.center)
+            .focusSection()
+            .buttonStyle(.card)
+            .accessibilityIdentifier("TalksGrid")
+            .accessibilityElement(children: .contain)
         }
-        .padding()
-        .multilineTextAlignment(.center)
-        .focusSection()
-        .buttonStyle(.card)
-        .accessibilityIdentifier("TalksGrid")
-        .accessibilityElement(children: .contain)
     }
-}
 #endif
 
 struct TalksGrid_Previews: PreviewProvider {

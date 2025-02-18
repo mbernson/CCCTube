@@ -20,41 +20,41 @@ struct SearchView: View {
         NavigationStack {
             Group {
                 #if os(tvOS)
-                List {
-                    ForEach(results) { talk in
-                        NavigationLink {
-                            TalkView(talk: talk)
-                        } label: {
-                            TalkListItem(talk: talk)
-                        }
-
-                    }
-                }
-                #else
-                if isLoading {
-                    ProgressView()
-                } else if results.isEmpty && !query.isEmpty {
-                    Text("No talks found")
-                } else if results.isEmpty {
                     List {
-                        ForEach(suggestions) { suggestion in
-                            Button(suggestion.title) {
-                                query = suggestion.title
-                                runSearch()
+                        ForEach(results) { talk in
+                            NavigationLink {
+                                TalkView(talk: talk)
+                            } label: {
+                                TalkListItem(talk: talk)
                             }
-                            .foregroundColor(.accentColor)
+
                         }
                     }
-                    .listStyle(.plain)
-                } else {
-                    ScrollView {
-                        TalksGrid(talks: results)
+                #else
+                    if isLoading {
+                        ProgressView()
+                    } else if results.isEmpty && !query.isEmpty {
+                        Text("No talks found")
+                    } else if results.isEmpty {
+                        List {
+                            ForEach(suggestions) { suggestion in
+                                Button(suggestion.title) {
+                                    query = suggestion.title
+                                    runSearch()
+                                }
+                                .foregroundColor(.accentColor)
+                            }
+                        }
+                        .listStyle(.plain)
+                    } else {
+                        ScrollView {
+                            TalksGrid(talks: results)
+                        }
                     }
-                }
                 #endif
             }
             #if !os(tvOS)
-            .navigationTitle("Search")
+                .navigationTitle("Search")
             #endif
             .searchable(text: $query, prompt: "Search talks...")
             .onChange(of: query) { _, query in
@@ -64,11 +64,11 @@ struct SearchView: View {
                 runSearch(query)
             }
             #if os(tvOS)
-            .searchSuggestions {
-                ForEach(suggestions) { suggest in
-                    Text(suggest.title).searchCompletion(suggest.title)
+                .searchSuggestions {
+                    ForEach(suggestions) { suggest in
+                        Text(suggest.title).searchCompletion(suggest.title)
+                    }
                 }
-            }
             #endif
             .onAppear(perform: runSearch)
             .onSubmit(of: .search, runSearch)

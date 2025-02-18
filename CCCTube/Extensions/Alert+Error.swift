@@ -10,7 +10,10 @@ import SwiftUI
 
 extension View {
     /// Presents an alert when an error is present.
-    func alert<E: Error>(_ titleKey: LocalizedStringKey, error: Binding<E?>, buttonTitleKey: LocalizedStringKey = "Ok") -> some View {
+    func alert<E: Error>(
+        _ titleKey: LocalizedStringKey, error: Binding<E?>,
+        buttonTitleKey: LocalizedStringKey = "Ok"
+    ) -> some View {
         modifier(ErrorAlert(error: error, titleKey: titleKey, buttonTitleKey: buttonTitleKey))
     }
 }
@@ -42,5 +45,7 @@ private struct ErrorAlert<E: Error>: ViewModifier {
 
 #Preview("Error alert") {
     Text(verbatim: "Preview text")
-        .alert("Preview error title", error: .constant(CCCTubeError(message: "Failed to load all the things")))
+        .alert(
+            "Preview error title",
+            error: .constant(CCCTubeError(message: "Failed to load all the things")))
 }

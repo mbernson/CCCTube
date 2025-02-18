@@ -11,7 +11,7 @@ let package = Package(
         .library(
             name: "CCCApi",
             targets: ["CCCApi"]
-        ),
+        )
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -23,6 +23,6 @@ let package = Package(
         .target(
             name: "CCCApi",
             dependencies: []
-        ),
+        )
     ]
 )

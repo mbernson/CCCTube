@@ -27,9 +27,12 @@ struct ConferenceView: View {
                 }
             #else
                 let filterQuery = filterQuery.lowercased()
-                TalksGrid(talks: filterQuery.isEmpty ? talks : talks.filter { talk in
-                    talk.title.lowercased().contains(filterQuery)
-                })
+                TalksGrid(
+                    talks: filterQuery.isEmpty
+                        ? talks
+                        : talks.filter { talk in
+                            talk.title.lowercased().contains(filterQuery)
+                        })
             #endif
         }
         .overlay {
@@ -40,8 +43,8 @@ struct ConferenceView: View {
             }
         }
         #if !os(tvOS)
-        .searchable(text: $filterQuery)
-        .navigationTitle(conference.title)
+            .searchable(text: $filterQuery)
+            .navigationTitle(conference.title)
         #endif
         .task {
             await refresh()

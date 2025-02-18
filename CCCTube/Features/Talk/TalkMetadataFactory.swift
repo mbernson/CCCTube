@@ -42,7 +42,9 @@ struct TalkMetadataFactory {
 
     typealias AVMetadataValue = NSCopying & NSObjectProtocol
 
-    func createMetadataItem(for identifier: AVMetadataIdentifier, value: AVMetadataValue, language: String?) -> AVMetadataItem {
+    func createMetadataItem(
+        for identifier: AVMetadataIdentifier, value: AVMetadataValue, language: String?
+    ) -> AVMetadataItem {
         let item = AVMutableMetadataItem()
         item.identifier = identifier
         item.value = value

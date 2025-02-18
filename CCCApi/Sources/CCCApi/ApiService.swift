@@ -32,7 +32,8 @@ public class ApiService {
             if let date = self.iso8601Formatter.date(from: dateString) {
                 return date
             } else {
-                throw DecodingError.dataCorruptedError(in: container, debugDescription: "Unable to parse ISO 8601 date")
+                throw DecodingError.dataCorruptedError(
+                    in: container, debugDescription: "Unable to parse ISO 8601 date")
             }
         }
     }
@@ -46,14 +47,16 @@ public class ApiService {
     }
 
     public func conference(acronym: String) async throws -> Conference {
-        let (data, _) = try await session.data(from: baseURL.appendingPathComponent("conferences").appendingPathComponent(acronym))
+        let (data, _) = try await session.data(
+            from: baseURL.appendingPathComponent("conferences").appendingPathComponent(acronym))
         return try decoder.decode(Conference.self, from: data)
     }
 
     // MARK: Talks
 
     public func talk(id: String) async throws -> Talk {
-        let (data, _) = try await session.data(from: baseURL.appendingPathComponent("events").appendingPathComponent(id))
+        let (data, _) = try await session.data(
+            from: baseURL.appendingPathComponent("events").appendingPathComponent(id))
         let response = try decoder.decode(Talk.self, from: data)
         return response
     }
@@ -65,7 +68,8 @@ public class ApiService {
     }
 
     public func recentTalks() async throws -> [Talk] {
-        let (data, _) = try await session.data(from: baseURL.appendingPathComponent("events").appendingPathComponent("recent"))
+        let (data, _) = try await session.data(
+            from: baseURL.appendingPathComponent("events").appendingPathComponent("recent"))
         let response = try decoder.decode(EventsResponse.self, from: data)
         return response.events
     }
@@ -91,12 +95,14 @@ public class ApiService {
     // MARK: Recordings
 
     public func recordings(for talk: Talk) async throws -> [Recording] {
-        let (data, _) = try await session.data(from: baseURL.appendingPathComponent("events").appendingPathComponent(talk.guid))
+        let (data, _) = try await session.data(
+            from: baseURL.appendingPathComponent("events").appendingPathComponent(talk.guid))
         let response = try decoder.decode(TalkExtended.self, from: data)
         guard let recordings = response.recordings else {
             return []
         }
-        return recordings
+        return
+            recordings
             // Remove formats Apple doesn't support
             .filter { !$0.mimeType.contains("opus") }
             .filter { !$0.mimeType.contains("webm") }

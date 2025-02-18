@@ -64,6 +64,18 @@ It uses the native video player, which supports behaviours such as picture-in-pi
 
 The app is localized to English, German and Dutch.
 
+### Code formatting
+
+Apple's `swift-format` is used for linting and formatting the source code.
+You can run it using the following commands:
+
+```
+# Lint
+xcrun swift-format lint -r .
+# Format all files
+xcrun swift-format format -i -r .
+```
+
 ## License
 
 As all other C3VOC tools, this software is distributed under the GPL v3. See the `LICENSE.txt` file.

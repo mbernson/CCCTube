@@ -1,4 +1,0 @@
-disabled_rules:
-  - trailing_comma
-  - line_length
-  - unused_closure_parameter
