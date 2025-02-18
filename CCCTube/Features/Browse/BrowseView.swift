@@ -60,6 +60,8 @@ struct BrowseView: View {
                 .navigationTitle(query.localizedTitle)
             #endif
             .task(id: year) {
+                isLoading = true
+                defer { isLoading = false }
                 await refresh()
             }
             .refreshable {
@@ -70,8 +72,6 @@ struct BrowseView: View {
     }
 
     func refresh() async {
-        isLoading = true
-        defer { isLoading = false }
         do {
             let api = ApiService.shared
             switch query {

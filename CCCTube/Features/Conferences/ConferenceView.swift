@@ -47,6 +47,8 @@ struct ConferenceView: View {
             .navigationTitle(conference.title)
         #endif
         .task {
+            isLoading = true
+            defer { isLoading = false }
             await refresh()
         }
         .refreshable {
@@ -56,8 +58,6 @@ struct ConferenceView: View {
     }
 
     func refresh() async {
-        isLoading = true
-        defer { isLoading = false }
         do {
             talks = try await ApiService.shared.conference(acronym: conference.acronym).events ?? []
         } catch is CancellationError {

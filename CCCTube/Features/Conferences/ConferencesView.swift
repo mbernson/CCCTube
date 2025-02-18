@@ -11,6 +11,7 @@ import SwiftUI
 struct ConferencesView: View {
     @State var conferences: [Conference] = []
     @State var filterQuery = ""
+    @State var isLoading = true
     @State var error: Error?
 
     var body: some View {
@@ -24,11 +25,18 @@ struct ConferencesView: View {
                             conference.title.lowercased().contains(filterQuery)
                         })
             }
+            .overlay {
+                if isLoading {
+                    ProgressView()
+                }
+            }
             #if !os(tvOS)
                 .searchable(text: $filterQuery)
                 .navigationTitle("Conferences")
             #endif
             .task {
+                isLoading = true
+                defer { isLoading = false }
                 await refresh()
             }
             .refreshable {
