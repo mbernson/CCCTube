@@ -39,13 +39,13 @@ Just relax on your couch, select the HackerTube app and immerse yourself in the 
 
 ### German
 
-HackerTube ist eine App zum Ansehen der Vorträge und Aktivitäten des Chaos Computer Club. Es ist nicht offiziell mit dem CCC verbunden.
+HackerTube ist eine App zum Ansehen der Vorträge und Aktivitäten des Chaos Computer Clubs. Sie ist nicht offiziell mit dem CCC verbunden.
 
-Der Chaos Computer Club ist Europas größte Hackervereinigung und ein Treffpunkt für vielfältig interessierte Menschen aus der ganzen Welt. Man trifft sich vor Allem in kleinen Zusammenkünften, aber auch auf großen Konferenzen. Es wird gebastelt, ausprobiert und getüftelt. Technische Schranken werden beseitigt, Neues gebaut und Altes zerlegt. Es wird diskutiert und politisiert. Bei allen Aktivitäten stehen jedoch Kommunikation und Austausch im Vordergrund.
+Der Chaos Computer Club ist Europas größte Hackervereinigung und ein Treffpunkt für vielfältig interessierte Menschen aus der ganzen Welt. Man trifft sich vor Allem auf kleinen Events, aber auch auf großen Konferenzen. Es wird gebastelt, ausprobiert und getüftelt. Technische Hürden werden beseitigt, Neues gebaut und Altes zerlegt. Es wird diskutiert und politisiert. Bei allen Aktivitäten stehen jedoch Kommunikation und Austausch im Vordergrund.
 
-Seit vielen Jahren kreiert der Chaos Computer Club Videos, die viele der Vorträge und Aktivitäten dokumentieren. Natürlich sind diese Videos auch über verschiedene Wege abrufbar. Mit der App HackerTube ist der Video-Content des Chaos Computer Club nun auf bequeme Art und Weise auf dem Apple TV verfügbar. Diese einfach zu bedienende App reduziert die Hürde zum Chaos Computer Club und macht die Aktivitäten de Clubs einer breiteren Öffentlichkeit verfügbar.
- 
-Einfach auf´s Sofa setzen, HackerTube auswählen und in die wunderbar vielfältige Welt des Chaos Computer Club eintauchen!
+Seit vielen Jahren kreiert der Chaos Computer Club Videos, die viele der Vorträge und Aktivitäten dokumentieren. Natürlich sind diese Videos auch über verschiedene Wege abrufbar. Mit der App HackerTube ist der Video-Content des Chaos Computer Clubs nun auf bequeme Art und Weise auf Apple-Geräten verfügbar. Diese einfach zu bedienende App macht die Aktivitäten de Clubs einer breiteren Öffentlichkeit verfügbar.
+
+Einfach aufs Sofa setzen, HackerTube auswählen und in die wunderbar vielfältige Welt des Chaos Computer Club eintauchen!
 
 ### Dutch
 
