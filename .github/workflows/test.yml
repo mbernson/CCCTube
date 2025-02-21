@@ -11,7 +11,7 @@ jobs:
     name: Build and Test on iOS Simulator
     runs-on: macos-latest
     env:
-      scheme: ${{ 'CCCTube' }}
+      scheme: ${{ 'HackerTube' }}
       platform: ${{ 'iOS Simulator' }}
 
     steps:

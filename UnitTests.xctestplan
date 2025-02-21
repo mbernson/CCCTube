@@ -14,9 +14,9 @@
   "testTargets" : [
     {
       "target" : {
-        "containerPath" : "container:CCCTube.xcodeproj",
+        "containerPath" : "container:HackerTube.xcodeproj",
         "identifier" : "D591395828958B2600369402",
-        "name" : "CCCTubeTests"
+        "name" : "HackerTubeTests"
       }
     }
   ],
