@@ -40,9 +40,9 @@
   "testTargets" : [
     {
       "target" : {
-        "containerPath" : "container:CCCTube.xcodeproj",
+        "containerPath" : "container:HackerTube.xcodeproj",
         "identifier" : "D5EFB19B2B407683008CFE82",
-        "name" : "CCCTubeUITests"
+        "name" : "HackerTubeUITests"
       }
     }
   ],
